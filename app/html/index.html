@@ -51,7 +51,7 @@
                             <p class="lead mb-4">Stay organized and on top of your tasks with ToDoit, 
                                 the ultimate reminder app that lets you collaborate seamlessly! Add reminders, share tasks, and keep your team in sync—all in one place.</p>
                             <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-lg px-4 me-sm-3" href="#features" style="color: black; background-color: lightgrey;">Sign in</a>
+                                <a class="btn btn-lg px-4 me-sm-3" href="/login" style="color: black; background-color: lightgrey;">Sign in</a>
                                 <a class="btn btn-lg px-4" href="#!" style="color: white; background-color: #74b6f9;">Sign up</a>
                             </div>
                         </div>
@@ -66,8 +66,12 @@
         </footer>
         
         <!-- Core theme JS-->
-        <script src="/js/scripts.js"></script>
+        <script src="./scripts/firebaseAPI.js"></script>
+        <script src="/js/script.js"></script>
         <script src="/js/client.js"></script>
+        <script>
+            logout();
+        </script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <!-- * *                               SB Forms JS                               * *-->
         <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
