@@ -1,82 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>ToDoit</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-            <!-- Bootstrap Library CSS CDN go here -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>ToDoit</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- Bootstrap icons-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <!-- Bootstrap Library CSS CDN go here -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
 
-        <!-- Boostrap Library JS CDN  go here -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-</script>
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/styles.css" rel="stylesheet" />
-    </head>
-    <body class="vh-100 d-flex flex-column">
-        <!-- Responsive header and navbar-->
-        <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #58B2F7;">
-            <div class="container px-5">
-                <a class="navbar-brand" href="#!" style="margin: 1%;">
-                    <!--<img src="/img/cleaned_logo.png"> -->
-                    ToDoit
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="#!">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Features</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">How it works</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </header>
+    <!-- Boostrap Library JS CDN  go here -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/css/styles.css" rel="stylesheet" />
+  </head>
+  <body class="vh-100 d-flex flex-column">
+    <!-- Responsive header and navbar-->
+    <header
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #58b2f7"
+    >
+      <div class="container px-5">
+        <a class="navbar-brand" href="#!" style="margin: 1%">
+          <!--<img src="/img/cleaned_logo.png"> -->
+          ToDoit
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#!">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Features</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">How it works</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
 
-        <!-- Main-->
-        <main class="py-5 flex-grow-1 text-black">
-            <div class="container">
-                <div class="row gx-5 justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="text-center my-5">
-                            <h1 class="display-4 fw-bolder mb-2">Just To Do it!</h1>
-                            <p class="lead mb-4">Stay organized and on top of your tasks with ToDoit, 
-                                the ultimate reminder app that lets you collaborate seamlessly! Add reminders, share tasks, and keep your team in sync—all in one place.</p>
-                            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-                                <a class="btn btn-lg px-4 me-sm-3" href="/login" style="color: black; background-color: lightgrey;">Sign in</a>
-                                <a class="btn btn-lg px-4" href="#!" style="color: white; background-color: #74b6f9;">Sign up</a>
-                            </div>
-                        </div>
+    <!-- Main-->
+    <main class="py-5 flex-grow-1">
+        <div id="onboardingCarousel" class="carousel slide" data-bs-interval="false">
+            <div class="carousel-inner">
+
+                <!-- Page 1 -->
+                <div class="carousel-item active">
+                    <div class="top-nav">
+                        <a href="login.html">Skip</a>
                     </div>
+                    <img src="/img/Reminders-bro.png" class="onboarding-img" alt="Stay Organized">
+                    <div class="onboarding-card">
+                        <h5 class="fw-bold">Stay Organized 📅</h5>
+                        <p class="text-muted">Manage your tasks effortlessly with ToDoit. Set reminders and never miss a deadline!</p>
+                    </div>
+                    <button class="btn btn-dark bottom-btn" id="nextBtn">Get Started</button>
                 </div>
-            </div>
-        </main>
-    
-        <!-- footer -->
-        <footer class="py-5 fixed-bottom" style="background-color: #58B2F7;">
-            <div class="container px-5"><p class="m-0 text-left text-white">Copyright &copy; ToDoit 2025</p></div>
-        </footer>
-        
-        <!-- Core theme JS-->
-        <script src="./scripts/firebaseAPI.js"></script>
-        <script src="/js/script.js"></script>
-        <script src="/js/client.js"></script>
-        <script>
-            logout();
-        </script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-    </body>
 
+                <!-- Page 2 -->
+                <div class="carousel-item">
+                    <div class="top-nav">
+                        <a href="#" id="backBtn">← Back</a>
+                    </div>
+                    <img src="/img/Push notifications-pana.png" class="onboarding-img" alt="Collaborate">
+                    <div class="onboarding-card">
+                        <h5 class="fw-bold">Just To Do it! </h5>
+                        <p class="text-muted">Stay ahead of your tasks and boost productivity with ToDoit. Get started now!</p>
+                    </div>
+                    <button class="btn btn-dark bottom-btn">Log In</button>
+                    <button class="btn btn-outline-dark bottom-btn mt-2">Register</button>
+                </div>
+
+             </div>
+
+            <!-- Corrected Carousel Navigation -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#onboardingCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#onboardingCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div> 
+    </main>
+
+    <!-- footer -->
+    <footer class="py-5 fixed-bottom" style="background-color: #58b2f7">
+      <div class="container px-5">
+        <p class="m-0 text-left text-white">Copyright &copy; ToDoit 2025</p>
+      </div>
+    </footer>
+
+    <!-- Core theme JS-->
+    <script src="./scripts/firebaseAPI.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/client.js"></script>
+    <script src="/js/skeleton.js"></script>
+    <script>
+      logout();
+    </script>
+
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
 </html>
