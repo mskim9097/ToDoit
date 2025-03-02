@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>My BCIT Project</title>
-    <meta name="comp1800 template" content="My 1800 App">
+  <head>
+    <title>ToDoIt (Assignment Reminder App)</title>
+    <meta name="comp1800 template" content="My 1800 App" />
 
     <!------------------------>
     <!-- Required meta tags -->
     <!------------------------>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!------------------------------------------>
     <!-- Bootstrap Library CSS JS CDN go here -->
     <!------------------------------------------>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -28,28 +33,67 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+    />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <!-- <link rel="stylesheet" href="./styles/style.css"> -->
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
 
-</head>
-
-<body>
+  <body>
+    <header
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #58b2f7"
+    >
+      <div class="container px-5">
+        <a class="navbar-brand" href="#!" style="margin: 1%">
+          <!--<img src="/img/cleaned_logo.png"> -->
+          ToDoit
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#!">Home</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Profile</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Manage Assignment</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">about us</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
-    <nav id="navbarPlaceholder"></nav>
+    <nav id="navbar navbar-dark bg-primary"></nav>
     <div class="container-fluid bg-light text-dark p-5">
-        <div class="container bg-light p-5">
-            <h1 class="display-4">Good morning<span id="name-goes-here"></span></h1>
-            <hr>
-            <p>Quote of the day: The best ideas are those remembered.</p>
-        </div>
+      <div class="container bg-light p-5">
+        <h1 class="display-4">Hello<span id="name-goes-here"></span></h1>
+        <hr />
+        <p>
+          <i>Success starts with the assignments you don’t forget.</i>
+        </p>
+      </div>
     </div>
 
     <!-- our own navbar goes here -->
@@ -57,6 +101,32 @@
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
+    <div class="container mt-4">
+      <h2 class="text-center">Add New Assignment</h2>
+      <form id="assignment-form">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="mb-3">
+          <label for="due-date" class="form-label">Due Date</label>
+          <input type="date" class="form-control" id="due-date" required />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Assignment</button>
+      </form>
+
+      <h2 class="mt-5 text-center">Upcoming Assignments</h2>
+      <ul id="assignment-list" class="list-group mt-3"></ul>
+    </div>
 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
@@ -68,7 +138,8 @@
     <script src="./scripts/skeleton.js"></script>
     <script src="./scripts/script.js"></script>
     <script src="./scripts/main.js"></script>
-
-</body>
-
+    <script>
+      logout();
+    </script>
+  </body>
 </html>
