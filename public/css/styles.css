@@ -10839,6 +10839,7 @@ textarea.form-control-lg {
 }
 .onboarding-img {
   width: 80%;
+  max-width: 300px;
   margin: auto;
   display: block;
 }
