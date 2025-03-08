@@ -5,29 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
         wrap: false // Prevent looping
     });
 
-    const nextButtons = document.querySelectorAll(".next-slide");
-    const prevButtons = document.querySelectorAll(".prev-slide");
-    const skipButton = document.querySelector(".skip-slide");
-
-    // Move to next slide
-    nextButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            carouselInstance.next();
-        });
+    // "Get Started" button: Moves to next slide
+    document.querySelector(".bottom-btn").addEventListener("click", function (event) {
+        event.preventDefault();
+        carouselInstance.next(); // Moves to next slide
     });
 
-    // Move to previous slide
-    prevButtons.forEach(button => {
-        button.addEventListener("click", function () {
-            carouselInstance.prev();
-        });
-    });
-
-    // Skip to the last slide
-    if (skipButton) {
-        skipButton.addEventListener("click", function () {
-            let lastIndex = document.querySelectorAll(".carousel-item").length - 1;
-            carouselInstance.to(lastIndex);
-        });
-    }
+   
 });
