@@ -70,6 +70,13 @@ app.get("/task", function(req, res) {
     res.send(doc);
 });
 
+app.get("/create", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/create.html", "utf8");
+    res.send(doc);
+});
+
 /*
 app.get("/hello", function (req, res) {
     // just send some plain text
