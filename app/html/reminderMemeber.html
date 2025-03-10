@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder Members</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <!-- Firebase SDK -->=
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.1.2/firebase-auth.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Reminder Members</h1>
+
+        <!-- Add New Reminder Member Form -->
+        <form id="addReminderMemberForm">
+            <label for="reminderNo">Reminder No:</label>
+            <input type="text" id="reminderNo" required placeholder="Enter reminder number">
+
+            <label for="userNo">User No:</label>
+            <input type="text" id="userNo" required placeholder="Enter user number">
+
+            <label for="reminderManager">Is Manager:</label>
+            <select id="reminderManager" required>
+                <option value="Y">Yes</option>
+                <option value="N">No</option>
+            </select>
+
+            <label for="reminderDelete">Is Deleted:</label>
+            <select id="reminderDelete" required>
+                <option value="N">No</option>
+                <option value="Y">Yes</option>
+            </select>
+
+            <button type="submit">Add Reminder Member</button>
+        </form>
+
+        <hr>
+
+        <!-- Display Existing Reminder Members -->
+        <h2>Existing Reminder Members</h2>
+        <div id="reminderMembersList">
+            <!-- Reminder members will be displayed here -->
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>

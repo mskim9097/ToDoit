@@ -10,6 +10,7 @@
     <!------------------------>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 
     <!------------------------------------------>
     <!-- Bootstrap Library CSS JS CDN go here -->
@@ -36,48 +37,45 @@
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
     <link rel="stylesheet" href="./styles/style.css" />
-</head>
+  </head>
 
-<body>
-
-    <template id="reminderTemplate">        
-            <tr>
-                <td class="reminder-title"><a>reminder title</a></td>
-                <td class="reminder-create-date"> reminder create date</td>
-            </tr>
-    </template>
-
-    <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
-
-    <header class="navbar navbar-expand-lg navbar-dark" style="background-color: #58b2f7">
-        <div class="container px-5">
-            <a class="navbar-brand" href="#!" style="margin: 1%">
-                <!--<img src="/img/cleaned_logo.png"> -->
-                ToDoit
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#!">Add Assignment</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Search</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#!">Today</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Upcoming</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Filter & Lables</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Completed Task</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">My Collection</a></li>
-                </ul>
-            </div>
+  <body>
+    <header
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #58b2f7"
+    >
+      <div class="container px-5">
+        <a class="navbar-brand" href="#!" style="margin: 1%">
+          <!--<img src="/img/cleaned_logo.png"> -->
+          ToDoit
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#!">Add Assignment</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Search</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Today</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Upcoming</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Filter & Lables</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Completed Task</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">My Collection</a></li>
+          </ul>
         </div>
+      </div>
     </header>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
@@ -106,26 +104,29 @@
         </table>
     </div>
     <div class="container mt-4">
-        <h2 class="text-center">Add New Assignment</h2>
-        <form id="assignment-form">
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" id="title" required />
-            </div>
-            <div class="mb-3">
-                <label for="due-date" class="form-label">Due Date</label>
-                <input type="date" class="form-control" id="due-date" required />
-            </div>
-            <div class="mb-3">
-                <label for="description" class="form-label">Description</label>
-                <textarea class="form-control" id="description" rows="3" required></textarea>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Add Assignment</button>
-        
-        </form>
+      <h2 class="text-center">Add New Assignment</h2>
+      <form id="assignment-form">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="mb-3">
+          <label for="due-date" class="form-label">Due Date</label>
+          <input type="date" class="form-control" id="due-date" required />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Assignment</button>
+      </form>
 
-
+      
     </div>
 
     
