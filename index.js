@@ -35,6 +35,48 @@ app.get("/main", function(req, res) {
     res.send(doc);
 });
 
+app.get("/nav_before_login", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/nav_before_login.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/nav_after_login", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/nav_after_login.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/footer", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/footer.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/reminder", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/reminder.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/task", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/task.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/create", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/create.html", "utf8");
+    res.send(doc);
+});
+
 /*
 app.get("/hello", function (req, res) {
     // just send some plain text
