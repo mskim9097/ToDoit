@@ -139,4 +139,3 @@ function selectReminder(collection) {
     })    
 }
 selectReminder("reminder");
->>>>>>> 788f10bad05db1f2ac63b9086cb86e18029c376f
