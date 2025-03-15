@@ -92,7 +92,9 @@ displayReminderMembers();
 function selectReminder(collection) {
     let reminderTemplate = document.getElementById("reminderTemplate");
     var auth = firebase.auth();
-    
+    var colors = ['primary', 'secondary', 'success', 'danger', 'warning', 'info'];
+    var colorCount = 0;
+
     auth.onAuthStateChanged((user) => {
         if(user) {
             db.collection(collection)
@@ -106,13 +108,14 @@ function selectReminder(collection) {
                         if(doc.data().reminder_delete_fg == 'N') {
                             var docId = doc.id;
                             var reminderTitle = doc.data().reminder_title;
-                            var reminderCreateDate = doc.data().reminder_create_date;
                             let newReminder = reminderTemplate.content.cloneNode(true);
 
-                            newReminder.querySelector('.reminder-title').innerHTML = "<a>" + reminderTitle + "</a>";
-                            newReminder.querySelector('.reminder-create-date').innerHTML = reminderCreateDate.toDate();
-                            newReminder.querySelector('a').href = "/reminder?docID="+docId;
+                            newReminder.querySelector('.reminder-title').innerHTML = reminderTitle;
+                            newReminder.querySelector('.reminder-title').href = "/reminder?docID="+docId;
+                            newReminder.querySelector('.reminder-title').classList.add('list-group-item-' + colors[colorCount % colors.length]);
                             document.getElementById(collection + "-go-here").appendChild(newReminder);
+
+                            colorCount++;
                         }                    
                     }
                 }))
