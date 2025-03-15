@@ -49,14 +49,6 @@
   </head>
 
   <body>
-
-    <template id="reminderTemplate">        
-      <tr>
-          <td class="reminder-title"><a>reminder title</a></td>
-          <td class="reminder-create-date"> reminder create date</td>
-      </tr>
-</template>
-
     <header
       class="navbar navbar-expand-lg navbar-dark"
       style="background-color: #58b2f7"
@@ -84,11 +76,14 @@
                 >Add Assignment</a
               >
             </li>
-            <li class="nav-item"><a class="nav-link" href="reminder.html">Reminder</a></li>
-            <li class="nav-item"><a class="nav-link" href="../reminder.html">Tasks</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">Sharing Assignment</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">Search Assignment</a></li>
-            <li class="nav-item"><a class="nav-link" href="setting.html">Setting</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Reminder</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Sharing Assignment</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#!">Search Assignment</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#!">Settings</a></li>
           </ul>
         </div>
       </div>
@@ -98,66 +93,73 @@
     <!------------------------------>
 
     <div class="container-fluid bg-light text-dark p-5">
-        <div class="container bg-light p-5">
-            <h1 class="display-4">Welcome<span id="name-goes-here"></span></h1>
-            <hr />
-            <p>
-                <i>Success starts with the assignments you don’t forget.</i>
-            </p>
-        </div>
+      <div class="container bg-light p-5">
+          <p><b><i>Quote of the day: <span id="quote-goes-here">One assignment at a time, one step closer to success.</span></i></b></p>
+      </div>
     </div>
+
+   
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
+    <div class="container">
+      <h1>Tasklist</h1>
+      <!-- Here is the container for tasklist -->
+      <div class="container">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action"
+            >A simple default list group item</a
+          >
 
-    <a href="/create">create reminder test</a>
-    <button onclick="window.location.href='reminderMember.html'">Create an Group </button>
-
-    <div>
-      <table id="reminder-go-here">
-        <tr>
-          <th>Title</th>
-          <th>Create Date</th>
-        </tr>
-      </table>
-
+          
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-primary"
+            >Task 1</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-secondary"
+            >Task 2</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-success"
+            >Task 3</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-danger"
+            >Task 4</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-warning"
+            >Task 5</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-info"
+            >Task 6</a
+          >
+        </div>
+        <div id="tasklist-go-here" class="row row-cols-auto"></div>
+      </div>
     </div>
-    <div class="container mt-4">
-      <h2 class="text-center">Add New Assignment</h2>
-      <form id="assignment-form">
-        <div class="mb-3">
-          <label for="title" class="form-label">Title</label>
-          <input type="text" class="form-control" id="title" required />
-        </div>
-        <div class="mb-3">
-          <label for="due-date" class="form-label">Due Date</label>
-          <input type="date" class="form-control" id="due-date" required />
-        </div>
-        <div class="mb-3">
-          <label for="description" class="form-label">Description</label>
-          <textarea
-            class="form-control"
-            id="description"
-            rows="3"
-            required
-          ></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Add Assignment</button>
-      </form>
-    </div>
-  </br> </br> </br>  </br> </br> </br> 
-    <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
-    <footer class="py-5 fixed-bottom" style="background-color: #58B2F7;">
-      <div class="container px-5"><p class="m-0 text-left text-white">Copyright &copy; ToDoit 2025</p></div>
-  </footer>
+
+    <!-- footer -->
+    <footer class="py-5 fixed-bottom" style="background-color: #58b2f7">
+      <div class="container px-5">
+        <p class="m-0 text-left text-white">Copyright &copy; ToDoit 2025</p>
+      </div>
+    </footer>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
     <script src="/js/firebaseAPI.js"></script>
     <script src="/js/skeleton.js"></script>
-    <script src="/js/script.js"></script>
-    <script src="/js/main.js"></script>
+    <!-- <script src="/js/script.js"></script> -->
+    <script src="/js/reminder.js"></script>
   </body>
 </html>
