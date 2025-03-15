@@ -53,9 +53,11 @@ function writeReminderMembers() {
 }
 
 // Function to display reminder members dynamically
-function displayReminderMembers() {
-    let cardTemplate = document.getElementById("reminderCardTemplate"); // Retrieve the HTML element with the ID "reminderCardTemplate"
-
+function displayReminderMembers(collection) {
+    let reminderTemplate = document.getElementById("reminderCardTemplate"); // Retrieve the HTML element with the ID "reminderCardTemplate"
+    var auth = firebase.auth();
+  auth.onAuthStateChanged((user) => {
+    if(user) {
     db.collection("reminder_member").get()   // The collection called "reminder_member"
         .then(allMembers => {
             allMembers.forEach(doc => { // Iterate through each document
@@ -80,36 +82,12 @@ function displayReminderMembers() {
         .catch(error => {
             console.error("Error retrieving reminder members:", error);
         });
+    }
+});
 }
 
 // Call the function to display reminder members
 displayReminderMembers();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function selectReminder(collection) {
     let reminderTemplate = document.getElementById("reminderTemplate");
@@ -143,9 +121,6 @@ function selectReminder(collection) {
     })    
 }
 selectReminder("reminder");
-
-
-
 
 console.log("test");
 // Function to add new task list members to Firestore
