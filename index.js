@@ -77,29 +77,12 @@ app.get("/create", function(req, res) {
     res.send(doc);
 });
 
-/*
-app.get("/hello", function (req, res) {
-    // just send some plain text
-    res.send("Hello world!");
+app.get("/invite", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/invite.html", "utf8");
+    res.send(doc);
 });
-
-app.get("/helloHTML", function (req, res) {
-    // hard-coded HTML
-  let d = new Date();
-    res.send("<html><head>" + d + "<title>Hi!</title></head><body><p>Hello!</p></body></html>");
-});
-
-app.get("/date", function (req, res) {
-
-    // set the type of response:
-    res.setHeader("Content-Type", "application/json");
-    let options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-    let d = new Date();
-
-    res.send({ currentTime: d.toLocaleDateString("en-US", options) });
-
-});
-*/
 
 // for resource not found (i.e., 404)
 app.use(function (req, res, next) {

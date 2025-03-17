@@ -30,6 +30,15 @@
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
 
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function(){
+        emailjs.init("zzn9xS-JgnV9aZNpc");
+        })();
+    </script>
+
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
@@ -41,7 +50,7 @@
 <body>
     <!-- searched user list template -->
     <template id="searchedUserTemplate">
-        <div class="user-container">
+        <div class="unchecked-user-container unchecked">
             <div type="button" class="plus-btn">
                 <i class="bi bi-plus-circle"></i>
                 <span class="user-name">user name</span><br>
@@ -52,8 +61,8 @@
 
     <!-- plus user list template -->
      <template id="plusUserTemplate">
-        <div class="user-container">
-            <div type="button" class="remove-btn" onclick="removeUser()">
+        <div class="checked-user-container checked">
+            <div type="button" class="remove-btn">
                 <i class="bi bi-dash-circle"></i>
                 <span class="user-name">user name</span><br>
                 <span class="user-email">user email</span>
@@ -100,7 +109,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Invite</button>
+                        <button type="button" class="btn btn-primary inviteBtn">Invite</button>
                     </div>
                 </div>
             </div>
