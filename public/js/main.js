@@ -65,7 +65,7 @@ function displayReminderMembers(collection) {
                 var reminderNo = doc.data().reminder_no;  // Get the "reminder_no" key
                 var userNo = doc.data().user_no;  // Get the "user_no" key
                 var isManager = doc.data().reminder_manager === "Y" ? "Manager" : "Member";  // Get the "reminder_manager" value
-                var createDate = doc.data().reminder_member_create_date.toDate();  // Get the creation date and convert to a JavaScript Date object
+                var createDate = doc.data().reminder_member_create_date.toDate();  // Get the creation date and convert to a JavaScript Date object'
 
                 let newCard = cardTemplate.content.cloneNode(true); // Clone the HTML template to create a new card that will be filled with Firestore data
 
@@ -119,7 +119,7 @@ function selectReminder(collection) {
                         }                    
                     }
                 }))
-            })
+            }) 
         }
     })    
 }
@@ -127,96 +127,94 @@ selectReminder("reminder");
 
 console.log("test");
 // Function to add new task list members to Firestore
-function writeTaskList() {
-    
-    var taskListRef = db.collection("task");
+function writeGroupList() {
+    var groupListRef = db.collection("Group");
 
-    taskListRef.add({
-        task_no: "T001",                  // Unique identifier for the task
-        user_no: "U001",                  // The user assigned to the task
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),  // Current timestamp
-        task_manager: "Y",                 // Manager flag (Y/N)
-        task_member_delete_fg: "N"         // Default to not deleted (N)
+    groupListRef.add({
+        group_no: "G001",                  // Unique identifier for the group
+        user_no: "U001",                   // The user assigned to the group
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),  // Current timestamp
+        group_manager: "Y",                 // Manager flag (Y/N)
+        group_member_delete_fg: "N",        // Default to not deleted (N)
+        status: "active"                    // Set status as active
     });
 
-    taskListRef.add({
-        task_no: "T002",                  
+    groupListRef.add({
+        group_no: "G002",                  
         user_no: "U002",                  
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        task_manager: "N",                 
-        task_member_delete_fg: "N"         
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
+        group_manager: "N",                 
+        group_member_delete_fg: "N",
+        status: "active"                    // Set status as active
     });
 
-    taskListRef.add({
-        task_no: "T003",                  
+    groupListRef.add({
+        group_no: "G003",                  
         user_no: "U003",                  
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        task_manager: "Y",                 
-        task_member_delete_fg: "N"         
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
+        group_manager: "Y",                 
+        group_member_delete_fg: "N",
+        status: "archived"                  // Set status as archived
     });
 
-    taskListRef.add({
-        task_no: "T003",                  
-        user_no: "U003",                  
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        task_manager: "Y",                 
-        task_member_delete_fg: "N"         
+    groupListRef.add({
+        group_no: "G004",                  
+        user_no: "U004",                  
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
+        group_manager: "N",                 
+        group_member_delete_fg: "N",
+        status: "active"                    // Set status as active
     });
 
-    taskListRef.add({
-        task_no: "T003",                  
-        user_no: "U003",                  
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        task_manager: "Y",                 
-        task_member_delete_fg: "N"         
+    groupListRef.add({
+        group_no: "G005",                  
+        user_no: "U005",                  
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
+        group_manager: "Y",                 
+        group_member_delete_fg: "N",
+        status: "archived"                  // Set status as archived
     });
 
-    taskListRef.add({
-        task_no: "T003",                  
-        user_no: "U003",                  
-        task_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        task_manager: "Y",                 
-        task_member_delete_fg: "N"         
+    groupListRef.add({
+        group_no: "G006",                  
+        user_no: "U006",                  
+        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
+        group_manager: "N",                 
+        group_member_delete_fg: "N",
+        status: "active"                    // Set status as active
     });
-
-   
 }
 
-
-// Function to show new task list to Firestore
-function selectTaskList(collection) {
-    let taskTemplate = document.getElementById("tasklistTemplate");
+function selectGroupList(collection, statusFilter = 'active') {
+    let groupTemplate = document.getElementById("grouplistTemplate");
     var auth = firebase.auth();
-    
+
     auth.onAuthStateChanged((user) => {
         if(user) {
             db.collection(collection)
-            .orderBy("reminder_create_date", "desc")
+            .where("status", "==", statusFilter) // Filter groups based on status
+            .orderBy("group_create_date", "desc")
             .onSnapshot((snapshot) => {
-                const reminderContainer = document.getElementById(collection + "-go-here");
-                    taskContainer.innerHTML = '';
+                const groupContainer = document.getElementById("groups-go-here");
+                groupContainer.innerHTML = '';
 
-                snapshot.forEach((doc => {
-                    if(doc.data().user_no == user.uid) {
-                        if(doc.data().reminder_delete_fg == 'N') {
-                            var docId = doc.id;
-                            var taskTitle = doc.data().task_title;
-                            var taskCreateDate = doc.data().task_create_date;
-                            let newReminder = taskTemplate.content.cloneNode(true);
+                snapshot.forEach((doc) => {
+                    if(doc.data().members.includes(user.uid)) {
+                        let docId = doc.id;
+                        let groupName = doc.data().group_name;
+                        let groupCreateDate = doc.data().group_create_date;
+                        let newGroup = groupTemplate.content.cloneNode(true);
 
-                            newReminder.querySelector('.task-list').innerHTML = "<a>" + taskTitle + "</a>";
-                            newReminder.querySelector('.task-create-date').innerHTML = reminderCreateDate.toDate();
-                            newReminder.querySelector('a').href = "/reminder-1.html?docID="+docId;
-                            document.getElementById(collection + "-go-here").appendChild(newTask);
-                        }                    
+                        newGroup.querySelector('.group-list').innerHTML = `<a>${groupName}</a>`;
+                        newGroup.querySelector('.group-create-date').innerHTML = groupCreateDate.toDate().toLocaleDateString();
+                        newGroup.querySelector('a').href = `/group-details.html?docID=${docId}`;
+                        groupContainer.appendChild(newGroup);
                     }
-                }))
-            })
+                });
+            });
         }
-    })    
+    });
 }
-selectTaskList("task");
-
 
 // Function to read the quote of the day from the Firestore "quotes" collection
 // Input param is the String representing the day of the week, aka, the document name

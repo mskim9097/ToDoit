@@ -10861,3 +10861,286 @@ textarea.form-control-lg {
 .carousel-indicators button {
   background-color: #58b2f7;
 }
+
+/* Navbar Styles */
+.navbar-nav .nav-link:hover {
+  background-color: #005fa3;
+  color: #ffffff;
+  transform: scale(1.05);
+  font-weight: bold;
+}
+
+.navbar-nav .nav-link::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.navbar-nav .nav-link .material-icons {
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+.navbar {
+    background-color: #58b2f7 !important; 
+}
+
+.navbar-nav .nav-link {
+    color: white !important;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-nav .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 8px 12px;
+}
+
+/* Welcome Message */
+h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #333;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+#welcome-message {
+  font-size: 1.2rem;
+  font-style: italic;
+  color: #555;
+}
+
+/* Search Bar and Filter */
+.search-container {
+  position: relative;
+  width: 100%; 
+  max-width: 100%;
+  margin-top: 10px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 40px;
+  font-size: 16px;
+  border: 2px solid #58b2f7;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #58b2f7;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #58b2f7;
+  box-shadow: 0 0 5px rgba(88, 178, 247, 0.5);
+}
+
+/* Dropdown Filter */
+.dropdown-toggle {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  background-color: #fff;
+  color: #58b2f7;
+  border: 1px solid #ddd;
+  font-size: 16px;
+}
+
+.dropdown-toggle:hover {
+  background-color: #f0f8ff;
+}
+
+.dropdown-menu {
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
+}
+
+.dropdown-item {
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f8ff;
+}
+
+/* Modal Background and Content */
+.modal-content {
+  border-radius: 8px;
+  background-color: #f4f9fc;
+}
+
+.modal-header {
+  background-color: #1f78b4;
+  color: white;
+}
+
+.modal-title {
+  font-weight: bold;
+}
+
+.btn-close {
+  color: white;
+}
+
+.form-label {
+  font-weight: 500;
+  color: #1f78b4;
+}
+
+.form-control {
+  border-radius: 5px;
+  border: 1px solid #1f78b4;
+  color: #333;
+}
+
+.form-control-color {
+  padding: 0;
+  height: 38px;
+}
+
+.form-select {
+  border-radius: 5px;
+  border: 1px solid #1f78b4;
+  background-color: #f0f9ff;
+  color: #333;
+}
+
+.btn-submit {
+  background-color: #1f78b4;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.btn-submit:hover {
+  background-color: #155a8a;
+  cursor: pointer;
+}
+
+.form-control[type="file"] {
+  border: 1px solid #1f78b4;
+}
+
+.form-control[type="textarea"] {
+  border: 1px solid #1f78b4;
+  border-radius: 5px;
+}
+
+/* General Responsive Font Sizes */
+.welcome-message {
+  font-size: 2rem;
+}
+
+.quote-message {
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .welcome-message {
+    font-size: 1.5rem;
+  }
+
+  .quote-message {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .welcome-message {
+    font-size: 1.2rem;
+  }
+
+  .quote-message {
+    font-size: 1rem;
+  }
+}
+
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Search Input Styling */
+.search-input {
+  transition: all 0.3s ease;
+  max-width: 100%;
+  padding-left: 30px;
+}
+
+@media (min-width: 768px) {
+  .search-input {
+    max-width: 75%;
+  }
+}
+
+@media (max-width: 767px) {
+  .search-input {
+    max-width: 85%;
+  }
+
+  .dropdown {
+    margin-top: 10px;
+  }
+}
+
+/* Responsive Layout for Search and Dropdown */
+@media (min-width: 768px) {
+  .search-container {
+    max-width: 100%;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .search-container {
+    margin-bottom: 10px;
+  }
+
+  .dropdown {
+    width: 100%;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+}
+
+#createGroupButton{
+  background-color: #1f78b4; 
+  border-color: #1f78b4;
+}
+   

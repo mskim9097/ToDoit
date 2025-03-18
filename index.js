@@ -77,6 +77,7 @@ app.get("/create", function(req, res) {
     res.send(doc);
 });
 
+
 app.get("/invite", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
