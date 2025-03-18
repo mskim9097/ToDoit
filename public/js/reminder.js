@@ -1,20 +1,24 @@
 function displayTaskListInfo() {
-    let params = new URL( window.location.href ); //get URL of search bar
-    let ID = params.searchParams.get( "docID" ); //get value for key "id"
-    console.log( ID );
+    let params = new URL(window.location.href); // get URL
+    let ID = params.searchParams.get("docID"); // get docID
+    console.log(ID); // check ID
 
-    // doublecheck: is your collection called "Reviews" or "reviews"?
-    // spelling matters
-    db.collection( "task" )
-        .doc( ID )
+    db.collection("task")
+        .doc(ID)
         .get()
-        .then( doc => {
-            thisTaskList = doc.data();
-            taskListCode = thisTaskList.code;
-            taskListName = doc.data().name;
-            
-            // only populate title, and image
-            document.getElementById( "taskName" ).innerHTML = taskName;
-        } );
+        .then(doc => {
+            if (doc.exists) {
+                let thisTaskList = doc.data();
+                let taskListName = thisTaskList.name; // get name field
+                
+                document.getElementById("taskName").innerHTML = taskListName;
+            } else {
+                console.log("No such document!");
+            }
+        })
+        .catch(error => {
+            console.error("Error getting document:", error);
+        });
 }
-displayHikeInfo();
+
+displayTaskListInfo();
