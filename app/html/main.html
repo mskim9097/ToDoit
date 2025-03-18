@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>My Groups - ToDoIt</title>
+    <title>ToDoIt (Assignment Reminder App)</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
     <!------------------------>
@@ -20,10 +20,6 @@
       integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
       crossorigin="anonymous"
     />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
@@ -38,25 +34,61 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
-    />
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style.css" />
   </head>
 
   <body>
-    
+
+    <template id="reminderTemplate">        
+      <tr>
+          <td class="reminder-title"><a>reminder title</a></td>
+          <td class="reminder-create-date"> reminder create date</td>
+      </tr>
+</template>
+
+    <header
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: #58b2f7"
+    >
+      <div class="container px-5">
+        <a class="navbar-brand" href="#!" style="margin: 1%">
+          <!--<img src="/img/cleaned_logo.png"> -->
+          ToDoit
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#!"
+                >Add Assignment</a
+              >
+            </li>
+            <li class="nav-item"><a class="nav-link" href="reminder.html">Reminder</a></li>
+            <li class="nav-item"><a class="nav-link" href="../reminder.html">Tasks</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Sharing Assignment</a></li>
+            <li class="nav-item"><a class="nav-link" href="#!">Search Assignment</a></li>
+            <li class="nav-item"><a class="nav-link" href="setting.html">Setting</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -65,177 +97,59 @@
     <nav id="navbarPlaceholder"></nav>
 
     <div class="container-fluid bg-light text-dark p-5">
-      <div class="container bg-light p-5 text-center">
-        <h1>
-          Welcome, <span id="name-goes-here" style="color: #58b2f7">User</span>
-        </h1>
-        <hr />
-        <p id="welcome-message">
-          <span id="quote-goes-here"></span>
-        </p>
-      </div>
-      <div class="container mt-4">
-        <div class="container mt-4">
-          <h2 class="text-center">My Groups</h2>
-          <div class="row">
-            <div class="col-12">
-              <div class="search-container mb-3">
-                <i class="bi bi-search search-icon"></i>
-                <input type="text" class="search-input" placeholder="Search groups" />
-              </div>
-              <div class="dropdown">
-                <button
-                  class="btn btn-light dropdown-toggle"
-                  type="button"
-                  id="groupFilter"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <i class="bi bi-filter"></i> &nbsp;Filter Groups
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="groupFilter">
-                  <li>
-                    <a class="dropdown-item" href="#" id="activeGroups">
-                      <i class="bi bi-collection"></i>&nbsp; Active Groups
-                    </a>
-                  </li>
-                  <li>
-                    <a class="dropdown-item" href="#" id="archivedGroups">
-                      <i class="bi bi-archive"></i>&nbsp; Archived Groups
-                    </a>
-                  </li>
-                </ul>          
-              </div>
-            </div>
-          </div>
+        <div class="container bg-light p-5">
+            <h1 class="display-4">Welcome<span id="name-goes-here"></span></h1>
+            <hr />
+            <p>
+                <i>Success starts with the assignments you don’t forget.</i>
+            </p>
         </div>
-
-        <div class="d-flex justify-content-center mt-3">
-
-          <button id="createGroup"
-          type="button"
-          class="btn btn-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#groupModal"
-        >
-          <i class="bi bi-plus-circle" ></i> &nbsp;Create Group
-        </button>
-        </div>
-
-          <!-- The Modal -->
-          <div
-            class="modal fade"
-            id="groupModal"
-            tabindex="-1"
-            aria-labelledby="groupModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div
-                  class="modal-header"
-                  style="background-color: #1F78B4; color: white"
-                >
-                  <h5 class="modal-title" id="groupModalLabel">
-                    Add a Group
-                  </h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div class="modal-body">
-                  <form id="createGroupForm">
-                    <!-- Group Name -->
-                    <div class="mb-3">
-                      <label for="groupName" class="form-label"
-                        >Group Name</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="groupName"
-                        placeholder="Enter group name"
-                        required
-                      />
-                    </div>
-
-                    <!-- Cover Image & Icon -->
-                    <div class="mb-3">
-                      <label class="form-label">Group Cover</label>
-                      <input
-                        type="file"
-                        class="form-control"
-                        id="groupCover"
-                        accept="image/*"
-                      />
-                    </div>
-
-                    <!-- Privacy Settings -->
-                    <div class="mb-3">
-                      <label class="form-label">Privacy</label>
-                      <select class="form-select" id="groupPrivacy">
-                        <option value="public">Public</option>
-                        <option value="private">Private</option>
-                      </select>
-                    </div>
-
-                    <!-- Role Assignments -->
-                    <div class="mb-3">
-                      <label class="form-label">Roles</label>
-                      <input
-                        type="text"
-                        class="form-control"
-                        id="groupRoles"
-                        placeholder="Add roles (e.g., Admin, Editor, Viewer)"
-                      />
-                    </div>
-
-                    <!-- Color Tagging -->
-                    <div class="mb-3">
-                      <label class="form-label">Group Color</label>
-                      <input
-                        type="color"
-                        class="form-control form-control-color"
-                        id="groupColor"
-                        value = "#1f78b4"
-                      />
-                    </div>
-
-                    <!-- Group Description -->
-                    <div class="mb-3">
-                      <label for="groupDescription" class="form-label"
-                        >Description</label
-                      >
-                      <textarea
-                        class="form-control"
-                        id="groupDescription"
-                        rows="3"
-                        placeholder="Enter group description"
-                      ></textarea>
-                    </div>
-
-                    <button id = "createGroupButton"
-                      type="submit"
-                      class="btn btn-primary">
-                      Create Group
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
     </div>
+
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
+
+    <a href="/create">create reminder test</a>
+    <button onclick="window.location.href='reminderMember.html'">Create an Group </button>
+
+    <div>
+      <table id="reminder-go-here">
+        <tr>
+          <th>Title</th>
+          <th>Create Date</th>
+        </tr>
+      </table>
+
+    </div>
+    <div class="container mt-4">
+      <h2 class="text-center">Add New Assignment</h2>
+      <form id="assignment-form">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" required />
+        </div>
+        <div class="mb-3">
+          <label for="due-date" class="form-label">Due Date</label>
+          <input type="date" class="form-control" id="due-date" required />
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea
+            class="form-control"
+            id="description"
+            rows="3"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Assignment</button>
+      </form>
+    </div>
+  </br> </br> </br>  </br> </br> </br> 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
-    <footer class="py-5 fixed-bottom" style="background-color: #58b2f7">
-      <div class="container px-5">
-        <p class="m-0 text-center text-white">Copyright &copy; ToDoit 2025</p>
-      </div>
-    </footer>
+    <footer class="py-5 fixed-bottom" style="background-color: #58B2F7;">
+      <div class="container px-5"><p class="m-0 text-left text-white">Copyright &copy; ToDoit 2025</p></div>
+  </footer>
 
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
@@ -244,8 +158,5 @@
     <script src="/js/skeleton.js"></script>
     <script src="/js/script.js"></script>
     <script src="/js/main.js"></script>
-    <!-- <script src ="/js/group.js"></script> -->
-    <script src="/js/create.js"></script>
-
   </body>
 </html>
