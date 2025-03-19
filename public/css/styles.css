@@ -10927,133 +10927,153 @@ h1 {
   font-style: italic;
   color: #555;
 }
-
-/* Search Bar and Filter */
-.search-container {
-  position: relative;
-  width: 100%; 
-  max-width: 100%;
-  margin-top: 10px;
+/* Modal Styling */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.search-input {
+.modal-header {
+  background-color: #1F78B4;
+  color: white;
+  font-weight: bold;
+}
+
+.modal-body {
+  padding: 30px;
+}
+
+.modal-title {
+  font-size: 24px;
+}
+
+/* Buttons */
+
+
+.btn-primary:hover, .btn-dark:hover {
+  background-color: #165f8e;
+  border-color: #165f8e;
+}
+
+.btn-close {
+  background-color: transparent;
+  color: #fff;
+}
+
+/* Search Bar */
+.search-container {
+  display: flex;
+  align-items: center;
+  position: relative;
   width: 100%;
-  padding: 8px 40px;
-  font-size: 16px;
-  border: 2px solid #58b2f7;
-  border-radius: 8px;
-  outline: none;
 }
 
 .search-icon {
   position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 20px;
-  color: #58b2f7;
+  left: 10px;
+  color: #1F78B4;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 30px 10px 35px;
+  border-radius: 25px;
+  border: 1px solid #ddd;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 .search-input:focus {
+  border-color: #1F78B4;
   outline: none;
-  border-color: #58b2f7;
-  box-shadow: 0 0 5px rgba(88, 178, 247, 0.5);
 }
 
-/* Dropdown Filter */
-.dropdown-toggle {
-  margin-top: 10px;
-  padding: 10px 20px;
-  border-radius: 25px;
-  background-color: #fff;
-  color: #58b2f7;
-  border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-.dropdown-toggle:hover {
-  background-color: #f0f8ff;
-}
-
+/* Filter Dropdown */
 .dropdown-menu {
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 5px 0;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-item {
-  font-size: 16px;
-  padding: 10px 20px;
+  border-radius: 8px;
+  padding: 8px 12px;
 }
 
 .dropdown-item:hover {
-  background-color: #f0f8ff;
+  background-color: #f8f9fa;
+  color: #1F78B4;
 }
 
-/* Modal Background and Content */
-.modal-content {
-  border-radius: 8px;
-  background-color: #f4f9fc;
+/* Group List Styling */
+#reminder-go-here .list-group-item {
+  border-radius: 10px;
+  margin-bottom: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
-.modal-header {
-  background-color: #1f78b4;
+#reminder-go-here .list-group-item:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Create Group Button */
+#createGroup {
+  border-radius: 50px;
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #58b2f7;
   color: white;
 }
 
-.modal-title {
-  font-weight: bold;
-}
-
-.btn-close {
+#createGroup:hover {
+  background-color: #1F78B4;
   color: white;
 }
 
-.form-label {
-  font-weight: 500;
-  color: #1f78b4;
-}
-
-.form-control {
-  border-radius: 5px;
-  border: 1px solid #1f78b4;
-  color: #333;
-}
-
-.form-control-color {
-  padding: 0;
-  height: 38px;
-}
-
-.form-select {
-  border-radius: 5px;
-  border: 1px solid #1f78b4;
-  background-color: #f0f9ff;
-  color: #333;
-}
-
-.btn-submit {
-  background-color: #1f78b4;
+/* Footer */
+footer {
+  padding: 20px;
+  background-color: #1F78B4;
   color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 10px 20px;
-  font-weight: bold;
+  text-align: center;
+  font-size: 14px;
 }
 
-.btn-submit:hover {
-  background-color: #155a8a;
-  cursor: pointer;
-}
+/* Responsiveness for Mobile and Tablet */
+@media (max-width: 768px) {
+  .modal-body {
+      padding: 20px;
+  }
 
-.form-control[type="file"] {
-  border: 1px solid #1f78b4;
-}
+  .search-container {
+      width: 100%;
+  }
 
-.form-control[type="textarea"] {
-  border: 1px solid #1f78b4;
-  border-radius: 5px;
-}
+  .search-input {
+      width: 100%;
+  }
+
+  .dropdown-menu {
+      width: 100%;
+  }
+
+  .btn-primary, .btn-dark {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+  }
+
+  #createGroup {
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+  }
+
+  #reminder-go-here .list-group-item {
+      padding: 10px;
+  }
 
 /* General Responsive Font Sizes */
 .welcome-message {
@@ -11089,6 +11109,9 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  text-align: center;
+  padding: 10px;
+
 }
 
 /* Search Input Styling */

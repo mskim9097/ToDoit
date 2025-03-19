@@ -24,33 +24,9 @@ function getNameFromAuth() {
 }
 getNameFromAuth(); //run the function
 
-
-// Function to add new reminder members to Firestore
-function writeReminderMembers() {
-    var reminderRef = db.collection("reminder_member");
-
-    reminderRef.add({
-        reminder_no: "RM001",            // Unique identifier for the reminder
-        user_no: "U001",                 // The user who created the reminder
-        reminder_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),  // Current timestamp (sysdate)
-        reminder_manager: "Y",           // Manager flag (Y/N)
-        reminder_member_delete_fg: "N"   // Default to not deleted (N)
-    });
-    reminderRef.add({
-        reminder_no: "RM002",            // Another reminder entry
-        user_no: "U002",                 // Another user
-        reminder_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        reminder_manager: "N",           // Non-manager flag (Y/N)
-        reminder_member_delete_fg: "N"   // Default to not deleted
-    });
-    reminderRef.add({
-        reminder_no: "RM003",            // Another reminder entry
-        user_no: "U003",                 // Another user
-        reminder_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        reminder_manager: "Y",           // Manager flag (Y/N)
-        reminder_member_delete_fg: "N"   // Default to not deleted
-    });
-}
+document.querySelectorAll("#archivedGroups").addEventListener("click", function(e) {
+    console.log(e.target);
+})
 
 // Function to display reminder members dynamically
 function displayReminderMembers(collection) {
@@ -125,93 +101,38 @@ function selectReminder(collection) {
 }
 selectReminder("reminder");
 
-console.log("test");
-// Function to add new task list members to Firestore
-function writeGroupList() {
-    var groupListRef = db.collection("Group");
 
-    groupListRef.add({
-        group_no: "G001",                  // Unique identifier for the group
-        user_no: "U001",                   // The user assigned to the group
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),  // Current timestamp
-        group_manager: "Y",                 // Manager flag (Y/N)
-        group_member_delete_fg: "N",        // Default to not deleted (N)
-        status: "active"                    // Set status as active
-    });
-
-    groupListRef.add({
-        group_no: "G002",                  
-        user_no: "U002",                  
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        group_manager: "N",                 
-        group_member_delete_fg: "N",
-        status: "active"                    // Set status as active
-    });
-
-    groupListRef.add({
-        group_no: "G003",                  
-        user_no: "U003",                  
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        group_manager: "Y",                 
-        group_member_delete_fg: "N",
-        status: "archived"                  // Set status as archived
-    });
-
-    groupListRef.add({
-        group_no: "G004",                  
-        user_no: "U004",                  
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        group_manager: "N",                 
-        group_member_delete_fg: "N",
-        status: "active"                    // Set status as active
-    });
-
-    groupListRef.add({
-        group_no: "G005",                  
-        user_no: "U005",                  
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        group_manager: "Y",                 
-        group_member_delete_fg: "N",
-        status: "archived"                  // Set status as archived
-    });
-
-    groupListRef.add({
-        group_no: "G006",                  
-        user_no: "U006",                  
-        group_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        group_manager: "N",                 
-        group_member_delete_fg: "N",
-        status: "active"                    // Set status as active
-    });
-}
 
 function selectGroupList(collection, statusFilter = 'active') {
     let groupTemplate = document.getElementById("grouplistTemplate");
     var auth = firebase.auth();
 
     auth.onAuthStateChanged((user) => {
-        if(user) {
+        if (user) {
             db.collection(collection)
-            .where("status", "==", statusFilter) // Filter groups based on status
-            .orderBy("group_create_date", "desc")
-            .onSnapshot((snapshot) => {
-                const groupContainer = document.getElementById("groups-go-here");
-                groupContainer.innerHTML = '';
+                .where("status", "==", statusFilter) // Filter groups based on status
+                .orderBy("group_create_date", "desc")
+                .onSnapshot((snapshot) => {
+                    const groupContainer = document.getElementById("groups-go-here");
+                    groupContainer.innerHTML = ''; // Clear the existing list before appending new data
 
-                snapshot.forEach((doc) => {
-                    if(doc.data().members.includes(user.uid)) {
-                        let docId = doc.id;
-                        let groupName = doc.data().group_name;
-                        let groupCreateDate = doc.data().group_create_date;
-                        let newGroup = groupTemplate.content.cloneNode(true);
+                    snapshot.forEach((doc) => {
+                        if (doc.data().members.includes(user.uid)) { // Check if the user is a member
+                            let docId = doc.id;
+                            let groupName = doc.data().group_name;
+                            let groupCreateDate = doc.data().group_create_date;
+                            let newGroup = groupTemplate.content.cloneNode(true);
 
-                        newGroup.querySelector('.group-list').innerHTML = `<a>${groupName}</a>`;
-                        newGroup.querySelector('.group-create-date').innerHTML = groupCreateDate.toDate().toLocaleDateString();
-                        newGroup.querySelector('a').href = `/group-details.html?docID=${docId}`;
-                        groupContainer.appendChild(newGroup);
-                    }
+                            // Populate the new group card with data from Firestore
+                            newGroup.querySelector('.group-list').innerHTML = `<a>${groupName}</a>`;
+                            newGroup.querySelector('.group-create-date').innerHTML = groupCreateDate.toDate().toLocaleDateString();
+                            newGroup.querySelector('a').href = `/group-details.html?docID=${docId}`;
+
+                            // Append the new group to the container
+                            groupContainer.appendChild(newGroup);
+                        }
+                    });
                 });
-            });
         }
     });
 }
