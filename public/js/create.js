@@ -12,12 +12,16 @@ document.querySelector("#createGroupButton").addEventListener("click", function 
           group_create_date: firebase.firestore.FieldValue.serverTimestamp(), // Create timestamp
           user_no: user.uid, // Use the authenticated user's ID
         })
-        .then((docRef) => {
-          window.location.href = "/group?docID=" + docRef.id;
+        .then(() => {
+          //window.location.href = "/group?docID=" + docRef.id;
         })
         .catch((error) => {
           console.error("failed creating reminder");
         });
+        console.log(db.collection("Group").doc(groupRef.id));
+        user.update({
+          group: firebase.firestore.FieldValue.arrayUnion(groupRef.id)
+        })
     }
   });
 });

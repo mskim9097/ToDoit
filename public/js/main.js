@@ -155,3 +155,6 @@ function readQuote(day) {
         });
     }
  readQuote("tuesday");        //calling the function
+
+
+ 
