@@ -1,3 +1,55 @@
+//Global variable pointing to the current user's Firestore document
+var currentUser;   
+
+//Function that calls everything needed for the main page  
+function doAll() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            currentUser = db.collection("users").doc(user.uid); //global
+            console.log(currentUser);
+
+            // figure out what day of the week it is today
+            const weekday = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+            const d = new Date();
+            let day = weekday[d.getDay()];
+
+            // the following functions are always called when someone is logged in
+            readQuote(day);
+            insertNameFromFirestore();
+            selectGroupList("hikes");
+        } else {
+            // No user is signed in.
+            console.log("No user is signed in");
+            window.location.href = "login.html";
+        }
+    });
+}
+doAll();
+
+// displays the quote based in input param string "tuesday", "monday", etc. 
+function readQuote( day ) {
+    db.collection( "quote" ).doc( day ).onSnapshot( doc => {
+        console.log("inside");
+        console.log( doc.data() );
+        document.getElementById( "quote-goes-here" ).innerHTML = doc.data().quote;
+    } )
+}
+// Comment out the next line (we will call this function from doAll())
+// readQuote("tuesday");  
+
+// Insert name function using the global variable "currentUser"
+function insertNameFromFirestore() {
+    currentUser.get().then(userDoc => {
+        //get the user name
+        var user_Name = userDoc.data().name;
+        console.log(user_Name);
+        $("#name-goes-here").text(user_Name); //jquery
+        // document.getElementByID("name-goes-here").innetText=user_Name;
+    })
+}
+// Comment out the next line (we will call this function from doAll())
+// insertNameFromFirestore();
+
 function getNameFromAuth() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if a user is signed in:
@@ -23,10 +75,6 @@ function getNameFromAuth() {
     });
 }
 getNameFromAuth(); //run the function
-
-document.querySelectorAll("#archivedGroups").addEventListener("click", function(e) {
-    console.log(e.target);
-})
 
 // Function to display reminder members dynamically
 function displayReminderMembers(collection) {
@@ -103,58 +151,77 @@ selectReminder("reminder");
 
 
 
-function selectGroupList(collection, statusFilter = 'active') {
+function selectGroupList(collection) {
     let groupTemplate = document.getElementById("grouplistTemplate");
     var auth = firebase.auth();
-
+    
     auth.onAuthStateChanged((user) => {
         if (user) {
             db.collection(collection)
-                .where("status", "==", statusFilter) // Filter groups based on status
-                .orderBy("group_create_date", "desc")
+                .orderBy("group_create_date", "desc") // Order by creation date
                 .onSnapshot((snapshot) => {
-                    const groupContainer = document.getElementById("groups-go-here");
-                    groupContainer.innerHTML = ''; // Clear the existing list before appending new data
+                    const groupContainer = document.getElementById("group-go-here"); 
+                    groupContainer.innerHTML = ''; // Clear old cards before updating
 
                     snapshot.forEach((doc) => {
-                        if (doc.data().members.includes(user.uid)) { // Check if the user is a member
-                            let docId = doc.id;
-                            let groupName = doc.data().group_name;
-                            let groupCreateDate = doc.data().group_create_date;
-                            let newGroup = groupTemplate.content.cloneNode(true);
+                        let data = doc.data();
+                        console.log("Document data:", data); // Debugging: Log the document data
 
-                            // Populate the new group card with data from Firestore
-                            newGroup.querySelector('.group-list').innerHTML = `<a>${groupName}</a>`;
-                            newGroup.querySelector('.group-create-date').innerHTML = groupCreateDate.toDate().toLocaleDateString();
-                            newGroup.querySelector('a').href = `/group-details.html?docID=${docId}`;
+                        let docId = doc.id;
+                        let groupName = data.group_name || "Unnamed Group";
+                        let groupCreateDate = data.group_create_date 
+                            ? data.group_create_date.toDate().toLocaleDateString() 
+                            : "Unknown Date";
 
-                            // Append the new group to the container
-                            groupContainer.appendChild(newGroup);
-                        }
+                        // Clone the template
+                        let newGroup = groupTemplate.content.cloneNode(true);
+                        newGroup.querySelector('.card-title').textContent = groupName; 
+                        newGroup.querySelector('.card-length').textContent = `Members: ${data.members ? data.members.length : 0}`;
+                        newGroup.querySelector('.card-text').textContent = data.group_privacy === "public" ? "Public Group" : "Private Group";
+                        newGroup.querySelector('a').href = `/group-details.html?docID=${docId}`;
+
+                        // Append the new group card to the container
+                        groupContainer.appendChild(newGroup);
                     });
                 });
         }
     });
 }
 
-// Function to read the quote of the day from the Firestore "quotes" collection
-// Input param is the String representing the day of the week, aka, the document name
-function readQuote(day) {
-    db.collection("quotes").doc(day)                                                         //name of the collection and documents should matach excatly with what you have in Firestore
-        .onSnapshot(dayDoc => {                                                              //arrow notation
-            console.log("current document data: " + dayDoc.data());                          //.data() returns data object
-            document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;      //using javascript to display the data on the right place
-
-            //Here are other ways to access key-value data fields
-            //$('#quote-goes-here').text(dayDoc.data().quote);         //using jquery object dot notation
-            //$("#quote-goes-here").text(dayDoc.data()["quote"]);      //using json object indexing
-            //document.querySelector("#quote-goes-here").innerHTML = dayDoc.data().quote;
-
-        }, (error) => {
-            console.log ("Error calling onSnapshot", error);
-        });
-    }
- readQuote("tuesday");        //calling the function
+// Call the function to display groups
+selectGroupList("Group");
 
 
- 
+// // Function to read the quote of the day from the Firestore "quotes" collection
+// // Input param is the String representing the day of the week, aka, the document name
+// function readQuote(day) {
+//     db.collection("quotes").doc(day)                                                         //name of the collection and documents should matach excatly with what you have in Firestore
+//         .onSnapshot(dayDoc => {                                                              //arrow notation
+//             console.log("current document data: " + dayDoc.data());                          //.data() returns data object
+//             document.getElementById("quote-goes-here").innerHTML = dayDoc.data().quote;      //using javascript to display the data on the right place
+
+//             //Here are other ways to access key-value data fields
+//             //$('#quote-goes-here').text(dayDoc.data().quote);         //using jquery object dot notation
+//             //$("#quote-goes-here").text(dayDoc.data()["quote"]);      //using json object indexing
+//             //document.querySelector("#quote-goes-here").innerHTML = dayDoc.data().quote;
+
+//         }, (error) => {
+//             console.log ("Error calling onSnapshot", error);
+//         });
+//     }
+// //  readQuote("tuesday");        //calling the function
+
+// Mock data
+
+// Filter groups as the user types in the search bar
+document.getElementById("searchInput").addEventListener("input", function () {
+    let query = this.value.toLowerCase();
+    let groups = document.querySelectorAll("#group-go-here .col");
+  
+    groups.forEach(group => {
+      let title = group.querySelector(".card-title").textContent.toLowerCase();
+      group.style.display = title.includes(query) ? "block" : "none";
+    });
+  });
+  
+  

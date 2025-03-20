@@ -62,6 +62,7 @@
   </head>
 
   <body>
+    <div pb-5>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -86,141 +87,130 @@
         <h2 class="text-center">My Groups</h2>
         <div class="row">
           <div class="col-12">
-            <!-- Search Bar -->
-            <div class="search-container mb-3">
-              <i class="bi bi-search search-icon"></i>
-              <input
-                type="text"
-                class="search-input"
-                placeholder="Search groups"
-              />
-            </div>
-            <!-- Filter Dropdown -->
-            <div class="dropdown">
-              <button
-                class="btn btn-light dropdown-toggle"
-                type="button"
-                id="groupFilter"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <i class="bi bi-filter"></i> &nbsp;Filter Groups
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="groupFilter">
-                <li>
-                  <a class="dropdown-item" href="#" id="activeGroups" class="group-filter">
-                    <i class="bi bi-collection"></i>&nbsp; Active Groups
-                  </a>
-                </li>
-                <li>
-                  <a class="dropdown-item" href="#" id="archivedGroups">
-                    <i class="bi bi-archive"></i>&nbsp; Archived Groups
-                  </a>
-                </li>
-              </ul>
-          </div>
-        </div>
-
-        <!-- Create Group Button -->
-        <div class="d-flex justify-content-center mt-3">
-          <button
-            id="createGroup"
-            type="button"
-            class="btn btn-dark"
-            data-bs-toggle="modal"
-            data-bs-target="#groupModal"
-          >
-            <i class="bi bi-plus-circle"></i> &nbsp;Create Group
-          </button>
-        </div>
-
-        <!-- The Modal for Creating a Group -->
-        <div
-          class="modal fade"
-          id="groupModal"
-          tabindex="-1"
-          aria-labelledby="groupModalLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div
-                class="modal-header"
-                style="background-color: #1f78b4; color: white"
-              >
-                <h5 class="modal-title" id="groupModalLabel">Add a Group</h5>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
+            <div class="d-flex align-items-center mb-3">
+              <!-- Search Bar -->
+              <div class="search-container flex-grow-1 position-relative">
+                <i
+                  class="bi bi-search search-icon position-absolute"
+                  style="left: 10px; top: 50%; transform: translateY(-50%)"
+                ></i
+                >&nbsp
+                <input
+                  type="text"
+                  id="searchInput"
+                  class="form-control ps-4"
+                  placeholder="Search groups"
+                />
               </div>
-              <div class="modal-body">
-                <form id="createGroupForm">
-                  <!-- Group Name -->
-                  <div class="mb-3">
-                    <label for="groupName" class="form-label">Group Name</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="groupName"
-                      placeholder="Enter group name"
-                      required
-                    />
-                  </div>
 
-                  <!-- Group Privacy Settings -->
-                  <div class="mb-3">
-                    <label class="form-label">Privacy</label>
-                    <select class="form-select" id="groupPrivacy">
-                      <option value="public">Public</option>
-                      <option value="private">Private</option>
-                    </select>
-                  </div>
+              <!-- Create Group Icon Button  -->
+              <button
+                id="createGroup"
+                type="button"
+                class="btn btn-dark ms-3"
+                data-bs-toggle="modal"
+                data-bs-target="#groupModal"
+              >
+                <i class="bi bi-plus"></i>
+              </button>
+            </div>
 
-                  <!-- Create Group Button -->
-                  <button type="button" id="createGroupButton" class="btn btn-primary">
-                    Create Group
-                  </button>
-                </form>
+          <!-- The Modal for Creating a Group -->
+          <div
+            class="modal fade"
+            id="groupModal"
+            tabindex="-1"
+            aria-labelledby="groupModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div
+                  class="modal-header"
+                  style="background-color: #1f78b4; color: white"
+                >
+                  <h5 class="modal-title" id="groupModalLabel">Add a Group</h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form id="createGroupForm">
+                    <!-- Group Name -->
+                    <div class="mb-3">
+                      <label for="groupName" class="form-label"
+                        >Group Name</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="groupName"
+                        placeholder="Enter group name"
+                        required
+                      />
+                    </div>
+
+                    <!-- Group Privacy Settings -->
+                    <div class="mb-3">
+                      <label class="form-label">Privacy</label>
+                      <select class="form-select" id="groupPrivacy">
+                        <option value="public">Public</option>
+                        <option value="private">Private</option>
+                      </select>
+                    </div>
+
+                    <!-- Create Group Button -->
+                    <button
+                      type="button"
+                      id="createGroupButton"
+                      class="btn btn-primary"
+                    >
+                      Create Group
+                    </button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      
+      <!-- Here is the container for cards -->
+      <div class="container">
+        <div
+          id="group-go-here"
+          class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 overflow-auto"
+        >
+          <template id="grouplistTemplate">
+            <div class="col">
+              <div class="card h-100 custom-card">
+                <img
+                  class="card-img-top"
+                  src="/img/nasa_carina_nebula.jpg"
+                  alt="Group Image"
+                />
+                <div class="card-body">
+                  <h5 class="card-title fw-bold">Card title</h5>
+                  <p class="card-length text-muted">Members: 5</p>
+                  <p class="card-text text-secondary">
+                    Some quick example text to build on the card title and make
+                    up the bulk of the card's content.
+                  </p>
+                  <a href="#" class="btn btn-primary custom-btn">View Group</a>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
       </div>
     </div>
-    
-      <!-- Here is the container for cards  -->
-      <div class="container">
-          <!-- the list of group -->
-      <div id="group-go-here" class="row row-cols-auto">
-        <!-- Templates for general use, not displayed -->
-        <template id="hikeCardTemplate">
-          <div class="card py-2 mx-2" style="width: 18rem">
-            <img class="card-image card-img-top" src=" ..." alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-length">placeholder</p>
-              <br />
-              <p class="card-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </template>
-      </div>
-
-    
 
     <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
-
+    <nav id="footerPlaceholder" ></nav>
+    </div>
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
