@@ -6,30 +6,25 @@
   width: 4rem;
   font-size: 2rem;
 }
-
 .onboarding-img {
   width: 80%;
   max-width: 300px;
   margin: auto;
   display: block;
 }
-
 .onboarding-card {
   text-align: center;
   padding: 20px;
 }
-
 .bottom-btn {
   width: 80%;
   display: block;
   margin: 10px auto;
 }
-
 .top-nav {
   text-align: right;
   padding: 10px;
 }
-
 .carousel-indicators button {
   background-color: #58b2f7;
 }
@@ -71,19 +66,19 @@
 }
 
 .navbar {
-  background-color: #58b2f7 !important;
+    background-color: #58b2f7 !important; 
 }
 
 .navbar-nav .nav-link {
-  color: white !important;
-  font-weight: 500;
-  transition: all 0.3s ease-in-out;
+    color: white !important;
+    font-weight: 500;
+    transition: all 0.3s ease-in-out;
 }
 
 .navbar-nav .nav-link:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  padding: 8px 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    padding: 8px 12px;
 }
 
 /* Welcome Message */
@@ -99,7 +94,6 @@ h1 {
   font-style: italic;
   color: #555;
 }
-
 /* Modal Styling */
 .modal-content {
   border-radius: 10px;
@@ -123,8 +117,7 @@ h1 {
 /* Buttons */
 
 
-.btn-primary:hover,
-.btn-dark:hover {
+.btn-primary:hover, .btn-dark:hover {
   background-color: #165f8e;
   border-color: #165f8e;
 }
@@ -194,10 +187,10 @@ h1 {
 
 /* Create Group Button */
 #createGroup {
-  border-radius: 50px;
+  border-radius: 100px;
   padding: 12px 24px;
-  font-size: 16px;
-  background-color: #58b2f7;
+  font-size: 20px;
+  background-color: #000000;
   color: white;
 }
 
@@ -215,276 +208,190 @@ footer {
   font-size: 14px;
 }
 
-/* General Styles */
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #f0f2f5;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-body.login-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-
-/* Login Page Styles */
-.auth-container {
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-}
-
-.auth-title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #1a73e8;
-  margin-bottom: 10px;
-}
-
-.auth-subtitle {
-  font-size: 1rem;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-.input-group {
-  margin-bottom: 20px;
-  text-align: left;
-}
-
-.form-label {
-  font-size: 0.9rem;
-  color: #555;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.form-input {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-input:focus {
-  border-color: #1a73e8;
-  box-shadow: 0 0 5px rgba(26, 115, 232, 0.5);
-  outline: none;
-}
-
-.form-footer {
-  text-align: right;
-  margin-bottom: 20px;
-}
-
-.forgot-password {
-  font-size: 0.85rem;
-  color: #1a73e8;
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.forgot-password:hover {
-  color: #165f8e;
-}
-
-.btn {
-  width: 100%;
-  padding: 12px;
-  background: #1a73e8;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  margin-bottom: 10px; /* Added spacing */
-}
-
-.btn:hover {
-  background: #165f8e;
-  transform: scale(1.02);
-}
-
-.signup-text {
-  margin-top: 20px;
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.signup-link {
-  color: #1a73e8;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.signup-link:hover {
-  color: #165f8e;
-}
-
-/* Error Message */
-.error-message {
-  margin-top: 10px;
-  font-size: 0.9rem;
-  color: red;
-  text-align: left;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .auth-container {
-    width: 90%;
-  }
-}
-
 /* Responsiveness for Mobile and Tablet */
 @media (max-width: 768px) {
   .modal-body {
-    padding: 20px;
+      padding: 20px;
   }
 
   .search-container {
-    width: 100%;
+      width: 100%;
+      margin-bottom: 10px;
   }
 
   .search-input {
-    width: 100%;
+      width: 100%;
   }
 
   .dropdown-menu {
-    width: 100%;
+      width: 100%;
   }
 
-  .btn-primary,
-  .btn-dark {
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
+  .btn-primary, .btn-dark {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
   }
 
   #createGroup {
     width: 100%;
     padding: 12px;
     font-size: 18px;
-  }
+}
 
   #reminder-go-here .list-group-item {
-    padding: 10px;
+      padding: 10px;
   }
 
-  /* General Responsive Font Sizes */
+/* General Responsive Font Sizes */
+.welcome-message {
+  font-size: 2rem;
+}
+
+.quote-message {
+  font-size: 1.5rem;
+}
+.custom-card {
+  margin-bottom: 1rem;
+}
+.row-cols-md-2 > .col {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+.welcome-message {
+  font-size: 1.5rem;
+}
+
+.quote-message {
+  font-size: 1.2rem;
+}
+}
+
+@media (max-width: 576px) {
   .welcome-message {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 
   .quote-message {
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
+}
 
-  @media (max-width: 768px) {
-    .welcome-message {
-      font-size: 1.5rem;
-    }
+/* Footer */
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 10px;
+}
 
-    .quote-message {
-      font-size: 1.2rem;
-    }
-  }
+/* Search Input Styling */
+.search-input {
+  transition: all 0.3s ease;
+  max-width: 100%;
+  padding-left: 30px;
+}
 
-  @media (max-width: 576px) {
-    .welcome-message {
-      font-size: 1.2rem;
-    }
-
-    .quote-message {
-      font-size: 1rem;
-    }
-  }
-
-  /* Footer */
-  footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    padding: 10px;
-
-  }
-
-  /* Search Input Styling */
-  .search-input {
-    transition: all 0.3s ease;
+/* Responsive Layout for Search and Dropdown */
+@media (min-width: 768px) {
+  .search-container {
     max-width: 100%;
-    padding-left: 30px;
   }
 
-  @media (min-width: 768px) {
-    .search-input {
-      max-width: 75%;
-    }
+  .dropdown {
+    width: 100%;
   }
+}
 
-  @media (max-width: 767px) {
-    .search-input {
-      max-width: 85%;
-    }
+  
+.container {
+  overflow-y: auto;
+  max-height: 100vh;
+}
 
-    .dropdown {
-      margin-top: 10px;
-    }
-  }
+.custom-card {
+border: none;
+border-radius: 15px;
+background: linear-gradient(135deg, #ffffff, #f9f9f9);
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s, box-shadow 0.3s;
+overflow: hidden;
+}
 
-  /* Responsive Layout for Search and Dropdown */
-  @media (min-width: 768px) {
-    .search-container {
-      max-width: 100%;
-    }
+.custom-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
 
-    .dropdown {
-      width: 100%;
-    }
-  }
+.card-img-top {
+border-top-left-radius: 15px;
+border-top-right-radius: 15px;
+height: 200px;
+object-fit: cover;
+transition: transform 0.3s;
+}
 
-  @media (max-width: 767px) {
-    .search-container {
-      margin-bottom: 10px;
-    }
+.custom-card:hover .card-img-top {
+transform: scale(1.1);
+}
 
-    .dropdown {
-      width: 100%;
-    }
+.card-body {
+padding: 1.5rem;
+}
 
-    .search-input {
-      width: 100%;
-    }
-  }
+.card-title {
+font-size: 1.5rem;
+font-weight: bold;
+margin-bottom: 0.75rem;
+color: #333;
+}
 
-  #createGroupButton {
-    background-color: #1f78b4;
-    border-color: #1f78b4;
-  }
+.card-text {
+font-size: 0.9rem;
+color: #666;
+margin-bottom: 1.5rem;
+}
 
-  .auth-container {
-    width: 90%;
-  }
+.custom-btn {
+background-color: #1f78b4;
+border: none;
+border-radius: 25px;
+padding: 0.5rem 1.5rem;
+font-size: 0.9rem;
+transition: background-color 0.3s, transform 0.3s;
+color: white;
+}
+
+.custom-btn:hover {
+background-color: #165d8a;
+transform: translateY(-2px);
+}
+
+
+/* General Styles */
+.search-container {
+width: 100%;
+max-width: 500px;
+}
+
+/* Make the create button circular */
+#createGroup {
+width: 50px;
+height: 50px;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 1.5rem;
+padding: 0;
+}
+
+
+/* Responsive Card Layout */
+.custom-card {
+transition: transform 0.3s ease-in-out;
+}
+.custom-card:hover {
+transform: scale(1.05);
 }
