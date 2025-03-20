@@ -57,3 +57,41 @@ var uiConfig = {
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);
+
+
+document.querySelector('.login-btn').addEventListener('click', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+});
+
+// Sign up button event listener
+document.querySelector('.signup-btn').addEventListener('click', async (event) => {
+    event.preventDefault(); 
+    const email = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+        alert("Please fill in both email and password fields.");
+        return;
+    }
+
+    try {
+        
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        
+        await db.collection('user').doc(user.uid).set({
+            name: email.split('@')[0], // Use the email address as the default name
+            email: user.email,
+            user_delete_fg: 'N'
+        });
+
+        alert('Account created successfully! Please log in.'); // Uses to check for any errors
+    } catch (error) {
+        console.error("Signup error:", error);
+        alert(`Signup failed: ${error.message}`);   // Notifices user of any errors
+    }
+});
