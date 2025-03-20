@@ -57,3 +57,59 @@ var uiConfig = {
 };
 
 ui.start('#firebaseui-auth-container', uiConfig);
+
+// Handle login form submission
+document.querySelector('.login-btn').addEventListener('click', async (event) => {
+    event.preventDefault();
+    const email = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    try {
+        // Sign in with Firebase Authentication
+        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Fetch user data from Firestore
+        const userDoc = await db.collection('user').doc(user.uid).get();
+        if (userDoc.exists) {
+            console.log("User data:", userDoc.data());
+            // Redirect to the main page or dashboard
+            window.location.href = '/main';
+        } else {
+            console.error("No user data found in Firestore.");
+            alert("Login failed: User data not found.");
+        }
+    } catch (error) {
+        alert(`Login failed: ${error.message}`);
+    }
+});
+
+// Handle signup button click
+document.querySelector('.signup-btn').addEventListener('click', async (event) => {
+    event.preventDefault(); // Prevent default behavior
+    const email = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (!email || !password) {
+        alert("Please fill in both email and password fields.");
+        return;
+    }
+
+    try {
+        // Create a new user with Firebase Authentication
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+        const user = userCredential.user;
+
+        // Add the new user to Firestore
+        await db.collection('user').doc(user.uid).set({
+            name: email.split('@')[0], // Use part of the email as the default name
+            email: user.email,
+            user_delete_fg: 'N'
+        });
+
+        alert('Account created successfully! Please log in.');
+    } catch (error) {
+        console.error("Signup error:", error);
+        alert(`Signup failed: ${error.message}`);
+    }
+});
