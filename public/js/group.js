@@ -4,3 +4,5 @@ function addItem() {
     li.innerHTML = '<input type="radio"> New Item';
     itemList.appendChild(li);
 }
+
+
