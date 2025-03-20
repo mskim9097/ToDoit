@@ -187,10 +187,10 @@
   
   /* Create Group Button */
   #createGroup {
-    border-radius: 50px;
+    border-radius: 100px;
     padding: 12px 24px;
-    font-size: 16px;
-    background-color: #58b2f7;
+    font-size: 20px;
+    background-color: #000000;
     color: white;
   }
   
@@ -216,6 +216,7 @@
   
     .search-container {
         width: 100%;
+        margin-bottom: 10px;
     }
   
     .search-input {
@@ -233,10 +234,10 @@
     }
   
     #createGroup {
-        width: 100%;
-        padding: 12px;
-        font-size: 18px;
-    }
+      width: 100%;
+      padding: 12px;
+      font-size: 18px;
+  }
   
     #reminder-go-here .list-group-item {
         padding: 10px;
@@ -250,17 +251,22 @@
   .quote-message {
     font-size: 1.5rem;
   }
-  
-  @media (max-width: 768px) {
-    .welcome-message {
-      font-size: 1.5rem;
-    }
-  
-    .quote-message {
-      font-size: 1.2rem;
-    }
+  .custom-card {
+    margin-bottom: 1rem;
   }
-  
+  .row-cols-md-2 > .col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  .welcome-message {
+    font-size: 1.5rem;
+  }
+
+  .quote-message {
+    font-size: 1.2rem;
+  }
+}
+
   @media (max-width: 576px) {
     .welcome-message {
       font-size: 1.2rem;
@@ -278,7 +284,6 @@
     width: 100%;
     text-align: center;
     padding: 10px;
-  
   }
   
   /* Search Input Styling */
@@ -286,22 +291,6 @@
     transition: all 0.3s ease;
     max-width: 100%;
     padding-left: 30px;
-  }
-  
-  @media (min-width: 768px) {
-    .search-input {
-      max-width: 75%;
-    }
-  }
-  
-  @media (max-width: 767px) {
-    .search-input {
-      max-width: 85%;
-    }
-  
-    .dropdown {
-      margin-top: 10px;
-    }
   }
   
   /* Responsive Layout for Search and Dropdown */
@@ -314,24 +303,96 @@
       width: 100%;
     }
   }
+
+    
+.container {
+    overflow-y: auto;
+    max-height: 100vh;
+}
   
-  @media (max-width: 767px) {
-    .search-container {
-      margin-bottom: 10px;
-    }
-  
-    .dropdown {
-      width: 100%;
-    }
-  
-    .search-input {
-      width: 100%;
-    }
-  }
-  
-  #createGroupButton{
-    background-color: #1f78b4; 
-    border-color: #1f78b4;
-  }
-     
-  
+.custom-card {
+  border: none;
+  border-radius: 15px;
+  background: linear-gradient(135deg, #ffffff, #f9f9f9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  overflow: hidden;
+}
+
+.custom-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.custom-card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.75rem;
+  color: #333;
+}
+
+.card-text {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.custom-btn {
+  background-color: #1f78b4;
+  border: none;
+  border-radius: 25px;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s, transform 0.3s;
+  color: white;
+}
+
+.custom-btn:hover {
+  background-color: #165d8a;
+  transform: translateY(-2px);
+}
+
+
+/* General Styles */
+.search-container {
+  width: 100%;
+  max-width: 500px;
+}
+
+/* Make the create button circular */
+#createGroup {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  padding: 0;
+}
+
+
+/* Responsive Card Layout */
+.custom-card {
+  transition: transform 0.3s ease-in-out;
+}
+.custom-card:hover {
+  transform: scale(1.05);
+}
+
