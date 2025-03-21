@@ -5,4 +5,6 @@ function addItem() {
     itemList.appendChild(li);
 }
 
+writeaddItem();
+
 
