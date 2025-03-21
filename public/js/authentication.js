@@ -59,11 +59,20 @@ var uiConfig = {
 ui.start('#firebaseui-auth-container', uiConfig);
 
 
-document.querySelector('.login-btn').addEventListener('click', async (event) => {
-    event.preventDefault();
+document.querySelector('.login-btn').addEventListener('click', async () => {
     const email = document.getElementById('username').value;
     const password = document.getElementById('password').value;
 
+    try {
+        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+        alert('Login successful!');
+        console.log('User logged in:', userCredential.user);
+        window.location.assign('/main');
+        // Redirect or perform post-login actions here
+    } catch (error) {
+        console.error('Login error:', error);
+        document.getElementById('error-message').textContent = error.message;
+    }
 });
 
 // Sign up button event listener
