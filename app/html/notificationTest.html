@@ -34,6 +34,7 @@
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
     <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/notification.css">
     <link rel="stylesheet" href="/css/style.css">
     <title>ToDoit</title>
 </head>
@@ -44,7 +45,24 @@
 
     <!-- the body of your page goes here -->
     <div class="container">
-        <h1>Welcome ToDoit!</h1>
+        <div class="form-check form-switch notification-switch">
+            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remind: </label> 
+            
+        </div>
+        <div id="alert-time-container">
+            <select class="form-select" aria-label="Default select example" style="width: 30vw;" disabled>
+                <option selected value="none" >None</option>
+                <option value="dueDate">At time of event</option>
+                <option value="10min">10 minutes before</option>
+                <option value="30min">30 minutes before</option>
+                <option value="1hr">1 hour before</option>
+                <option value="2hr">2 hours before</option>
+                <option value="1day">1 day before</option>
+                <option value="2day">2 days before</option>
+            </select>
+        </div>
+        
     </div>
 
     <!-- our own footer goes here-->
