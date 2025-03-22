@@ -1,0 +1,139 @@
+/* General body styling */
+body {
+    font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Cartoonish font */
+    background-color: #fef6e4; /* Soft pastel yellow */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Auth container styling */
+.auth-container {
+    background-color: #ffffff; /* White background for contrast */
+    border-radius: 16px; /* Rounded corners for a cozy feel */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Title styling */
+.auth-title {
+    font-size: 32px;
+    color: #ff8ba7; /* Pastel pink */
+    margin-bottom: 10px;
+}
+
+/* Subtitle styling */
+.auth-subtitle {
+    font-size: 16px;
+    color: #6b728e; /* Soft gray */
+    margin-bottom: 20px;
+}
+
+/* Input group styling */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+/* Label styling */
+.form-label {
+    font-size: 14px;
+    color: #6b728e; /* Soft gray */
+    margin-bottom: 5px;
+    display: block;
+}
+
+/* Input field styling */
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ffccd5; /* Pastel pink border */
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff1f3; /* Light pastel pink background */
+    color: #333333;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #ff8ba7; /* Darker pastel pink on focus */
+}
+
+/* Error message styling */
+.error-message {
+    color: #ff6b6b; /* Soft red for errors */
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+/* Button styling */
+.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.login-btn {
+    background-color: #a2d2ff; /* Pastel blue */
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.login-btn:hover {
+    background-color: #74c0fc; /* Slightly darker pastel blue */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.signup-btn {
+    background-color: #b9fbc0; /* Pastel green */
+    color: #ffffff;
+}
+
+.signup-btn:hover {
+    background-color: #8ce99a; /* Slightly darker pastel green */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Forgot password link styling */
+.forgot-password {
+    font-size: 14px;
+    color: #6b728e; /* Soft gray */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.forgot-password:hover {
+    color: #ff8ba7; /* Pastel pink on hover */
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+    .auth-container {
+        padding: 20px;
+    }
+
+    .auth-title {
+        font-size: 28px;
+    }
+
+    .form-input {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+    }
+}
