@@ -77,6 +77,12 @@ app.get("/create", function(req, res) {
     res.send(doc);
 });
 
+app.get("/profile", function(req, res) {
+    //console.log(process.env);
+    // retrieve and send an HTML document from the file system
+    let doc = fs.readFileSync("./app/html/profile.html", "utf8");
+    res.send(doc);
+});
 
 app.get("/invite", function(req, res) {
     //console.log(process.env);
@@ -105,6 +111,8 @@ app.use(function (req, res, next) {
     // correct, otherewise, you'd get a 404 on the 404 (actually a 500 on the 404)
     res.status(404).send("<html><head><title>Page not found!</title></head><body><p>Nothing here.</p></body></html>");
 });
+
+
 
 // RUN SERVER
 let port = 8000;
