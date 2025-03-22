@@ -95,24 +95,70 @@
     color: #555;
   }
   /* Modal Styling */
-  .modal-content {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Modal Styling */
+.modal-content {
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  background-color: #1f78b4;
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem; /* Reduced padding */
+}
+
+.modal-title {
+  font-size: 1.1rem; /* Smaller title */
+}
+
+.modal-body {
+  padding: 0.75rem; /* Reduced padding */
+}
+
+/* Form Inputs */
+.form-control, .form-select {
+  font-size: 0.9rem; /* Smaller font size */
+  padding: 0.4rem; /* Reduced padding */
+  margin-bottom: 0.5rem; /* Reduced margin */
+}
+
+/* Create Group Button */
+#createGroupButton {
+  font-size: 0.9rem; /* Smaller font size */
+  padding: 0.5rem; /* Reduced padding */
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 576px) {
+  .modal-dialog {
+    margin: 0.5rem; /* Reduce margin on small screens */
+    max-width: 95%; /* Constrain modal width */
   }
-  
+
   .modal-header {
-    background-color: #1F78B4;
-    color: white;
-    font-weight: bold;
+    padding: 0.5rem; /* Further reduce padding */
   }
-  
-  .modal-body {
-    padding: 30px;
-  }
-  
+
   .modal-title {
-    font-size: 24px;
+    font-size: 1rem; /* Even smaller title */
   }
+
+  .modal-body {
+    padding: 0.5rem; /* Further reduce padding */
+  }
+
+  .form-control, .form-select {
+    font-size: 0.85rem; /* Smaller font size */
+    padding: 0.35rem; /* Further reduce padding */
+    margin-bottom: 0.4rem; /* Further reduce margin */
+  }
+
+  #createGroupButton {
+    font-size: 0.85rem; /* Smaller font size */
+    padding: 0.4rem; /* Further reduce padding */
+  }
+}
   
   /* Buttons */
   
@@ -305,11 +351,15 @@
   }
 
     
+/* Ensure the container does not overflow */
 .container {
-    overflow-y: auto;
-    max-height: 100vh;
+  max-width: 1200px; /* Constrain the container width */
+  margin: 0 auto; /* Center the container */
+  padding: 20px; /* Add some padding */
+  overflow-x: hidden; /* Prevent horizontal overflow */
 }
-  
+
+/* Card styling */
 .custom-card {
   border: none;
   border-radius: 15px;
@@ -317,27 +367,31 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s, box-shadow 0.3s;
   overflow: hidden;
+  height: 100%; /* Ensure all cards have the same height */
 }
 
 .custom-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Slight lift on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
 }
 
 .card-img-top {
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
-  height: 200px;
-  object-fit: cover;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensure images cover the area */
   transition: transform 0.3s;
 }
 
 .custom-card:hover .card-img-top {
-  transform: scale(1.1);
+  transform: scale(1.05); /* Slight zoom on hover */
 }
 
 .card-body {
   padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space out content evenly */
 }
 
 .card-title {
@@ -361,14 +415,13 @@
   font-size: 0.9rem;
   transition: background-color 0.3s, transform 0.3s;
   color: white;
+  align-self: flex-start; /* Align button to the left */
 }
 
 .custom-btn:hover {
   background-color: #165d8a;
   transform: translateY(-2px);
 }
-
-
 /* General Styles */
 .search-container {
   width: 100%;
@@ -394,4 +447,15 @@
 }
 .custom-card:hover {
   transform: scale(1.05);
+}
+
+.edit-icon {
+  font-size: 1.2rem; /* Adjust the size */
+  color: #000000; /* Default color */
+  transition: color 0.3s ease; /* Smooth color transition */
+  
+}
+
+.edit-icon:hover {
+  color: #0d6efd; /* Change color on hover */
 }

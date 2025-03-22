@@ -21,8 +21,12 @@ document.querySelector("#createGroupButton").addEventListener("click", function 
 
                   console.log("Document reference:", db.collection("Group").doc(docRef.id));
 
+                  selectGroupList("Group");
+
+                   console.log("Group created successfully:", docRef);
+
                   // Redirect user after creating the group (optional)
-                  // window.location.href = "/group?docID=" + docRef.id;
+                  window.location.href = "/group?docID=" + docRef.id;
               })
               .catch(function (error) {
                   console.error("Failed creating reminder:", error);

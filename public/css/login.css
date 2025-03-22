@@ -1,74 +1,83 @@
 /* General body styling */
 body {
-    font-family: 'Comic Sans MS', 'Arial', sans-serif; /* Cartoonish font */
-    background-color: #fef6e4; /* Soft pastel yellow */
+    font-family: 'Inter', 'Arial', sans-serif; /* Modern, professional font */
+    background-color: #F4F9FF; /* Light blue, reflecting productivity */
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: #333; /* Dark text color for readability */
 }
 
 /* Auth container styling */
 .auth-container {
-    background-color: #ffffff; /* White background for contrast */
-    border-radius: 16px; /* Rounded corners for a cozy feel */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
-    padding: 30px;
+    background-color: #ffffff; /* Clean white background */
+    border-radius: 12px; /* Rounded corners for a modern feel */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); /* Subtle shadow for a floating effect */
+    padding: 35px;
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     text-align: center;
+    transition: box-shadow 0.3s ease;
+}
+
+.auth-container:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1); /* Stronger shadow on hover */
 }
 
 /* Title styling */
 .auth-title {
-    font-size: 32px;
-    color: #ff8ba7; /* Pastel pink */
-    margin-bottom: 10px;
+    font-size: 36px;
+    color: #4F87FF; /* Trustworthy blue, aligning with productivity and clarity */
+    margin-bottom: 20px;
+    font-weight: 700; /* Bolder text for emphasis */
 }
 
 /* Subtitle styling */
 .auth-subtitle {
     font-size: 16px;
-    color: #6b728e; /* Soft gray */
-    margin-bottom: 20px;
+    color: #6C757D; /* Soft gray for a professional, clean look */
+    margin-bottom: 25px;
 }
 
 /* Input group styling */
 .input-group {
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     text-align: left;
 }
 
 /* Label styling */
 .form-label {
     font-size: 14px;
-    color: #6b728e; /* Soft gray */
-    margin-bottom: 5px;
+    color: #333333; 
+    margin-bottom: 6px;
     display: block;
+    font-weight: 600;
 }
 
 /* Input field styling */
 .form-input {
     width: 100%;
-    padding: 10px;
-    border: 2px solid #ffccd5; /* Pastel pink border */
+    padding: 12px;
+    border: 2px solid #E0E4E9; 
     border-radius: 8px;
     font-size: 16px;
-    background-color: #fff1f3; /* Light pastel pink background */
-    color: #333333;
+    background-color: #F9FAFB; 
+    color: #333;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .form-input:focus {
-    border-color: #ff8ba7; /* Darker pastel pink on focus */
+    border-color: #4F87FF; /* Blue color on focus */
+    background-color: #ffffff; /* Slight background change on focus */
 }
 
 /* Error message styling */
 .error-message {
-    color: #ff6b6b; /* Soft red for errors */
+    color: #F56C6C; /* Soft red for error messages */
     font-size: 14px;
     margin-bottom: 10px;
 }
@@ -76,64 +85,79 @@ body {
 /* Button styling */
 .btn {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     font-size: 16px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;
+    letter-spacing: 0.5px; /* Adds subtle spacing for a sleek look */
 }
 
 .login-btn {
-    background-color: #a2d2ff; /* Pastel blue */
+    background-color: #4F87FF; /* Blue button for login */
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .login-btn:hover {
-    background-color: #74c0fc; /* Slightly darker pastel blue */
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #3871D1; /* Slightly darker blue for hover effect */
+    transform: scale(1.03); /* Slight zoom effect on hover */
 }
 
 .signup-btn {
-    background-color: #b9fbc0; /* Pastel green */
+    background-color: #00C488; /* Green button for sign-up */
     color: #ffffff;
 }
 
 .signup-btn:hover {
-    background-color: #8ce99a; /* Slightly darker pastel green */
-    transform: scale(1.05); /* Slight zoom effect */
+    background-color: #00B177; /* Darker green on hover */
+    transform: scale(1.03); /* Slight zoom effect on hover */
 }
 
 /* Forgot password link styling */
 .forgot-password {
     font-size: 14px;
-    color: #6b728e; /* Soft gray */
+    color: #5e6367; 
     text-decoration: none;
     display: inline-block;
-    margin-top: 10px;
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .forgot-password:hover {
-    color: #ff8ba7; /* Pastel pink on hover */
+    color: #4F87FF; /* Blue color on hover */
     text-decoration: underline;
+}
+
+.signup-btn {
+    background-color: #232121; /* Black button */
+    color: #ffffff;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.signup-btn:hover {
+    background-color: #333333; /* Darker black on hover */
+    transform: scale(1.03); /* Slight zoom effect on hover */
 }
 
 /* Responsive design */
 @media (max-width: 480px) {
     .auth-container {
-        padding: 20px;
+        padding: 25px;
     }
 
     .auth-title {
-        font-size: 28px;
+        font-size: 30px;
     }
 
     .form-input {
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .btn {
-        font-size: 14px;
+        font-size: 15px;
     }
 }

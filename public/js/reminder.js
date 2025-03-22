@@ -22,6 +22,7 @@ function displayTaskListInfo() {
         });
 }
 
+displayTaskListInfo();
 /*
 $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').trigger('focus')

@@ -1,0 +1,95 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 20px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .task-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+  }
+  
+  .task-item input[type="checkbox"] {
+    margin-right: 10px;
+    margin-top: 5px;
+  }
+  
+  .task-item label {
+    flex-grow: 1;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .task-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .task-details p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .task-status {
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  .overdue {
+    background-color: #ff4d4d;
+  }
+  
+  .reschedule {
+    background-color: #ffcc00;
+    color: #000;
+  }
+  
+  .task-date {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .task-category {
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .inbox {
+    color: #1f78b4;
+  }
+  
+  /* Checkbox Styling */
+  input[type="checkbox"] {
+    accent-color: #1f78b4;
+  }
