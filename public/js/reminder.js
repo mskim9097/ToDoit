@@ -1,3 +1,6 @@
+const urlParams = new URLSearchParams(window.location.search);
+const groupID = urlParams.get('docID');
+
 function displayTaskListInfo() {
     let params = new URL(window.location.href); // get URL
     let ID = params.searchParams.get("docID"); // get docID
@@ -99,56 +102,18 @@ function removeUser(clicked) {
 document.querySelector(".inviteBtn").addEventListener("click", function() {
     document.querySelectorAll(".checked").forEach(clickedUser => {
         console.log(clickedUser);
-        const urlParams = new URLSearchParams(window.location.search);
-        const groupID = urlParams.get('docID');
+        //const urlParams = new URLSearchParams(window.location.search);
+        //const groupID = urlParams.get('docID');
 
         var params = {
-            name: clickedUser.querySelector(".user-name").innerHTML,
-            email: clickedUser.querySelector(".user-email").innerHTML,
+            logo: "/img/cleaned_logo.png",
+            userName: clickedUser.querySelector(".user-name").innerHTML,
+            userEmail: clickedUser.querySelector(".user-email").innerHTML,
             groupID: groupID
         };
         emailjs.send("service_gb3vuih", "template_lzugtx5", params);
     })
 })
-// Test code to create dummy user data
-/*
-function writeUser() {
-    //define a variable for the collection you want to create in Firestore to populate data
-    var userRef = db.collection("user");
-
-    userRef.add({
-        email: "mskim909777@gmail.com",
-        name: "minsu Kim777",
-        user_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        user_delete_fg: "N"
-    });
-    userRef.add({
-        email: "ms@gmail.com",
-        name: "minsu Kim ms",
-        user_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        user_delete_fg: "N"
-    });
-    userRef.add({
-        email: "mskmp@gmail.com",
-        name: "minsu kmp",
-        user_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        user_delete_fg: "N"
-    });
-    userRef.add({
-        email: "mskim9@gmail.com",
-        name: "minsu9",
-        user_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        user_delete_fg: "N"
-    });
-    userRef.add({
-        email: "mskim90@gmail.com",
-        name: "minsu 90",
-        user_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-        user_delete_fg: "N"
-    });
-    
-}
-*/
 
 displayTaskListInfo();
 
