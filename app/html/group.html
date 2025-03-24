@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>ToDoIt (Assignment Reminder App)</title>
+  <head>
+    <title>ToDoIt</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
     <!------------------------>
@@ -66,89 +65,112 @@
     </head>
 
 <body>
+    <!-- searched user list template -->
+    <template id="searchedUserTemplate">
+        <div class="unchecked-user-container unchecked">
+            <div type="button" class="plus-btn">
+                <i class="bi bi-plus-circle"></i>
+                <span class="user-name">user name</span><br>
+                <span class="user-email">user email</span>
+            </div>
+        </div>
+    </template>
 
+    <!-- plus user list template -->
+    <template id="plusUserTemplate">
+        <div class="checked-user-container checked">
+            <div type="button" class="remove-btn">
+                <i class="bi bi-dash-circle"></i>
+                <span class="user-name">user name</span><br>
+                <span class="user-email">user email</span>
+            </div>
+        </div>
+    </template>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
+    <!-- our own navbar goes here -->
+    <nav id="navbarPlaceholder"></nav>
 
-    <body>
-        <!-- searched user list template -->
-        <template id="searchedUserTemplate">
-            <div class="unchecked-user-container unchecked">
-                <div type="button" class="plus-btn">
-                    <i class="bi bi-plus-circle"></i>
-                    <span class="user-name">user name</span><br>
-                    <span class="user-email">user email</span>
-                </div>
-            </div>
-        </template>
+    <!-- the body of your page goes here -->
+    <!-- stuff -->
 
-        <!-- plus user list template -->
-        <template id="plusUserTemplate">
-            <div class="checked-user-container checked">
-                <div type="button" class="remove-btn">
-                    <i class="bi bi-dash-circle"></i>
-                    <span class="user-name">user name</span><br>
-                    <span class="user-email">user email</span>
-                </div>
-            </div>
-        </template>
-        <!-- our own navbar goes here -->
-        <nav id="navbarPlaceholder"></nav>
+      <!-- Here is the container for tasklist -->
+      <div class="container mt-5">
+        <div class="card">
+          <!-- Image as Card Header -->
+          <img id="group-image" src="" alt="Group Image" class="card-img-top">
+          
+          <!-- Card Body -->
+          <div class="card-body">
+            <h1 id="group-name" class="card-title">Group Name</h1>
+            <p id="group-privacy" class="card-text"></p>
+          </div>
+        </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action"
+            >A simple default list group item</a
+          >
 
-        <!-- the body of your page goes here -->
-        <!-- stuff -->
-        <div class="container">
-            <h1>Tasklist</h1>
-            <!-- Here is the container for tasklist -->
-            <div class="container">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
+          
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-primary"
+            >Task 1</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-secondary"
+            >Task 2</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-success"
+            >Task 3</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-danger"
+            >Task 4</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-warning"
+            >Task 5</a
+          >
+          <a
+            href="description_task.html"
+            class="list-group-item list-group-item-action list-group-item-info"
+            >Task 6</a
+          >
+        </div>
+        <div id="tasklist-go-here" class="row row-cols-auto"></div>
+      </div>
+        <h1>Welcome ToDoit!</h1>
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Invite
+        </button>
 
-
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-primary">Task 1</a>
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-secondary">Task 2</a>
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-success">Task 3</a>
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-danger">Task 4</a>
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-warning">Task 5</a>
-                    <a href="description_task.html"
-                        class="list-group-item list-group-item-action list-group-item-info">Task 6</a>
-                </div>
-                <div id="tasklist-go-here" class="row row-cols-auto"></div>
-            </div>
-            <h1>Welcome ToDoit!</h1>
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Invite
-            </button>
-
-            <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="invite-container">
-                                <div class="user-content">
-                                    <div class="select">
-                                        <i class="bi bi-search"></i>
-                                        <input type="text" id="search-txt" class="search-user"
-                                            placeholder="Enter Email">
-                                    </div>
-                                    <div class="search-mem">
-
-                                    </div>
-                                    <div id="search-user-go-here" class="list-group">
-                                    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="invite-container">
+                            <div class="user-content">
+                                <div class="select">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" id="search-txt" class="search-user" placeholder="Enter Email">
+                                </div>
+                                <div class="search-mem">
+                                   
+                                </div>
+                                <div id="search-user-go-here" class="list-group">
                                 </div>
 
                                 <form action="inviteMember" method="post">
@@ -180,7 +202,9 @@
         <script src="/js/skeleton.js"></script>
         <!-- <script src="/js/script.js"></script> -->
         <script src="/js/reminder.js"></script>
+        <script src="/js/group.js"></script>
     </body>
+
     <script src="/js/script.js"></script>
 
 </body>
