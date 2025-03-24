@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ToDoIt (Assignment Reminder App)</title>
+    <title>ToDoIt</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
     <!------------------------>
@@ -80,37 +80,25 @@
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-<body>
-    <!-- searched user list template -->
-    <template id="searchedUserTemplate">
-        <div class="unchecked-user-container unchecked">
-            <div type="button" class="plus-btn">
-                <i class="bi bi-plus-circle"></i>
-                <span class="user-name">user name</span><br>
-                <span class="user-email">user email</span>
-            </div>            
-        </div>
-    </template>
-
-    <!-- plus user list template -->
-     <template id="plusUserTemplate">
-        <div class="checked-user-container checked">
-            <div type="button" class="remove-btn">
-                <i class="bi bi-dash-circle"></i>
-                <span class="user-name">user name</span><br>
-                <span class="user-email">user email</span>
-            </div>  
-        </div>
-     </template>
+<body class ="app-body">
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
-    <div class="container">
-      <h1>Tasklist</h1>
+
       <!-- Here is the container for tasklist -->
-      <div class="container">
+      <div class="container mt-5">
+        <div class="card">
+          <!-- Image as Card Header -->
+          <img id="group-image" src="" alt="Group Image" class="card-img-top">
+          
+          <!-- Card Body -->
+          <div class="card-body">
+            <h1 id="group-name" class="card-title">Group Name</h1>
+            <p id="group-privacy" class="card-text"></p>
+          </div>
+        </div>
         <div class="list-group">
           <a href="#" class="list-group-item list-group-item-action"
             >A simple default list group item</a
@@ -190,13 +178,16 @@
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- Task List -->
-    <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
-    <div class="task-list">
-    <!-- Task items go here -->
-  </div>
+    <template id="taskTemplate">
+      <div class="task-item">
+          <input type="checkbox" class="task-checkbox">
+          <span class="task-title">Task Title</span>
+          <span class="task-due-date">Due: Mar 8</span>
+      </div>
+    </template>
+ 
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
@@ -207,6 +198,7 @@
     <script src="/js/skeleton.js"></script>
     <!-- <script src="/js/script.js"></script> -->
     <script src="/js/reminder.js"></script>
+    <script src="/js/group.js"></script>
   </body>
     <script src="/js/script.js"></script>
 
