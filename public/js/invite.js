@@ -11,16 +11,13 @@ function addGroupMember() {
         .onSnapshot((snapshot) => {
             snapshot.forEach(doc => {
                 var docID = doc.id;
-                var reminderMemberRef = db.collection("reminder_member");
-                reminderMemberRef.add({
-                    reminder_manager: "N",
-                    reminder_member_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-                    reminder_delete_fg: "N",
-                    reminder_no: groupID,
-                    user_no: docID
+                var groupRef = db.collection("Group").doc(groupID);
+                console.log(groupRef.id);
+                groupRef.update({
+                    group_member: firebase.firestore.FieldValue.arrayUnion(docID)
                 })
-            });
-        })
+        });
+    })
 };
 addGroupMember();
 /*

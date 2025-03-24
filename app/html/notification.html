@@ -40,6 +40,14 @@
 </head>
 <body>
 
+    <template id="plusUserTemplate">
+        <div class="checked-user-container checked">
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-primary">
+                Task 1
+            </a>
+        </div>
+    </template>
+
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
@@ -47,8 +55,7 @@
     <div class="container">
         <div class="form-check form-switch notification-switch">
             <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Remind: </label> 
-            
+            <label class="form-check-label" for="flexSwitchCheckDefault">Remind: </label>             
         </div>
         <div id="alert-time-container">
             <select id="alert-time" class="form-select" aria-label="Default select example" style="width: 30vw;" disabled>
@@ -61,6 +68,9 @@
                 <option value="1440">1 day before</option>
                 <option value="2880">2 days before</option>
             </select>
+        </div>
+        <div>
+
         </div>
         
     </div>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>ToDoIt (Assignment Reminder App)</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
@@ -10,204 +11,176 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
 
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
-    <!------------------------------------------>
-    <!-- Bootstrap Library CSS JS CDN go here -->
-    <!------------------------------------------>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"
-    ></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!------------------------------------------>
+        <!-- Bootstrap Library CSS JS CDN go here -->
+        <!------------------------------------------>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+            crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+            </script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+
+        <!-------------------------------------------------------->
+        <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+        <!-------------------------------------------------------->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet"
+            href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+        <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+        <link type="text/css" rel="stylesheet"
+            href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+        <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
         </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+        <script type="text/javascript">
+            (function () {
+                emailjs.init("zzn9xS-JgnV9aZNpc");
+            })();
+        </script>
 
-    <!-------------------------------------------------------->
-    <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
-    <!-------------------------------------------------------->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link
-      type="text/css"
-      rel="stylesheet"
-      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
-    />
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
-    <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
+        <!-------------------------------------------->
+        <!-- Other libraries and styles of your own -->
+        <!-------------------------------------------->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/css/group.css">
+    </head>
 
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
-    </script>
-    <script type="text/javascript">
-        (function(){
-        emailjs.init("zzn9xS-JgnV9aZNpc");
-        })();
-    </script>
+<body>
 
-    <!-------------------------------------------->
-    <!-- Other libraries and styles of your own -->
-    <!-------------------------------------------->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="./styles/style.css" />
-  </head>
-
-  <body>
-     
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
-<body>
-    <!-- searched user list template -->
-    <template id="searchedUserTemplate">
-        <div class="unchecked-user-container unchecked">
-            <div type="button" class="plus-btn">
-                <i class="bi bi-plus-circle"></i>
-                <span class="user-name">user name</span><br>
-                <span class="user-email">user email</span>
-            </div>            
-        </div>
-    </template>
+    <body>
+        <!-- searched user list template -->
+        <template id="searchedUserTemplate">
+            <div class="unchecked-user-container unchecked">
+                <div type="button" class="plus-btn">
+                    <i class="bi bi-plus-circle"></i>
+                    <span class="user-name">user name</span><br>
+                    <span class="user-email">user email</span>
+                </div>
+            </div>
+        </template>
 
-    <!-- plus user list template -->
-     <template id="plusUserTemplate">
-        <div class="checked-user-container checked">
-            <div type="button" class="remove-btn">
-                <i class="bi bi-dash-circle"></i>
-                <span class="user-name">user name</span><br>
-                <span class="user-email">user email</span>
-            </div>  
-        </div>
-     </template>
-    <!-- our own navbar goes here -->
-    <nav id="navbarPlaceholder"></nav>
+        <!-- plus user list template -->
+        <template id="plusUserTemplate">
+            <div class="checked-user-container checked">
+                <div type="button" class="remove-btn">
+                    <i class="bi bi-dash-circle"></i>
+                    <span class="user-name">user name</span><br>
+                    <span class="user-email">user email</span>
+                </div>
+            </div>
+        </template>
+        <!-- our own navbar goes here -->
+        <nav id="navbarPlaceholder"></nav>
 
-    <!-- the body of your page goes here -->
-    <!-- stuff -->
-    <div class="container">
-      <h1>Tasklist</h1>
-      <!-- Here is the container for tasklist -->
-      <div class="container">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action"
-            >A simple default list group item</a
-          >
+        <!-- the body of your page goes here -->
+        <!-- stuff -->
+        <div class="container">
+            <h1>Tasklist</h1>
+            <!-- Here is the container for tasklist -->
+            <div class="container">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
 
-          
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-primary"
-            >Task 1</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-secondary"
-            >Task 2</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-success"
-            >Task 3</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-danger"
-            >Task 4</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-warning"
-            >Task 5</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-info"
-            >Task 6</a
-          >
-        </div>
-        <div id="tasklist-go-here" class="row row-cols-auto"></div>
-      </div>
-        <h1>Welcome ToDoit!</h1>
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Invite
-        </button>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="invite-container">
-                            <div class="user-content">
-                                <div class="select">
-                                    <i class="bi bi-search"></i>
-                                    <input type="text" id="search-txt" class="search-user" placeholder="Enter Email">
-                                </div>
-                                <div class="search-mem">
-                                   
-                                </div>
-                                <div id="search-user-go-here" class="list-group">
-                                </div>
-                            </div>
-                            
-                            <form action="inviteMember" method="post">
-                                <div id="plus-user-go-here"> </div>
-                            </form>                           
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-primary">Task 1</a>
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-secondary">Task 2</a>
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-success">Task 3</a>
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-danger">Task 4</a>
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-warning">Task 5</a>
+                    <a href="description_task.html"
+                        class="list-group-item list-group-item-action list-group-item-info">Task 6</a>
+                </div>
+                <div id="tasklist-go-here" class="row row-cols-auto"></div>
+            </div>
+            <h1>Welcome ToDoit!</h1>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Invite
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary inviteBtn">Invite</button>
+                        <div class="modal-body">
+                            <div class="invite-container">
+                                <div class="user-content">
+                                    <div class="select">
+                                        <i class="bi bi-search"></i>
+                                        <input type="text" id="search-txt" class="search-user"
+                                            placeholder="Enter Email">
+                                    </div>
+                                    <div class="search-mem">
+
+                                    </div>
+                                    <div id="search-user-go-here" class="list-group">
+                                    </div>
+                                </div>
+
+                                <form action="inviteMember" method="post">
+                                    <div id="plus-user-go-here"> </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary inviteBtn">Invite</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Task List -->
-    <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
-    <div class="task-list">
-    <!-- Task items go here -->
-  </div>
-    <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
+        <!-- Task List -->
+        <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
+        <div class="task-list">
+            <!-- Task items go here -->
+        </div>
+        <!-- our own footer goes here-->
+        <nav id="footerPlaceholder"></nav>
 
-    <!---------------------------------------------->
-    <!-- Your own JavaScript functions go here    -->
-    <!---------------------------------------------->
-    <script src="/js/firebaseAPI.js"></script>
-    <script src="/js/skeleton.js"></script>
-    <!-- <script src="/js/script.js"></script> -->
-    <script src="/js/reminder.js"></script>
-  </body>
+        <!---------------------------------------------->
+        <!-- Your own JavaScript functions go here    -->
+        <!---------------------------------------------->
+        <script src="/js/firebaseAPI.js"></script>
+        <script src="/js/skeleton.js"></script>
+        <!-- <script src="/js/script.js"></script> -->
+        <script src="/js/reminder.js"></script>
+    </body>
     <script src="/js/script.js"></script>
 
 </body>
