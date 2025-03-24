@@ -133,7 +133,7 @@ function displayReminderMembers(collection) {
 }
 
 // Call the function to display reminder members
-displayReminderMembers();
+//displayReminderMembers();
 
 function selectReminder(collection) {
   let reminderTemplate = document.getElementById("reminderTemplate");
@@ -188,53 +188,41 @@ function selectGroupList(collection) {
   auth.onAuthStateChanged((user) => {
     if (user) {
       db.collection(collection)
-        .orderBy("group_create_date", "desc") // Order by creation date
+        .orderBy("group_create_date", "desc")
         .onSnapshot((snapshot) => {
           const groupContainer = document.getElementById("group-go-here");
-          groupContainer.innerHTML = ""; // Clear old cards before updating
+          groupContainer.innerHTML = "";
 
           snapshot.forEach((doc) => {
             let data = doc.data();
-            console.log("Document data:", data); // Debugging: Log the document data
-
             let docId = doc.id;
             let groupName = data.group_name || "Unnamed Group";
-            let groupCreateDate = data.group_create_date
-              ? data.group_create_date.toDate().toLocaleDateString()
-              : "Unknown Date";
+            let memberCount = data.members ? data.members.length : 0;
+            let groupPrivacy = data.group_privacy === "public" ? "Public Group" : "Private Group";
+            let groupImage = data.group_image || "/img/default.avif"; // Use default image if none is selected
 
             // Clone the template
             let newGroup = groupTemplate.content.cloneNode(true);
             newGroup.querySelector(".card-title").textContent = groupName;
-            newGroup.querySelector(".card-length").textContent = `Members: ${
-              data.members ? data.members.length : 0
-            }`;
-            newGroup.querySelector(".card-text").textContent =
-              data.group_privacy === "public"
-                ? "Public Group"
-                : "Private Group";
-            // Set the href dynamically with the docID
+            newGroup.querySelector(".card-length").textContent = `Members: ${memberCount}`;
+            newGroup.querySelector(".card-text").textContent = groupPrivacy;
             newGroup.querySelector("a").href = `/group?docID=${docId}`;
-            console.log("Group ID:", docId);
+            newGroup.querySelector(".card-img-top").src = groupImage; // Set the group image
 
-            // Add an Edit button
-            let editButton = document.createElement("i");
-            editButton.className = "bi bi-pencil-square";
-            editIcon.addEventListener("click", () => {
-                console.log("Edit icon clicked!"); // Debugging
-                openEditModal(docId, groupName, data.group_privacy);
-            });
-            newGroup.querySelector(".card-body").appendChild(editButton);
             // Append the new group card to the container
             groupContainer.appendChild(newGroup);
           });
+        }, (error) => {
+          console.error("Error fetching groups:", error);
         });
+    } else {
+      console.log("No user is signed in.");
     }
   });
 }
 
 // Call the function to display groups
-selectGroupList("Group");
+//selectGroupList("Group");
 
 
 // // Function to read the quote of the day from the Firestore "quotes" collection

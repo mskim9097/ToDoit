@@ -145,9 +145,60 @@
               <option value="private">Private</option>
             </select>
           </div>
+          <!-- Image Selection Section -->
+          <div class="mb-2">
+            <label class="form-label">Group Image</label>
+            <div class="row">
+              <!-- Predefined Images -->
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/image1.jpg" class="d-none">
+                  <img src="/img/image1.jpg" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/nasa_carina_nebula.jpg" class="d-none">
+                  <img src="/img/nasa_carina_nebula.jpg" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/image2.jpg" class="d-none">
+                  <img src="/img/image2.jpg" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/image3.jpg" class="d-none">
+                  <img src="/img/image3.jpg" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/image4.webp" class="d-none">
+                  <img src="/img/image4.webp" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+              <div class="col-4 mb-3">
+                <label>
+                  <input type="radio" name="groupImage" value="/img/rijksmuseum_jansz_1649.jpg" class="d-none">
+                  <img src="/img/rijksmuseum_jansz_1649.jpg" class="img-thumbnail w-100" style="cursor: pointer;">
+                </label>
+              </div>
+            </div>
+            <!-- Upload Custom Image -->
+            <div class="mb-3">
+              <label class="form-label">Or upload your own image:</label>
+              <button type="button" id="uploadImageButton" class="btn btn-outline-secondary w-100">
+                <i class="bi bi-upload me-2"></i>Upload Image
+              </button>
+              <input type="file" id="customImageUpload" accept="image/*" class="d-none">
+            </div>
+          </div>
 
           <!-- Create Group Button -->
-          <button type="button" id="createGroupButton" class="btn btn-primary w-100 mt-2">
+          <button type="button" id="createGroupButton" class="btn btn-primary w-100 mt-2" >
             Create Group
           </button>
         </form>
