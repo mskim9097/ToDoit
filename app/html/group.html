@@ -75,12 +75,26 @@
   </head>
 
   <body>
-     
+    <header
+      
+    >
+      
+         
+    </header>
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
 
+    
+
+   
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/reminder.css">
+    <title>ToDoit</title>
+</head>
+
 <body>
+  
     <!-- searched user list template -->
     <template id="searchedUserTemplate">
         <div class="unchecked-user-container unchecked">
@@ -105,10 +119,16 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
+    <div class="container-fluid bg-light text-dark p-5">
+      <div class="container bg-light p-5">
+          <p><b><i>Quote of the day: <span id="quote-goes-here">One assignment at a time, one step closer to success.</span></i></b></p>
+      </div>
+    </div>
+
     <!-- the body of your page goes here -->
     <!-- stuff -->
     <div class="container">
-      <h1>Tasklist</h1>
+      <h3>Tasklist</h3>
       <!-- Here is the container for tasklist -->
       <div class="container">
         <div class="list-group">
@@ -150,7 +170,7 @@
         </div>
         <div id="tasklist-go-here" class="row row-cols-auto"></div>
       </div>
-        <h1>Welcome ToDoit!</h1>
+        
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Invite
@@ -192,11 +212,7 @@
         </div>
     </div>
 
-    <!-- Task List -->
-    <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
-    <div class="task-list">
-    <!-- Task items go here -->
-  </div>
+
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
