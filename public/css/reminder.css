@@ -5,13 +5,13 @@
     height: 50vh;
 }
 
-.invite-container > div:nth-child(1) {
+.invite-container>div:nth-child(1) {
     width: 60%;
     overflow-y: auto;
     border-right: 1px solid lightgrey;
 }
 
-.invite-container > div:nth-child(2) {
+.invite-container>div:nth-child(2) {
     width: 40%;
     overflow: auto;
 }

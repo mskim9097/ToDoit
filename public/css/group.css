@@ -1,26 +1,25 @@
-
-  /* invite modal */
+/* invite modal */
 .invite-container {
-  display: flex;
-  height: 50vh;
+    display: flex;
+    height: 50vh;
 }
 
-.invite-container > div:nth-child(1) {
-  width: 60%;
-  overflow-y: auto;
-  border-right: 1px solid lightgrey;
+.invite-container>div:nth-child(1) {
+    width: 60%;
+    overflow-y: auto;
+    border-right: 1px solid lightgrey;
 }
 
-.invite-container > div:nth-child(2) {
-  width: 40%;
-  overflow: auto;
+.invite-container>div:nth-child(2) {
+    width: 40%;
+    overflow: auto;
 }
 
 .plus-btn {
-  text-align: left;
-  width: 100%;
+    text-align: left;
+    width: 100%;
 }
 
 .plus-btn:hover {
-  background-color: lightgray;
+    background-color: lightgray;
 }

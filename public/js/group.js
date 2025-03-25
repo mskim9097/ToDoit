@@ -39,14 +39,14 @@ function getGroupDetails() {
                 }
             })
             .catch((error) => {
-                console.error("Error getting document:", error); 
+                console.error("Error getting document:", error);
             });
     } else {
-        console.log("No docID found in URL"); 
+        console.log("No docID found in URL");
     }
 }
 
 // Call the function to fetch and display group details
 getGroupDetails();
-  
-  getGroupDetails(); // Fetch additional group details from Firestore
+
+getGroupDetails(); // Fetch additional group details from Firestore

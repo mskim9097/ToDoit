@@ -11,5 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
         carouselInstance.next(); // Moves to next slide
     });
 
-   
+
 });

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>ToDoIt</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
@@ -61,14 +62,14 @@
         <!-------------------------------------------->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/group.css"> 
-    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-    <link rel="stylesheet" href="/css/reminder.css">
-    <title>ToDoit</title>
-</head>
+        <link rel="stylesheet" href="/css/group.css">
+        <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+        <link rel="stylesheet" href="/css/reminder.css">
+        <title>ToDoit</title>
+    </head>
 
 <body>
-  
+
     <!-- searched user list template -->
     <template id="searchedUserTemplate">
         <div class="unchecked-user-container unchecked">
@@ -97,120 +98,103 @@
     <nav id="navbarPlaceholder"></nav>
 
     <div class="container-fluid bg-light text-dark p-5">
-      <div class="container bg-light p-5">
-          <p><b><i>Quote of the day: <span id="quote-goes-here">One assignment at a time, one step closer to success.</span></i></b></p>
-      </div>
+        <div class="container bg-light p-5">
+            <p><b><i>Quote of the day: <span id="quote-goes-here">One assignment at a time, one step closer to
+                            success.</span></i></b></p>
+        </div>
     </div>
 
     <!-- the body of your page goes here -->
     <!-- stuff -->
-      <!-- Here is the container for tasklist -->
-      <div class="container mt-5">
+    <!-- Here is the container for tasklist -->
+    <div class="container mt-5">
         <div class="card">
-          <!-- Image as Card Header -->
-          <img id="group-image" src="" alt="Group Image" class="card-img-top">
-          
-          <!-- Card Body -->
-          <div class="card-body">
-            <h1 id="group-name" class="card-title">Group Name</h1>
-            <p id="group-privacy" class="card-text"></p>
-          </div>
+            <!-- Image as Card Header -->
+            <img id="group-image" src="" alt="Group Image" class="card-img-top">
+
+            <!-- Card Body -->
+            <div class="card-body">
+                <h1 id="group-name" class="card-title">Group Name</h1>
+                <p id="group-privacy" class="card-text"></p>
+            </div>
         </div>
         <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action"
-            >A simple default list group item</a
-          >
+            <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
 
-          
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-primary"
-            >Task 1</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-secondary"
-            >Task 2</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-success"
-            >Task 3</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-danger"
-            >Task 4</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-warning"
-            >Task 5</a
-          >
-          <a
-            href="description_task.html"
-            class="list-group-item list-group-item-action list-group-item-info"
-            >Task 6</a
-          >
+
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-primary">Task
+                1</a>
+            <a href="description_task.html"
+                class="list-group-item list-group-item-action list-group-item-secondary">Task
+                2</a>
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-success">Task
+                3</a>
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-danger">Task
+                4</a>
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-warning">Task
+                5</a>
+            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-info">Task
+                6</a>
         </div>
         <div id="tasklist-go-here" class="row row-cols-auto"></div>
-      </div>
-        
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Invite
-        </button>
+    </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="invite-container">
-                            <div class="user-content">
-                                <div class="select">
-                                    <i class="bi bi-search"></i>
-                                    <input type="text" id="search-txt" class="search-user" placeholder="Enter Email">
-                                </div>
-                                <div class="search-mem">
-                                   
-                                </div>
-                                <div id="search-user-go-here" class="list-group">
-                                </div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Invite
+    </button>
 
-                                <form action="inviteMember" method="post">
-                                    <div id="plus-user-go-here"> </div>
-                                </form>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="invite-container">
+                        <div class="user-content">
+                            <div class="select">
+                                <i class="bi bi-search"></i>
+                                <input type="text" id="search-txt" class="search-user" placeholder="Enter Email">
                             </div>
+                            <div class="search-mem">
+
+                            </div>
+                            <div id="search-user-go-here" class="list-group">
+                            </div>
+
+                            <form action="inviteMember" method="post">
+                                <div id="plus-user-go-here"> </div>
+                            </form>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary inviteBtn">Invite</button>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary inviteBtn">Invite</button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Task List -->
-        <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
-        <div class="task-list">
-            <!-- Task items go here -->
-        </div>
-        <!-- our own footer goes here-->
-        <nav id="footerPlaceholder"></nav>
+    </div>
+    <!-- Task List -->
+    <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
+    <div class="task-list">
+        <!-- Task items go here -->
+    </div>
+    <!-- our own footer goes here-->
+    <nav id="footerPlaceholder"></nav>
 
-        <!---------------------------------------------->
-        <!-- Your own JavaScript functions go here    -->
-        <!---------------------------------------------->
-        <script src="/js/firebaseAPI.js"></script>
-        <script src="/js/skeleton.js"></script>
-        <script src="/js/script.js"></script>
-        <script src="/js/reminder.js"></script>
-        <script src="/js/group.js"></script>
+    <!---------------------------------------------->
+    <!-- Your own JavaScript functions go here    -->
+    <!---------------------------------------------->
+    <script src="/js/firebaseAPI.js"></script>
+    <script src="/js/skeleton.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/reminder.js"></script>
+    <script src="/js/group.js"></script>
 
 </body>
+
 </html>

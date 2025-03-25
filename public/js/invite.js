@@ -16,8 +16,8 @@ function addGroupMember() {
                 groupRef.update({
                     group_member: firebase.firestore.FieldValue.arrayUnion(docID)
                 })
-        });
-    })
+            });
+        })
 };
 addGroupMember();
 /*
@@ -30,7 +30,7 @@ addGroupMember();
 
 
     })
-  */  
+  */
 /*
 document.querySelector(".reminder-btn").addEventListener("click", function() {
     var reminderRef = db.collection("reminder");
