@@ -61,10 +61,14 @@
         <!-------------------------------------------->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="/css/style.css" />
-        <link rel="stylesheet" href="/css/group.css">
-    </head>
+        <link rel="stylesheet" href="/css/group.css"> 
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+    <link rel="stylesheet" href="/css/reminder.css">
+    <title>ToDoit</title>
+</head>
 
 <body>
+  
     <!-- searched user list template -->
     <template id="searchedUserTemplate">
         <div class="unchecked-user-container unchecked">
@@ -92,9 +96,14 @@
     <!-- our own navbar goes here -->
     <nav id="navbarPlaceholder"></nav>
 
+    <div class="container-fluid bg-light text-dark p-5">
+      <div class="container bg-light p-5">
+          <p><b><i>Quote of the day: <span id="quote-goes-here">One assignment at a time, one step closer to success.</span></i></b></p>
+      </div>
+    </div>
+
     <!-- the body of your page goes here -->
     <!-- stuff -->
-
       <!-- Here is the container for tasklist -->
       <div class="container mt-5">
         <div class="card">
@@ -146,7 +155,7 @@
         </div>
         <div id="tasklist-go-here" class="row row-cols-auto"></div>
       </div>
-        <h1>Welcome ToDoit!</h1>
+        
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Invite
@@ -186,7 +195,6 @@
                 </div>
             </div>
         </div>
-
         <!-- Task List -->
         <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
         <div class="task-list">
@@ -200,13 +208,9 @@
         <!---------------------------------------------->
         <script src="/js/firebaseAPI.js"></script>
         <script src="/js/skeleton.js"></script>
-        <!-- <script src="/js/script.js"></script> -->
+        <script src="/js/script.js"></script>
         <script src="/js/reminder.js"></script>
         <script src="/js/group.js"></script>
-    </body>
-
-    <script src="/js/script.js"></script>
 
 </body>
-
 </html>
