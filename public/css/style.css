@@ -459,3 +459,70 @@
 .edit-icon:hover {
   color: #0d6efd; /* Change color on hover */
 }
+
+.img-thumbnail {
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+input[type="radio"]:checked + .img-thumbnail {
+  border-color: #1f78b4;
+}
+
+#customImageUpload {
+  display: none;
+}
+
+#customImageUpload + label {
+  display: block;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border: 1px dashed #ccc;
+  text-align: center;
+  cursor: pointer;
+}
+
+#customImageUpload + label:hover {
+  background-color: #e9ecef;
+}
+#uploadImageButton {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#uploadImageButton:hover {
+  background-color: #1f78b4;
+  color: white;
+}
+
+/* Card Styling */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the image corners are rounded */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Card Image (Header) */
+.card-img-top {
+  width: 100%;
+  height: 200px; /* Adjust height as needed */
+  object-fit: cover; /* Ensures the image covers the area without stretching */
+}
+
+/* Card Body */
+.card-body {
+  padding: 20px;
+}
+
+/* Card Title */
+.card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+/* Card Text */
+.card-text {
+  font-size: 16px;
+  color: #666666;
+}

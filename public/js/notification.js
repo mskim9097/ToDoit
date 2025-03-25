@@ -1,7 +1,6 @@
 // login check
 firebase.auth().onAuthStateChanged(user => {
-    if(user) {
-        
+    if (user) {
         var groupRef = db.collection("Group");
         var taskRef = db.collection("task");
         var notificationRef = db.collection("notification");
@@ -10,19 +9,19 @@ firebase.auth().onAuthStateChanged(user => {
         // select user's document
         // execute 2 functions to select notification status and time
         currentUser.get()
-        .then(userDoc => {
-            let currentSwitch = userDoc.data().notification_status;
-            let currentAlertTime = userDoc.data().alert_time;
-            selectCurrentSwitch(currentSwitch);
-            selectCurrentAlertTime(currentAlertTime);
-        })
-        
+            .then(userDoc => {
+                let currentSwitch = userDoc.data().notification_status;
+                let currentAlertTime = userDoc.data().alert_time;
+                selectCurrentSwitch(currentSwitch);
+                selectCurrentAlertTime(currentAlertTime);
+            })
+
         var notificationSwitch = document.querySelector(".form-check-input");
         var alertTime = document.querySelector(".form-select");
 
         // select user's notification status
         function selectCurrentSwitch(condition) {
-            if(condition == true) {
+            if (condition == true) {
                 notificationSwitch.id = "flexSwitchCheckChecked";
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckChecked");
                 notificationSwitch.checked = true;
@@ -38,15 +37,15 @@ firebase.auth().onAuthStateChanged(user => {
         // select user's alert time
         function selectCurrentAlertTime(currentAlertTime) {
             for (let option of document.getElementById("alert-time")) {
-                if(option.value == currentAlertTime) {
+                if (option.value == currentAlertTime) {
                     option.selected = true;
                 }
             }
         }
-        
+
         // notification turn on/off function
         function updateSwitch() {
-            if(notificationSwitch.id == "flexSwitchCheckDefault") {
+            if (notificationSwitch.id == "flexSwitchCheckDefault") {
                 notificationSwitch.id = "flexSwitchCheckChecked";
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckChecked");
                 notificationSwitch.checked = true;
@@ -62,12 +61,12 @@ firebase.auth().onAuthStateChanged(user => {
         }
 
         // execute updateSwitch functin when event is occured
-        notificationSwitch.addEventListener('change', function() {
+        notificationSwitch.addEventListener('change', function () {
             updateSwitch();
         })
 
         // notification time set function
-        alertTime.addEventListener('change', function() {
+        alertTime.addEventListener('change', function () {
             var selected = alertTime.value;
             setAlertTime(selected);
             getNotificationInfo(selected);
@@ -89,67 +88,77 @@ firebase.auth().onAuthStateChanged(user => {
                 alert_time: value
             })
         }
-        
+
         // function to get information for notification collection
         function getNotificationInfo(selected) {
             groupRef
-            .where("group_member", "array-contains", user.uid)
-            .onSnapshot((groupSnapshot) => {
-                groupSnapshot.forEach((group => {
-                    var taskIDs = group.data().task;
-                    taskIDs.forEach(taskID => {
-                        
-                        taskRef.doc(taskID)                       
-                        .onSnapshot(task => {
-                            if(task.data().task_status != "done") {
-                                var dueDate = task.data().task_due_date.toDate();
-                                var notificationDate = new Date(dueDate);
-                                notificationDate.setMinutes(dueDate.getMinutes() - selected);
-                                
-                                setNotification(user.uid, task.id, notificationDate, selected);
-                            }
+                .where("group_member", "array-contains", user.uid)
+                .onSnapshot((groupSnapshot) => {
+                    groupSnapshot.forEach((group => {
+                        var taskIDs = group.data().task;
+                        taskIDs.forEach(taskID => {
+
+                            taskRef.doc(taskID)
+                                .onSnapshot(task => {
+                                    if (task.data().task_status != "done") {
+                                        var dueDate = task.data().task_due_date.toDate();
+                                        var notificationDate = new Date(dueDate);
+                                        notificationDate.setMinutes(dueDate.getMinutes() - selected);
+                                        setNotification(user.uid, task.id, notificationDate, selected);
+                                    }
+                                })
                         })
-                    })
-                }))
-            })
+                    }))
+                })
         }
 
         // setNotification function to update or create document
         // in notification collection        
         function setNotification(userID, taskID, notificationDate, selected) {
             notificationRef
-            .where("user_id","==",userID)
-            .where("task_id","==",taskID)
-            .get()
-            .then(notificationSnapshot => {
-                if(!notificationSnapshot.empty) {
-                    var notificationID = notificationSnapshot.docs[0].id;
-                    if(selected != "none") {
-                        notificationRef.doc(notificationID).update({
-                            notification_time: notificationDate   
-                        })
-                    } else {
-                        notificationRef.doc(notificationID).update({
-                            notification_time: null   
-                        })
-                    }                    
-                } else if(notificationSnapshot.empty) {
-                    if(selected != "none") {
-                        notificationRef.add({
-                            task_id: taskID,
-                            user_id: user.uid,
-                            notification_time: notificationDate
-                        })
-                    } else {
-                        notificationRef.add({
-                            task_id: taskID,
-                            user_id: user.uid,
-                            notification_time: null
-                        })
+                .where("user_id", "==", userID)
+                .where("task_id", "==", taskID)
+                .get()
+                .then(notificationSnapshot => {
+                    if (!notificationSnapshot.empty) {
+                        var notificationID = notificationSnapshot.docs[0].id;
+                        if (selected != "none") {
+                            notificationRef.doc(notificationID).update({
+                                notification_time: notificationDate
+                            })
+                        } else {
+                            notificationRef.doc(notificationID).update({
+                                notification_time: null
+                            })
+                        }
+                    } else if (notificationSnapshot.empty) {
+                        if (selected != "none") {
+                            notificationRef.add({
+                                task_id: taskID,
+                                user_id: user.uid,
+                                notification_time: notificationDate
+                            })
+                        } else {
+                            notificationRef.add({
+                                task_id: taskID,
+                                user_id: user.uid,
+                                notification_time: null
+                            })
+                        }
                     }
-                }
+                })
+        }
+
+        function selectNotificationList() {
+            db.collection("notification")
+            .where("user_id", "==", user.uid)
+            .onSnapshot(notificationSnapshot => {
+                notificationSnapshot.forEach(notification => {
+                    console.log(notification.id);
+                })
             })
         }
+        selectNotificationList();
 
         function sendAlert(userID, taskID, notificationDate) {
             console.log(userID);
@@ -157,11 +166,11 @@ firebase.auth().onAuthStateChanged(user => {
             console.log(notificationDate);
         }
 
-/*
-        setInterval(function() {
-            console.log("test");
-        }, 5000);
-*/
+        /*
+                setInterval(function() {
+                    console.log("test");
+                }, 5000);
+        */
 
 
 
@@ -237,7 +246,7 @@ function writeGroup() {
         group_create_date: firebase.firestore.FieldValue.serverTimestamp(),
         group_delete_fg: "N",
         group_member: firebase.firestore.FieldValue.arrayUnion("WzNTfulCWxQwXn7LeIureKK1bSI2"),
-        task: firebase.firestore.FieldValue.arrayUnion("0Xkp49WtT4OtqSJ7hUWC", "1kag3DpEXWfzOwQ4e1kT", "Ycn0FqJ9bBnHktyhk9o7" ,"IDXgeTtBH4MgbtM6zPmV")
+        task: firebase.firestore.FieldValue.arrayUnion("0Xkp49WtT4OtqSJ7hUWC", "1kag3DpEXWfzOwQ4e1kT", "Ycn0FqJ9bBnHktyhk9o7", "IDXgeTtBH4MgbtM6zPmV")
     });
 
     groupRef.add({
@@ -246,6 +255,6 @@ function writeGroup() {
         group_create_date: firebase.firestore.FieldValue.serverTimestamp(),
         group_delete_fg: "N",
         group_member: firebase.firestore.FieldValue.arrayUnion("WzNTfulCWxQwXn7LeIureKK1bSI2"),
-        task: firebase.firestore.FieldValue.arrayUnion("hzfJ4RrAmwVu3DxSEAJn", "6s8oW7XssLSZs3hjos0e", "wbgtCI6Al59PkoChEhHZ" ,"z7qo5EsotUQ7KVXPEVUR")
+        task: firebase.firestore.FieldValue.arrayUnion("hzfJ4RrAmwVu3DxSEAJn", "6s8oW7XssLSZs3hjos0e", "wbgtCI6Al59PkoChEhHZ", "z7qo5EsotUQ7KVXPEVUR")
     });
 }
