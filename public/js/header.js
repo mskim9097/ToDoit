@@ -1,7 +1,7 @@
 function logo() {
     firebase.auth().onAuthStateChanged(user => {
         var logo = document.querySelector('a.navbar-brand');
-    
+
         if (user) {
             console.log("login");
             logo.href = "/main";

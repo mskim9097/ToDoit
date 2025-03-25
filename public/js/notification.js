@@ -151,12 +151,12 @@ firebase.auth().onAuthStateChanged(user => {
 
         function selectNotificationList() {
             db.collection("notification")
-            .where("user_id", "==", user.uid)
-            .onSnapshot(notificationSnapshot => {
-                notificationSnapshot.forEach(notification => {
-                    console.log(notification.id);
+                .where("user_id", "==", user.uid)
+                .onSnapshot(notificationSnapshot => {
+                    notificationSnapshot.forEach(notification => {
+                        console.log(notification.id);
+                    })
                 })
-            })
         }
         selectNotificationList();
 
