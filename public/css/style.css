@@ -101,7 +101,6 @@ h1 {
 }
 
 /* Modal Styling */
-/* Modal Styling */
 .modal-content {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -228,22 +227,6 @@ h1 {
     outline: none;
 }
 
-/* Filter Dropdown */
-.dropdown-menu {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.dropdown-item {
-    border-radius: 8px;
-    padding: 8px 12px;
-}
-
-.dropdown-item:hover {
-    background-color: #f8f9fa;
-    color: #1F78B4;
-}
-
 /* Group List Styling */
 #reminder-go-here .list-group-item {
     border-radius: 10px;
@@ -317,15 +300,6 @@ footer {
         padding: 10px;
     }
 
-    /* General Responsive Font Sizes */
-    .welcome-message {
-        font-size: 2rem;
-    }
-
-    .quote-message {
-        font-size: 1.5rem;
-    }
-
     .custom-card {
         margin-bottom: 1rem;
     }
@@ -354,6 +328,34 @@ footer {
     }
 }
 
+@media (min-width: 768px) {
+    .card {
+      margin: 15px;
+    }
+  
+    .card-title {
+      font-size: 20px;
+    }
+  
+    .card-description {
+      font-size: 16px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .card {
+      margin: 20px;
+    }
+  
+    .card-title {
+      font-size: 22px;
+    }
+  
+    .card-description {
+      font-size: 18px;
+    }
+  }
+
 /* Footer */
 footer {
     position: fixed;
@@ -370,7 +372,6 @@ footer {
     padding-left: 30px;
 }
 
-/* Responsive Layout for Search and Dropdown */
 @media (min-width: 768px) {
     .search-container {
         max-width: 100%;
@@ -381,51 +382,39 @@ footer {
     }
 }
 
-
-/* Ensure the container does not overflow */
 .container {
     max-width: 1200px;
-    /* Constrain the container width */
     margin: 0 auto;
-    /* Center the container */
     padding: 20px;
-    /* Add some padding */
     overflow-x: hidden;
-    /* Prevent horizontal overflow */
 }
 
-/* Card styling */
+
 .custom-card {
     border: none;
     border-radius: 15px;
     background: linear-gradient(135deg, #ffffff, #f9f9f9);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s ease-in-out;
     overflow: hidden;
     height: 100%;
-    /* Ensure all cards have the same height */
 }
 
 .custom-card:hover {
-    transform: translateY(-5px);
-    /* Slight lift on hover */
+    transform: scale(1.05);;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    /* Enhanced shadow on hover */
 }
 
 .card-img-top {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     height: 200px;
-    /* Fixed height for images */
     object-fit: cover;
-    /* Ensure images cover the area */
     transition: transform 0.3s;
 }
 
 .custom-card:hover .card-img-top {
     transform: scale(1.05);
-    /* Slight zoom on hover */
 }
 
 .card-body {
@@ -433,7 +422,6 @@ footer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Space out content evenly */
 }
 
 .card-title {
@@ -458,21 +446,17 @@ footer {
     transition: background-color 0.3s, transform 0.3s;
     color: white;
     align-self: flex-start;
-    /* Align button to the left */
 }
 
 .custom-btn:hover {
     background-color: #165d8a;
     transform: translateY(-2px);
 }
-
-/* General Styles */
 .search-container {
     width: 100%;
     max-width: 500px;
 }
 
-/* Make the create button circular */
 #createGroup {
     width: 50px;
     height: 50px;
@@ -482,31 +466,6 @@ footer {
     justify-content: center;
     font-size: 1.5rem;
     padding: 0;
-}
-
-
-/* Responsive Card Layout */
-.custom-card {
-    transition: transform 0.3s ease-in-out;
-}
-
-.custom-card:hover {
-    transform: scale(1.05);
-}
-
-.edit-icon {
-    font-size: 1.2rem;
-    /* Adjust the size */
-    color: #000000;
-    /* Default color */
-    transition: color 0.3s ease;
-    /* Smooth color transition */
-
-}
-
-.edit-icon:hover {
-    color: #0d6efd;
-    /* Change color on hover */
 }
 
 .img-thumbnail {
@@ -544,37 +503,31 @@ input[type="radio"]:checked+.img-thumbnail {
     color: white;
 }
 
-/* Card Styling */
 .card {
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     overflow: hidden;
-    /* Ensures the image corners are rounded */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Card Image (Header) */
 .card-img-top {
     width: 100%;
     height: 200px;
-    /* Adjust height as needed */
     object-fit: cover;
-    /* Ensures the image covers the area without stretching */
 }
 
-/* Card Body */
+
 .card-body {
     padding: 20px;
 }
 
-/* Card Title */
+
 .card-title {
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 10px;
 }
 
-/* Card Text */
 .card-text {
     font-size: 16px;
     color: #666666;
