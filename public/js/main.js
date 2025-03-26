@@ -29,8 +29,8 @@ function doAll() {
             displayReminderMembers("reminder_member");
         } else {
             // No user is signed in.
-            console.log("No user is signed in");
-            window.location.href = "login.html";
+            alert("Please sign in.");
+            window.location.href = "/login";
         }
     });
 }
