@@ -1,12 +1,18 @@
 document.getElementById('taskForm').addEventListener('submit', function (e) {
     e.preventDefault(); // Prevent form from refreshing the page
 
-    // Get form values
-    const taskTitle = document.querySelector('input[placeholder="Enter task title"]').value;
+    // Store the form data for firestore
+    const taskTitle = document.querySelector('input[placeholder="Enter task title"]').value.trim();
     const taskDescription = document.querySelector('textarea[placeholder="Task description"]').value;
     const dueDate = document.querySelector('input[type="date"]').value;
     const dueTime = document.querySelector('input[type="time"]').value;
     const remindersEnabled = document.querySelector('input[type="checkbox"]').checked;
+
+    // Validate taskTitle
+    if (!taskTitle) {
+        alert('Task title is required. Please enter a title.');
+        return; // Stop form submission if title is empty
+    }
 
     // Create a task object
     const task = {
@@ -19,13 +25,15 @@ document.getElementById('taskForm').addEventListener('submit', function (e) {
     };
 
     // Saves the task to firestore
-    db.collection('tasks').add(task)
+    db.collection('task').add(task)
         .then(() => {
             alert('Task saved successfully!');
-            // This will create a dynamic task card
+
+
+            // Creates dynamic cards for each task
             const taskList = document.querySelector('.row.g-4');
             const taskCard = document.createElement('div');
-            taskCard.className = 'col-12 col-md-6 col-xl-4';
+            taskCard.className = 'col-12 col-md-6 col-xl-4 task-card-container';
             taskCard.innerHTML = `
                 <div class="task-card p-3" style="cursor: pointer;">
                     <div class="d-flex align-items-center mb-2">
@@ -61,3 +69,4 @@ document.getElementById('taskForm').addEventListener('submit', function (e) {
             console.error('Error saving task:', error);
         });
 });
+
