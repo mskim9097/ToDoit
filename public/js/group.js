@@ -76,6 +76,10 @@ getGroupDetails(); // Fetch additional group details from Firestore
             // Clear input
             newActivityInput.value = "";
           }
+
+          
+
+          
         
 
 
