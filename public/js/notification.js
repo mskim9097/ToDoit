@@ -26,6 +26,7 @@ firebase.auth().onAuthStateChanged(user => {
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckChecked");
                 notificationSwitch.checked = true;
                 alertTime.disabled = false;
+                let promise = Notification.requestPermission();
             } else {
                 notificationSwitch.id = "flexSwitchCheckDefault";
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckDefault");
@@ -149,16 +150,47 @@ firebase.auth().onAuthStateChanged(user => {
                 })
         }
 
+        // selectNotificationList function to list user tasks that is not done.
+        // sort by due date.
         function selectNotificationList() {
+            let taskTemplate = document.getElementById("task-template");
+            document.getElementById("task-go-here").innerHTML = "";
+        
             db.collection("notification")
-                .where("user_id", "==", user.uid)
-                .onSnapshot(notificationSnapshot => {
-                    notificationSnapshot.forEach(notification => {
-                        console.log(notification.id);
-                    })
-                })
+            .where("user_id", "==", user.uid)
+            .onSnapshot(notificationSnapshot => {
+                var taskIds = notificationSnapshot.docs.map(doc => doc.data().task_id);
+                db.collection("task")
+                .where(firebase.firestore.FieldPath.documentId(), 'in', taskIds)
+                .orderBy("task_due_date", "desc")
+                .onSnapshot(taskSnapshot => {
+                    document.getElementById("task-go-here").innerHTML = 
+                    "<tr><th>Title</th><th>Due date</th></tr>";
+                    taskSnapshot.forEach(task => {
+                        if(task.data().task_status != "done") {
+                            var taskTitle = task.data().task_title;
+                            var dueDate = task.data().task_due_date.toDate();
+                            let newTask = taskTemplate.content.cloneNode(true);
+                            newTask.querySelector(".task-title").innerHTML = taskTitle;
+                            newTask.querySelector(".task-title").href = "/task?docID=" + task.id;
+                            
+                            var months = ["January", "February", "March", "April", "May", "June",
+                                "July", "August", "September", "October", "November", "December"];
+                            
+                            newTask.querySelector(".due-date").innerHTML
+                            = months[dueDate.getMonth()] + " "
+                            + dueDate.getDate() + ", "
+                            + dueDate.getFullYear() + " "
+                            + dueDate.getHours() + ":"
+                            + dueDate.getMinutes();
+                            document.getElementById("task-go-here").appendChild(newTask);
+                        }
+                    });
+                });
+            });
         }
         selectNotificationList();
+
 
         function sendAlert(userID, taskID, notificationDate) {
             console.log(userID);

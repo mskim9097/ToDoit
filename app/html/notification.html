@@ -41,12 +41,17 @@
 
 <body>
 
-    <template id="plusUserTemplate">
-        <div class="checked-user-container checked">
-            <a href="description_task.html" class="list-group-item list-group-item-action list-group-item-primary">
-                Task 1
-            </a>
-        </div>
+    <template id="task-template">
+            <tr>
+                <td>
+                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary task-title">
+                        task title
+                    </a>
+                </td>
+                <td>
+                    <span class="due-date"></span>
+                </td>
+            </tr>            
     </template>
 
     <!-- our own navbar goes here -->
@@ -74,7 +79,9 @@
             </select>
         </div>
         <div>
-
+            <table id="task-go-here">
+                
+            </table>
         </div>
 
     </div>
