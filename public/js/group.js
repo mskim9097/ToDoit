@@ -54,28 +54,59 @@ getGroupDetails(); // Fetch additional group details from Firestore
 
 
 
-          // Get group name from URL
-          const params = new URLSearchParams(window.location.search);
-          const groupName = params.get("group") || "Unnamed Group";
-          document.getElementById("group-name").textContent = groupName;
-      
-          // Function to add a new activity
-          function addActivity() {
-            const newActivityInput = document.getElementById("new-activity");
-            const activityText = newActivityInput.value.trim();
-      
-            if (activityText === "") return;
-      
-            const li = document.createElement("li");
-            li.className = "activity";
-            li.innerHTML = `<input type="checkbox" /> ${activityText}`;
-            
-            const activityList = document.getElementById("activity-list");
-            activityList.appendChild(li);
-      
-            // Clear input
-            newActivityInput.value = "";
-          }
+const params = new URLSearchParams(window.location.search);
+const groupName = params.get("group") || "Unnamed Group";
+document.getElementById("group-name").textContent = groupName;
+
+const storageKey = `activities_${groupName}`;
+const activityList = document.getElementById("activity-list");
+
+// Load saved activities on page load
+window.onload = () => {
+  const saved = JSON.parse(localStorage.getItem(storageKey)) || [];
+  saved.forEach((item, index) => addActivityToDOM(item, index));
+};
+
+function addActivity() {
+  const input = document.getElementById("new-activity");
+  const text = input.value.trim();
+  if (text === "") return;
+
+  const activityObj = { text: text, done: false };
+  const activities = JSON.parse(localStorage.getItem(storageKey)) || [];
+  activities.push(activityObj);
+  localStorage.setItem(storageKey, JSON.stringify(activities));
+
+  addActivityToDOM(activityObj, activities.length - 1);
+  input.value = "";
+}
+
+function addActivityToDOM(activity, index) {
+  const li = document.createElement("li");
+  li.className = "activity";
+
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = activity.done;
+
+  const span = document.createElement("span");
+  span.textContent = activity.text;
+  if (activity.done) span.style.textDecoration = "line-through";
+
+  // When checkbox changes, update localStorage and UI
+  checkbox.addEventListener("change", () => {
+    const activities = JSON.parse(localStorage.getItem(storageKey)) || [];
+    activities[index].done = checkbox.checked;
+    localStorage.setItem(storageKey, JSON.stringify(activities));
+
+    span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+  });
+
+  li.appendChild(checkbox);
+  li.appendChild(document.createTextNode(" "));
+  li.appendChild(span);
+  activityList.appendChild(li);
+}
 
           
 
