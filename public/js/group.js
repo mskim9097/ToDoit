@@ -53,66 +53,119 @@ getGroupDetails(); // Fetch additional group details from Firestore
 
 
 
+// Get query param from URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
 
-const params = new URLSearchParams(window.location.search);
-const groupName = params.get("group") || "Unnamed Group";
-document.getElementById("group-name").textContent = groupName;
+// Fetch and display group details
+function getGroupDetails() {
+    const docID = getQueryParam("docID");
+    if (docID) {
+        db.collection("Group")
+            .doc(docID)
+            .get()
+            .then((doc) => {
+                if (doc.exists) {
+                    const groupData = doc.data();
 
-const storageKey = `activities_${groupName}`;
-const activityList = document.getElementById("activity-list");
+                    document.getElementById("group-name").innerText = groupData.group_name;
 
-// Load saved activities on page load
-window.onload = () => {
-  const saved = JSON.parse(localStorage.getItem(storageKey)) || [];
-  saved.forEach((item, index) => addActivityToDOM(item, index));
-};
+                    const groupImage = document.getElementById("group-image");
+                    groupImage.src = groupData.group_image || "/img/default.avif";
+                } else {
+                    console.log("No such document!");
+                }
+            })
+            .catch((error) => {
+                console.error("Error getting document:", error);
+            });
+    } else {
+        console.log("No docID found in URL");
+    }
+}
 
+// Display an activity in the DOM
+function addActivityToDOM(activity) {
+    const li = document.createElement("li");
+    li.className = "activity";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = activity.done;
+
+    const span = document.createElement("span");
+    span.textContent = activity.text;
+    if (activity.done) span.style.textDecoration = "line-through";
+
+    checkbox.addEventListener("change", () => {
+        span.style.textDecoration = checkbox.checked ? "line-through" : "none";
+        // Optional: update Firestore if needed
+    });
+
+    li.appendChild(checkbox);
+    li.appendChild(document.createTextNode(" "));
+    li.appendChild(span);
+    document.getElementById("activity-list").appendChild(li);
+}
+
+// Add activity to Firestore and UI
 function addActivity() {
-  const input = document.getElementById("new-activity");
-  const text = input.value.trim();
-  if (text === "") return;
+    const input = document.getElementById("new-activity");
+    const text = input.value.trim();
+    if (text === "") return;
 
-  const activityObj = { text: text, done: false };
-  const activities = JSON.parse(localStorage.getItem(storageKey)) || [];
-  activities.push(activityObj);
-  localStorage.setItem(storageKey, JSON.stringify(activities));
+    const docID = getQueryParam("docID");
+    if (!docID) {
+        console.error("No group docID found in URL.");
+        return;
+    }
 
-  addActivityToDOM(activityObj, activities.length - 1);
-  input.value = "";
+    const activityObj = {
+        text: text,
+        done: false,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        createdBy: firebase.auth().currentUser?.uid || "anonymous"
+    };
+
+    db.collection("Group")
+        .doc(docID)
+        .collection("activities")
+        .add(activityObj)
+        .then(() => {
+            console.log("Activity added to Firestore!");
+            addActivityToDOM(activityObj);
+            input.value = "";
+        })
+        .catch((error) => {
+            console.error("Error adding activity:", error);
+        });
 }
 
-function addActivityToDOM(activity, index) {
-  const li = document.createElement("li");
-  li.className = "activity";
+// Load activities from Firestore
+function loadActivitiesFromFirestore() {
+    const docID = getQueryParam("docID");
+    if (!docID) return;
 
-  const checkbox = document.createElement("input");
-  checkbox.type = "checkbox";
-  checkbox.checked = activity.done;
-
-  const span = document.createElement("span");
-  span.textContent = activity.text;
-  if (activity.done) span.style.textDecoration = "line-through";
-
-  // When checkbox changes, update localStorage and UI
-  checkbox.addEventListener("change", () => {
-    const activities = JSON.parse(localStorage.getItem(storageKey)) || [];
-    activities[index].done = checkbox.checked;
-    localStorage.setItem(storageKey, JSON.stringify(activities));
-
-    span.style.textDecoration = checkbox.checked ? "line-through" : "none";
-  });
-
-  li.appendChild(checkbox);
-  li.appendChild(document.createTextNode(" "));
-  li.appendChild(span);
-  activityList.appendChild(li);
+    db.collection("Group")
+        .doc(docID)
+        .collection("activities")
+        .orderBy("createdAt")
+        .get()
+        .then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                const activity = doc.data();
+                addActivityToDOM(activity);
+            });
+        })
+        .catch((error) => {
+            console.error("Error loading activities:", error);
+        });
 }
 
-          
-
-          
-        
-
-
-
-
+// On page load
+window.onload = () => {
+    getGroupDetails();
+    loadActivitiesFromFirestore();
+};
