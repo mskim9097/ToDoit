@@ -5,7 +5,7 @@ function addItem() {
     itemList.appendChild(li);
 }
 
-//writeaddItem();
+// writeaddItem();
 
 // Function to get query parameters from the URL
 function getQueryParam(param) {
@@ -50,3 +50,34 @@ function getGroupDetails() {
 getGroupDetails();
 
 getGroupDetails(); // Fetch additional group details from Firestore
+
+
+
+
+          // Get group name from URL
+          const params = new URLSearchParams(window.location.search);
+          const groupName = params.get("group") || "Unnamed Group";
+          document.getElementById("group-name").textContent = groupName;
+      
+          // Function to add a new activity
+          function addActivity() {
+            const newActivityInput = document.getElementById("new-activity");
+            const activityText = newActivityInput.value.trim();
+      
+            if (activityText === "") return;
+      
+            const li = document.createElement("li");
+            li.className = "activity";
+            li.innerHTML = `<input type="checkbox" /> ${activityText}`;
+            
+            const activityList = document.getElementById("activity-list");
+            activityList.appendChild(li);
+      
+            // Clear input
+            newActivityInput.value = "";
+          }
+        
+
+
+
+

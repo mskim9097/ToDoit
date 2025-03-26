@@ -71,7 +71,7 @@
 <body>
 
     <!-- searched user list template -->
-    <template id="searchedUserTemplate">
+    <!-- <template id="searchedUserTemplate">
         <div class="unchecked-user-container unchecked">
             <div type="button" class="plus-btn">
                 <i class="bi bi-plus-circle"></i>
@@ -79,10 +79,10 @@
                 <span class="user-email">user email</span>
             </div>
         </div>
-    </template>
+    </template> -->
 
     <!-- plus user list template -->
-    <template id="plusUserTemplate">
+    <!-- <template id="plusUserTemplate">
         <div class="checked-user-container checked">
             <div type="button" class="remove-btn">
                 <i class="bi bi-dash-circle"></i>
@@ -90,7 +90,7 @@
                 <span class="user-email">user email</span>
             </div>
         </div>
-    </template>
+    </template> -->
     <!------------------------------>
     <!-- Your HTML Layout go here -->
     <!------------------------------>
@@ -114,11 +114,27 @@
 
             <!-- Card Body -->
             <div class="card-body">
-                <h1 id="group-name" class="card-title">Group Name</h1>
+                <h2 id="group-name" class="card-title">Group Name</h2>
                 <p id="group-privacy" class="card-text"></p>
+                <ul id="activity-list">
+                  <!-- Add Activity Placeholder -->
+                  <li class="activity">
+                    <input type="text" id="new-activity" placeholder="Add activity here" />
+                  </li>
+                </ul>
+                <button onclick="addActivity()" button type="button" class="btn btn-info">Save activity</button>
             </div>
         </div>
-        <div class="list-group">
+
+        
+        
+        
+        
+
+
+
+
+        <!-- <div class="list-group">
             <a href="#" class="list-group-item list-group-item-action">A simple default list group item</a>
 
 
@@ -137,7 +153,7 @@
                 6</a>
         </div>
         <div id="tasklist-go-here" class="row row-cols-auto"></div>
-    </div>
+    </div> -->
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -178,11 +194,7 @@
             </div>
         </div>
     </div>
-    <!-- Task List -->
-    <h1 id="group-name-heading">Group Name</h1> <!-- Placeholder for group name -->
-    <div class="task-list">
-        <!-- Task items go here -->
-    </div>
+   
     <!-- our own footer goes here-->
     <nav id="footerPlaceholder"></nav>
 
