@@ -1,4 +1,4 @@
-auth.onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         document.querySelector("#createGroupButton").addEventListener("click", function () {
             var groupRef = db.collection("Group");
