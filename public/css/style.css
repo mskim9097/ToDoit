@@ -532,28 +532,3 @@ input[type="radio"]:checked+.img-thumbnail {
     font-size: 16px;
     color: #666666;
 }
-.bottom-btn {
-    display: block;
-    width: 80%;
-    max-width: 280px;
-    margin: 15px auto;
-    padding: 14px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #fff;
-    background-color: #000000; /* ToDoit primary color */
-    border: none;
-    border-radius: 8px;
-    transition: all 0.3s ease-in-out;
-}
-
-/* Button hover effect */
-.bottom-btn:hover {
-    background-color: #0056b3; /* Darker shade */
-}
-  
-  @media (max-width: 600px) {
-    button {
-      max-width: 100px;
-    }
-  }

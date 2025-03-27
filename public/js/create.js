@@ -1,62 +1,73 @@
 auth.onAuthStateChanged((user) => {
     if (user) {
-        document.querySelector("#createGroupButton").addEventListener("click", function () {
-            var groupRef = db.collection("Group");
-            var auth = firebase.auth();
-            var storageRef = firebase.storage().ref();
-        
+        document.querySelector("#createGroupButton").addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent default form behavior
             
-                    const groupName = document.getElementById("groupName").value;
-                    const groupPrivacy = document.getElementById("groupPrivacy").value;
-                    const selectedImage = document.querySelector('input[name="groupImage"]:checked')?.value;
-                    const customImageFile = document.getElementById("customImageUpload").files[0];
-        
-                    let imageUrl = selectedImage || "/img/default.jpg"; // Default image if none is selected
-        
-                    // If a custom image is uploaded, upload it to Firebase Storage
-                    if (customImageFile) {
-                        const fileRef = storageRef.child(`group_images/${customImageFile.name}`);
-                        fileRef.put(customImageFile).then((snapshot) => {
-                            return snapshot.ref.getDownloadURL(); // Get the download URL of the uploaded image
-                        }).then((downloadURL) => {
-                            imageUrl = downloadURL; // Use the uploaded image URL
-                            createGroup(groupRef, user.uid, groupName, groupPrivacy, imageUrl); // Create the group with the uploaded image
-                        }).catch((error) => {
-                            console.error("Error uploading image:", error);
-                        });
-                    } else {
-                        // If no custom image is uploaded, use the selected predefined image
-                        createGroup(groupRef, user.uid, groupName, groupPrivacy, imageUrl);
-                    }
-                
-        });
-        
-        function createGroup(groupRef, userId, groupName, groupPrivacy, imageUrl) {
-            groupRef
-                .add({
+            const groupName = document.getElementById("groupName").value.trim();
+            const selectedImage = document.querySelector('input[name="groupImage"]:checked')?.value;
+            const customImageFile = document.getElementById("customImageUpload").files[0];
+            
+            // Validate group name
+            if (!groupName) {
+                alert("Please enter a group name");
+                return;
+            }
+
+            let imageUrl = selectedImage || "/img/default.jpg";
+            const groupRef = db.collection("Group");
+            const storageRef = firebase.storage().ref();
+
+            // Handle image upload if exists
+            const createGroupWithImage = (imageUrl) => {
+                groupRef.add({
                     group_name: groupName,
-                    group_privacy: groupPrivacy,
-                    group_image: imageUrl, // Store the image URL
+                    group_image: imageUrl,
                     group_create_date: firebase.firestore.FieldValue.serverTimestamp(),
-                    user_no: userId,
+                    created_by: user.uid,
+                    members: [user.uid], // Add creator as first member
+                    member_count: 1 // Track member count
                 })
-                .then(function (docRef) {
-                    console.log("Document written with ID:", docRef.id);
-                    console.log("Group created successfully:", docRef);
-        
-                    window.location.href = `/group?docID=${docRef.id}&groupName=${encodeURIComponent(groupName)}`;
+                .then((docRef) => {
+                    console.log("Group created with ID:", docRef.id);
+                    
+                    // Close modal
+                    bootstrap.Modal.getInstance(document.getElementById('groupModal')).hide();
+                    
+                    // Reset form
+                    document.getElementById("createGroupForm").reset();
+                    
+                    // Refresh group list (assuming you have this function)
+                    if (typeof selectGroupList === 'function') {
+                        selectGroupList("Group");
+                    }
                 })
-                .catch(function (error) {
-                    console.error("Failed creating group:", error);
+                .catch((error) => {
+                    console.error("Error creating group:", error);
+                    alert("Failed to create group. Please try again.");
                 });
-        }
-        
-        // Trigger file input when the upload button is clicked
+            };
+
+            if (customImageFile) {
+                const fileRef = storageRef.child(`group_images/${user.uid}/${Date.now()}_${customImageFile.name}`);
+                fileRef.put(customImageFile)
+                    .then((snapshot) => snapshot.ref.getDownloadURL())
+                    .then((downloadURL) => createGroupWithImage(downloadURL))
+                    .catch((error) => {
+                        console.error("Error uploading image:", error);
+                        alert("Failed to upload image. Using default image.");
+                        createGroupWithImage("/img/default.jpg");
+                    });
+            } else {
+                createGroupWithImage(imageUrl);
+            }
+        });
+
+        // Trigger file input when upload button is clicked
         document.getElementById("uploadImageButton").addEventListener("click", function () {
             document.getElementById("customImageUpload").click();
         });
     } else {
-        alert("session is out. please login again.");
+        alert("Session expired. Please login again.");
         window.location.href = "/";
-    } 
+    }
 });

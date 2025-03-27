@@ -1,187 +1,197 @@
-/* General body styling */
-body {
+.login-body {
     font-family: 'Inter', 'Arial', sans-serif;
-    /* Modern, professional font */
-    background-color: #F4F9FF;
-    /* Light blue, reflecting productivity */
+    background: linear-gradient(135deg, #f8fbff 0%, #e6f3ff 100%);
     margin: 0;
-    padding: 0;
+    padding: 20px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     color: #333;
-    /* Dark text color for readability */
 }
 
-/* Auth container styling */
+/* Auth container with soft blue tones */
 .auth-container {
-    background-color: #ffffff;
-    /* Clean white background */
+    background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
-    /* Rounded corners for a modern feel */
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
-    /* Subtle shadow for a floating effect */
-    padding: 35px;
-    width: 100%;
-    max-width: 420px;
+    box-shadow: 0 4px 20px rgba(88, 178, 247, 0.15);
+    padding: 40px;
+    width: 90%;
+    max-width: 450px;
+    margin: 20px auto;
     text-align: center;
-    transition: box-shadow 0.3s ease;
+    border: 1px solid rgba(88, 178, 247, 0.1);
+    box-sizing: border-box;
 }
 
-.auth-container:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
-    /* Stronger shadow on hover */
-}
-
-/* Title styling */
+/* Brand-colored title */
 .auth-title {
-    font-size: 36px;
-    color: #4F87FF;
-    /* Trustworthy blue, aligning with productivity and clarity */
-    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #58b2f7;
+    margin-bottom: 8px;
     font-weight: 700;
-    /* Bolder text for emphasis */
+    position: relative;
 }
 
-/* Subtitle styling */
+.auth-title::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #58b2f7;
+    border-radius: 3px;
+}
+
 .auth-subtitle {
-    font-size: 16px;
+    font-size: 0.95rem;
     color: #6C757D;
-    /* Soft gray for a professional, clean look */
     margin-bottom: 25px;
 }
 
-/* Input group styling */
+/* Input fields with blue focus */
 .input-group {
     margin-bottom: 18px;
     text-align: left;
 }
 
-/* Label styling */
 .form-label {
-    font-size: 14px;
-    color: #333333;
+    font-size: 0.9rem;
+    color: #495057;
     margin-bottom: 6px;
     display: block;
-    font-weight: 600;
+    font-weight: 500;
 }
 
-/* Input field styling */
 .form-input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid #E0E4E9;
+    padding: 12px 14px;
+    border: 1.5px solid #d1e8ff;
     border-radius: 8px;
-    font-size: 16px;
-    background-color: #F9FAFB;
+    font-size: 1rem;
+    background-color: #f5faff;
     color: #333;
     outline: none;
-    transition: border-color 0.3s ease, background-color 0.3s ease;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    -webkit-appearance: none;
 }
 
 .form-input:focus {
-    border-color: #4F87FF;
-    /* Blue color on focus */
-    background-color: #ffffff;
-    /* Slight background change on focus */
+    border-color: #58b2f7;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(88, 178, 247, 0.2);
 }
 
-/* Error message styling */
+/* Error message */
 .error-message {
     color: #F56C6C;
-    /* Soft red for error messages */
-    font-size: 14px;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    margin: 8px 0;
+    min-height: 18px;
+    text-align: center;
 }
 
-/* Button styling */
-.btn {
+/* Primary button with brand color */
+.auth-btn {
     width: 100%;
     padding: 14px;
-    font-size: 16px;
+    font-size: 1rem;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
     font-weight: 600;
-    letter-spacing: 0.5px;
-    /* Adds subtle spacing for a sleek look */
+    background: #58b2f7;
+    color: white;
+    margin-top: 8px;
+    -webkit-tap-highlight-color: transparent;
+    box-shadow: 0 2px 8px rgba(88, 178, 247, 0.3);
 }
 
-.login-btn {
-    background-color: #4F87FF;
-    /* Blue button for login */
-    color: #ffffff;
-    margin-bottom: 15px;
+.auth-btn:hover, .auth-btn:focus {
+    background: #3ca0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(88, 178, 247, 0.4);
 }
 
-.login-btn:hover {
-    background-color: #3871D1;
-    /* Slightly darker blue for hover effect */
-    transform: scale(1.03);
-    /* Slight zoom effect on hover */
+.auth-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(88, 178, 247, 0.3);
 }
 
-.signup-btn {
-    background-color: #00C488;
-    /* Green button for sign-up */
-    color: #ffffff;
+/* Footer links with brand color */
+.form-footer {
+    margin: 18px 0;
+    text-align: center;
 }
 
-.signup-btn:hover {
-    background-color: #00B177;
-    /* Darker green on hover */
-    transform: scale(1.03);
-    /* Slight zoom effect on hover */
-}
-
-/* Forgot password link styling */
-.forgot-password {
-    font-size: 14px;
-    color: #5e6367;
+.auth-link {
+    color: #6C757D;
     text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    font-weight: 500;
     display: inline-block;
-    margin-top: 12px;
-    margin-bottom: 12px;
+    padding: 4px 0;
 }
 
-.forgot-password:hover {
-    color: #4F87FF;
-    /* Blue color on hover */
+.auth-link:hover {
+    color: #58b2f7;
     text-decoration: underline;
 }
 
-.signup-btn {
-    background-color: #232121;
-    /* Black button */
-    color: #ffffff;
-    padding: 1rem;
-    font-size: 1.1rem;
-}
-
-.signup-btn:hover {
-    background-color: #333333;
-    /* Darker black on hover */
-    transform: scale(1.03);
-    /* Slight zoom effect on hover */
-}
-
-/* Responsive design */
-@media (max-width: 480px) {
+/* Responsive adjustments */
+@media (max-width: 320px) {
     .auth-container {
-        padding: 25px;
+        padding: 30px 20px;
+        width: 94%;
+        margin: 15px auto;
+        min-height: 60vh;
     }
-
+    
     .auth-title {
-        font-size: 30px;
+        font-size: 2.2rem;
     }
-
+    
     .form-input {
-        font-size: 15px;
+        padding: 14px;
     }
+    
+    .auth-btn {
+        padding: 15px;
+    }
+}
 
-    .btn {
-        font-size: 15px;
+@media (min-width: 768px) {
+    .auth-container {
+        padding: 40px;
+        box-shadow: 0 8px 32px rgba(88, 178, 247, 0.2);
     }
+    
+    .auth-title {
+        font-size: 2.5rem;
+    }
+    
+    .auth-subtitle {
+        font-size: 1rem;
+    }
+}
+
+.auth-loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
