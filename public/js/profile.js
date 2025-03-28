@@ -72,3 +72,38 @@ function saveUserInfo() {
     //c) disable edit 
     document.getElementById('personalInfoFields').disabled = true;
 }
+
+function deleteAccount() {
+    // Confirm the user really wants to delete their account
+    if (confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+        firebase.auth().onAuthStateChanged(user => {
+            if (user) {
+                const userId = user.uid;
+
+                // Step 1: Delete user document from Firestore
+                db.collection("user").doc(userId).delete()
+                    .then(() => {
+                        console.log("User document deleted from Firestore");
+
+                        // Step 2: Delete user authentication account
+                        user.delete()
+                            .then(() => {
+                                console.log("User account deleted from Firebase Auth");
+                                alert("Your account has been successfully deleted.");
+                                location.href = "/";  // redirect to homepage or login page
+                            })
+                            .catch(error => {
+                                console.error("Error deleting Firebase Auth user:", error);
+                                alert("Error deleting your account. Please re-authenticate and try again.");
+                            });
+
+                    })
+                    .catch(error => {
+                        // Handle error in deleting Firestore document
+                        console.error("Error deleting Firestore document:", error);
+                        alert("Error deleting your user data. Please try again.");
+                    });
+            }
+        });
+    }
+}
