@@ -1,4 +1,4 @@
-auth.onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         document.querySelector("#createGroupButton").addEventListener("click", function (e) {
             e.preventDefault(); // Prevent default form behavior
