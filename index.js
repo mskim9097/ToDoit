@@ -21,6 +21,16 @@ app.get("/", function(req, res) {
     res.send(doc);
 });
 
+app.get("/signup", function(req, res) {
+    let doc = fs.readFileSync("./app/html/signup.html", "utf8");
+    res.send(doc);
+});
+
+app.get("/index", function(req, res) {
+    let doc = fs.readFileSync("./app/html/index.html", "utf8");
+    res.send(doc);
+});
+
 app.get("/login", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
@@ -104,6 +114,8 @@ app.get("/notification", function(req, res) {
     let doc = fs.readFileSync("./app/html/notification.html", "utf8");
     res.send(doc);
 });
+
+app.ger
 
 // for resource not found (i.e., 404)
 app.use(function (req, res, next) {
