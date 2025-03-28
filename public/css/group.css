@@ -1,4 +1,7 @@
 /* invite modal */
+body {
+    display: grid;
+}
 .invite-container {
     display: flex;
     height: 50vh;
