@@ -52,11 +52,14 @@ function readQuote(day) {
 // Insert name function using the global variable "currentUser"
 function insertNameFromFirestore() {
     currentUser.get().then((userDoc) => {
-        //get the user name
-        var user_Name = userDoc.data().name;
-        console.log(user_Name);
-        $("#name-goes-here").text(user_Name); //jquery
-        // document.getElementByID("name-goes-here").innetText=user_Name;
+        if (userDoc.exists) {  // Add this check
+            const userData = userDoc.data();
+            const userName = userData?.name || "User";  // Safe access with fallback
+            $("#name-goes-here").text(userName);
+        } else {
+            console.log("No user document found");
+            $("#name-goes-here").text("User");
+        }
     });
 }
 // Comment out the next line (we will call this function from doAll())

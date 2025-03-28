@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <title>ToDoIt (Assignment Reminder App)</title>
+    <title>ToDoIt</title>
     <meta name="comp1800 template" content="My 1800 App" />
 
     <!------------------------>
     <!-- Required meta tags -->
     <!------------------------>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" alt="App Favicon" />
 
     <!------------------------------------------>
@@ -50,7 +50,7 @@
         <!-- our own navbar goes here -->
         <nav id="navbarPlaceholder"></nav>
 
-        <div class="container-fluid bg-light text-dark p-5">
+        <div class="container-fluid bg-light text-dark">
             <div class="container bg-light p-5 text-center">
                 <h1>
                     Welcome, <span id="name-goes-here" style="color: #58b2f7">User</span>
@@ -102,14 +102,6 @@
                                                     placeholder="Enter group name" required />
                                             </div>
 
-                                            <!-- Group Privacy Settings -->
-                                            <div class="mb-2">
-                                                <label class="form-label">Privacy</label>
-                                                <select class="form-select" id="groupPrivacy">
-                                                    <option value="public">Public</option>
-                                                    <option value="private">Private</option>
-                                                </select>
-                                            </div>
                                             <!-- Image Selection Section -->
                                             <div class="mb-2">
                                                 <label class="form-label">Group Image</label>
@@ -188,7 +180,7 @@
                         </div>
 
                         <!-- Here is the container for cards -->
-                        <div class="container">
+                        <div class="container-fluid">
                             <div id="group-go-here" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                                 <template id="grouplistTemplate">
                                     <div class="col">

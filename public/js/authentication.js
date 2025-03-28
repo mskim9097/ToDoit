@@ -1,106 +1,113 @@
-// Initialize the FirebaseUI Widget using Firebase.
+// Initialize FirebaseUI
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
-
 var uiConfig = {
     callbacks: {
-        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
-            // User successfully signed in.
-            // Return type determines whether we continue the redirect automatically
-            // or whether we leave that to developer to handle.
-            //------------------------------------------------------------------------------------------
-            // The code below is modified from default snippet provided by the FB documentation.
-            //
-            // If the user is a "brand new" user, then create a new "user" in your own database.
-            // Assign this user with the name and email provided.
-            // Before this works, you must enable "Firestore" from the firebase console.
-            // The Firestore rules must allow the user to write. 
-            //------------------------------------------------------------------------------------------
-            var user = authResult.user;                            // get the user object from the Firebase authentication database
-            if (authResult.additionalUserInfo.isNewUser) {         //if new user
-                db.collection("user").doc(user.uid).set({         //write to firestore. We are using the UID for the ID in users collection
-                    name: user.displayName,                    //"users" collection
-                    email: user.email,                         //with authenticated user's ID (user.uid)
-                    user_delete_fg: "N"                       //optional default profile info
-                }).then(function () {
-                    console.log("New user added to firestore");
-                    window.location.assign("/main");       //re-direct to main.html after signup
-                }).catch(function (error) {
-                    console.log("Error adding new user: " + error);
-                });
-            } else {
-                return true;
-            }
+        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+            handleAuthSuccess(authResult);
             return false;
         },
-        uiShown: function () {
-            // The widget is rendered.
-            // Hide the loader.
-            document.getElementById('loader').style.display = 'none';
+        uiShown: function() {
+            const loader = document.getElementById('loader');
+            if (loader) loader.style.display = 'none';
         }
     },
-    // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
     signInFlow: 'popup',
     signInSuccessUrl: "/main",
-    signInOptions: [
-        // Leave the lines as is for the providers you want to offer your users.
-        //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-        //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-        //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        //firebase.auth.PhoneAuthProvider.PROVIDER_ID
-    ],
-    // Terms of service url.
+    signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
     tosUrl: '<your-tos-url>',
-    // Privacy policy url.
     privacyPolicyUrl: '<your-privacy-policy-url>'
 };
 
-ui.start('#firebaseui-auth-container', uiConfig);
+// Check which page we're on and initialize accordingly
+document.addEventListener('DOMContentLoaded', function() {
+    const path = window.location.pathname;
+    const isLoginPage = path.includes('/login') || path.endsWith('/login');
+    const isSignupPage = path.includes('/signup') || path.endsWith('/signup');
+    
+    const authButton = document.getElementById('authButton');
+    if (!authButton) {
+        console.error('Auth button not found!');
+        return;
+    }
 
-
-document.querySelector('.login-btn').addEventListener('click', async () => {
-    const email = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    try {
-        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-        alert('Login successful!');
-        console.log('User logged in:', userCredential.user);
-        window.location.assign('/main');
-        // Redirect or perform post-login actions here
-    } catch (error) {
-        console.error('Login error:', error);
-        document.getElementById('error-message').textContent = error.message;
+    if (isLoginPage) {
+        // Login page setup
+        authButton.textContent = 'Login';
+        authButton.addEventListener('click', handleLogin);
+        
+        // Initialize FirebaseUI on login page if container exists
+        const uiContainer = document.getElementById('firebaseui-auth-container');
+        if (uiContainer) {
+            ui.start('#firebaseui-auth-container', uiConfig);
+        }
+    } 
+    else if (isSignupPage) {
+        // Signup page setup
+        authButton.textContent = 'Sign Up';
+        authButton.addEventListener('click', handleSignup);
     }
 });
 
-// Sign up button event listener
-document.querySelector('.signup-btn').addEventListener('click', async (event) => {
-    event.preventDefault();
-    const email = document.getElementById('username').value;
+async function handleLogin() {
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
+    const errorElement = document.getElementById('error-message');
 
     if (!email || !password) {
-        alert("Please fill in both email and password fields.");
+        errorElement.textContent = 'Please fill in both email and password fields.';
         return;
     }
 
     try {
+        const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
+        window.location.assign('/main');
+    } catch (error) {
+        errorElement.textContent = error.message;
+        console.error('Login error:', error);
+    }
+}
 
+async function handleSignup() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const name = document.getElementById('name').value || email.split('@')[0];
+    const errorElement = document.getElementById('error-message');
+
+    if (!email || !password) {
+        errorElement.textContent = 'Please fill in both email and password fields.';
+        return;
+    }
+
+    try {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
-
-
+        
         await db.collection('user').doc(user.uid).set({
-            name: email.split('@')[0], // Use the email address as the default name
+            name: name,
             email: user.email,
             user_delete_fg: 'N'
         });
-
-        alert('Account created successfully! Please log in.'); // Uses to check for any errors
+        
+        window.location.assign('/main');
     } catch (error) {
-        console.error("Signup error:", error);
-        alert(`Signup failed: ${error.message}`);   // Notifices user of any errors
+        errorElement.textContent = error.message;
+        console.error('Signup error:', error);
     }
-});
+}
+
+function handleAuthSuccess(authResult) {
+    const user = authResult.user;
+    if (authResult.additionalUserInfo.isNewUser) {
+        db.collection("user").doc(user.uid).set({
+            name: user.displayName || user.email.split('@')[0],
+            email: user.email,
+            user_delete_fg: "N"
+        }).then(() => {
+            window.location.assign("/main");
+        }).catch((error) => {
+            console.log("Error adding new user: " + error);
+        });
+    } else {
+        window.location.assign("/main");
+    }
+}

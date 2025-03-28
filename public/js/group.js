@@ -2,7 +2,6 @@ function populateUserInfo() {
     firebase.auth().onAuthStateChanged(user => {
         // Check if user is signed in:
         if (user) {
-
             function addItem() {
                 let itemList = document.getElementById("itemList");
                 let li = document.createElement("li");
