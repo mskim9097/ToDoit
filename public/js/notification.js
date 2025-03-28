@@ -26,7 +26,7 @@ firebase.auth().onAuthStateChanged(user => {
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckChecked");
                 notificationSwitch.checked = true;
                 alertTime.disabled = false;
-                let promise = Notification.requestPermission();
+                askNotificationPermission();
             } else {
                 notificationSwitch.id = "flexSwitchCheckDefault";
                 notificationSwitch.nextElementSibling.setAttribute("for", "flexSwitchCheckDefault");
@@ -162,7 +162,7 @@ firebase.auth().onAuthStateChanged(user => {
                 var taskIds = notificationSnapshot.docs.map(doc => doc.data().task_id);
                 db.collection("task")
                 .where(firebase.firestore.FieldPath.documentId(), 'in', taskIds)
-                .orderBy("task_due_date", "desc")
+                .orderBy("task_due_date", "asc")
                 .onSnapshot(taskSnapshot => {
                     document.getElementById("task-go-here").innerHTML = 
                     "<tr><th>Title</th><th>Due date</th></tr>";
@@ -190,6 +190,20 @@ firebase.auth().onAuthStateChanged(user => {
             });
         }
         selectNotificationList();
+
+        function askNotificationPermission() {
+            // Check if the browser supports notifications
+            if (!("Notification" in window)) {
+              console.log("This browser does not support notifications.");
+              return;
+            }
+            Notification.requestPermission().then((permission) => {
+              // set the button to shown or hidden, depending on what the user answers
+              
+              console.log("test");
+            });
+          }
+          
 
 
         function sendAlert(userID, taskID, notificationDate) {
