@@ -1,23 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
     <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
     <!------------------------------------------>
     <!-- Bootstrap Library CSS JS CDN go here -->
     <!------------------------------------------>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-        </script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css"
+    />
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -27,31 +38,40 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
-    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css"
+    />
     <!-- <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>-->
 
     <!-------------------------------------------->
     <!-- Other libraries and styles of your own -->
     <!-------------------------------------------->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/notification.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/notification.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <title>ToDoit</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <template id="task-template">
-            <tr>
-                <td>
-                    <a href="#" class="list-group-item list-group-item-action list-group-item-primary task-title">
-                        task title
-                    </a>
-                </td>
-                <td>
-                    <span class="due-date"></span>
-                </td>
-            </tr>            
+      <tr>
+        <td>
+          <a
+            href="#"
+            class="list-group-item list-group-item-action list-group-item-primary task-title"
+          >
+            task title
+          </a>
+        </td>
+        <td>
+          <span class="due-date"></span>
+        </td>
+      </tr>
     </template>
 
     <!-- our own navbar goes here -->
@@ -59,36 +79,40 @@
 
     <!-- the body of your page goes here -->
     <div class="container">
-        <div class="form-check form-switch notification-switch">
-            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Remind: </label>
-
-        </div>
-        <div id="alert-time-container">
-            <label for="alert-time" class="form-label">Remind me:</label>
-            <select id="alert-time" class="form-select" aria-label="Default select example" style="width: 30vw;"
-                disabled>
-                <option selected value="none">None</option>
-                <option value="0">At time of event</option>
-                <option value="10">10 minutes before</option>
-                <option value="30">30 minutes before</option>
-                <option value="60">1 hour before</option>
-                <option value="120">2 hours before</option>
-                <option value="1440">1 day before</option>
-                <option value="2880">2 days before</option>
-            </select>
-        </div>
-        <div>
-            <table id="task-go-here">
-                
-            </table>
-        </div>
-
+      <div class="form-check form-switch notification-switch">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          role="switch"
+          id="flexSwitchCheckDefault"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >Remind:
+        </label>
+      </div>
+      <div id="alert-time-container">
+        <label for="alert-time" class="form-label">Remind me:</label>
+        <select
+          id="alert-time"
+          class="form-select"
+          aria-label="Default select example"
+          style="width: 30vw"
+          disabled
+        >
+          <option selected value="none">None</option>
+          <option value="0">At time of event</option>
+          <option value="10">10 minutes before</option>
+          <option value="30">30 minutes before</option>
+          <option value="60">1 hour before</option>
+          <option value="120">2 hours before</option>
+          <option value="1440">1 day before</option>
+          <option value="2880">2 days before</option>
+        </select>
+      </div>
+      <div>
+        <table id="task-go-here"></table>
+      </div>
     </div>
-
-    <!-- our own footer goes here-->
-    <nav id="footerPlaceholder"></nav>
-
     <!---------------------------------------------->
     <!-- Your own JavaScript functions go here    -->
     <!---------------------------------------------->
@@ -96,7 +120,5 @@
     <script src="/js/notification.js"></script>
     <script src="/js/skeleton.js"></script>
     <script src="/js/script.js"></script>
-
-</body>
-
+  </body>
 </html>
