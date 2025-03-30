@@ -35,22 +35,7 @@ function doAll() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    doAll();
-    
-    // Initialize search input if it exists
-    const searchInput = document.getElementById("searchInput");
-    if (searchInput) {
-        searchInput.addEventListener("input", function() {
-            let query = this.value.toLowerCase();
-            let groups = document.querySelectorAll("#group-go-here .col");
-            groups.forEach((group) => {
-                let title = group.querySelector(".card-title").textContent.toLowerCase();
-                group.style.display = title.includes(query) ? "block" : "none";
-            });
-        });
-    }
-});
+doAll();
 
 // displays the quote based in input param string "tuesday", "monday", etc.
 function readQuote(day) {
@@ -464,4 +449,14 @@ function setupEditHandlers() {
 
 // Mock data
 
+// Filter groups as the user types in the search bar
+document.getElementById("searchInput").addEventListener("input", function () {
+    let query = this.value.toLowerCase();
+    let groups = document.querySelectorAll("#group-go-here .col");
+
+    groups.forEach((group) => {
+        let title = group.querySelector(".card-title").textContent.toLowerCase();
+        group.style.display = title.includes(query) ? "block" : "none";
+    });
+});
   
