@@ -147,36 +147,35 @@ function populateUserInfo() {
                 });
         }
 
-        // // Load activities from Firestore
-        // function loadActivitiesFromFirestore() {
-        //     const docID = getQueryParam("docID");
-        //     if (!docID) return;
+        // Load activities from Firestore
+        function loadActivitiesFromFirestore() {
+            const docID = getQueryParam("docID");
+            if (!docID) return;
 
-        //     db.collection("Group")
-        //         .doc(docID)
-        //         .collection("activities")
-        //         .orderBy("createdAt")
-        //         .get()
-        //         .then((querySnapshot) => {
-        //             querySnapshot.forEach((doc) => {
-        //                 const activity = doc.data();
-        //                 addActivityToDOM(activity);
-        //             });
-        //         })
-        //         .catch((error) => {
-        //             console.error("Error loading activities:", error);
-        //         });
-        // }
+            db.collection("Group")
+                .doc(docID)
+                .collection("activities")
+                .orderBy("createdAt")
+                .get()
+                .then((querySnapshot) => {
+                    querySnapshot.forEach((doc) => {
+                        const activity = doc.data();
+                        addActivityToDOM(activity);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Error loading activities:", error);
+                });
+        }
 
-//         // On page load
-//         window.onload = () => {
-//             getGroupDetails();
-//             loadActivitiesFromFirestore();
-//         };
-//     } else {
-//         // No user is signed in.
-//         console.log("No user is signed in");
-//         location.href = "/";
-//     }
-//     });
-// }
+        // On page load
+        window.onload = () => {
+            getGroupDetails();
+            loadActivitiesFromFirestore();
+        };
+    } else {
+        // No user is signed in.
+        console.log("No user is signed in");
+        location.href = "/";
+    }
+});
