@@ -244,7 +244,7 @@ function selectGroupList(collection) {
                 
                 // Only show for managers/admins
                 const isManager = group.data.created_by === user.uid || 
-                                (group.data.admins && data.admins.includes(user.uid));
+                                (group.data.admins && group.data.admins.includes(user.uid));
                 deleteBtn.style.display = isManager ? 'block' : 'none';
                 
                 groupContainer.appendChild(newGroup);
