@@ -10,6 +10,7 @@ body {
 }
 
 .task-card {
+    position: relative; /* Ensure the delete button is positioned relative to the card */
     background: white;
     border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 8px;
@@ -26,6 +27,29 @@ body {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     cursor: pointer;
+}
+
+.task-card .delete-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: #EB5757; /* Red color for delete */
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease;
+}
+
+.task-card .delete-btn:hover {
+    background-color: #D32F2F; /* Darker red on hover */
 }
 
 .custom-toggle {
