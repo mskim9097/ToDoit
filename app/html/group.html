@@ -65,14 +65,33 @@
         <link rel="stylesheet" href="/css/style.css" />
         <link rel="stylesheet" href="/css/group.css">
         <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-        <link rel="stylesheet" href="/css/reminder.css">
         <title>ToDoit</title>
     </head>
 
 <body>
+    <!-- searched user list template -->
+    <template id="searchedUserTemplate">
+        <div class="unchecked-user-container unchecked">
+            <div type="button" class="plus-btn">
+                <i class="bi bi-plus-circle"></i>
+                <span class="user-name">user name</span><br>
+                <span class="user-email">user email</span>
+            </div>
+        </div>
+    </template>
+
+    <!-- plus user list template -->
+    <template id="plusUserTemplate">
+        <div class="checked-user-container checked">
+            <div type="button" class="remove-btn">
+                <i class="bi bi-dash-circle"></i>
+                <span class="user-name">user name</span><br>
+                <span class="user-email">user email</span>
+            </div>
+        </div>
+    </template>
 
     <nav id="navbarPlaceholder"></nav>
-
 
     <div class="container mt-5">
         <div class="card">
@@ -281,11 +300,13 @@
 
                                 </div>
                                 <div id="search-user-go-here" class="list-group">
+                                
                                 </div>
-
-                                <form action="inviteMember" method="post">
-                                    <div id="plus-user-go-here"> </div>
-                                </form>
+                                
+                               
+                            </div>
+                            <div id="plus-user-go-here">
+                            
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -308,7 +329,7 @@
         <script src="/js/firebaseAPI.js"></script>
         <script src="/js/skeleton.js"></script>
         <script src="/js/script.js"></script>
-        <script src="/js/reminder.js"></script>
+        <!-- <script src="/js/reminder.js"></script> -->
         <script src="/js/group.js"></script>
         <script src="/js/task.js"></script>
 
