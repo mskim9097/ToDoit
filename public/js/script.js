@@ -24,8 +24,3 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         errorMessage.style.color = "red";
     }
 });
-
-
-
-
-
