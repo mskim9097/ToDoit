@@ -146,7 +146,6 @@ function populateUserInfo() {
                     console.error("Error adding activity:", error);
                 });
         }
-
         // // Load activities from Firestore
         // function loadActivitiesFromFirestore() {
         //     const docID = getQueryParam("docID");
