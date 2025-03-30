@@ -1,47 +1,40 @@
-# ToDoit
+# ToDoit  
 
-## Overview
-Summarize your project's purpose, problem solved, key features, user benefits, development context, and main technologies used.
+## Overview  
+ToDoit is a collaborative task management web application designed to simplify group productivity. It solves the challenge of coordinating tasks across teams by providing a shared platform where members can create, assign, and track reminders in real time. Key features include group task lists, deadline reminders, and role-based permissions, enabling seamless teamwork. Users benefit from reduced miscommunication, centralized task tracking, and automated reminders to stay on schedule.  
 
-Example:
-
-This client-side JavaScript web application provides real-time weather updates for cities worldwide. It simplifies accessing weather information through an intuitive mobile-first interface, allowing users to input a city name and receive data on temperature, humidity, and conditions.
-
-Developed for the [Course Name] course, applying User-Centred Design practices, agile project management processes, integrating a weather API, and Firebase backend services.
+Developed as part of the **BCIT CST Program** coursework, this project applies Agile methodologies, user-centered design principles, and integrates Firebase for real-time synchronization. AI-assisted tools were leveraged for rapid UI prototyping.  
 
 ---
 
-## Features
-
-Example:
-- Real-time weather updates for any city.
-- Responsive design for desktop and mobile.
-- Displays temperature, humidity, and weather conditions.
-
----
-
-## Technologies Used
-
-Example:
-- **Frontend**: HTML, CSS, JavaScript
-- **Backend**: Firebase for hosting
-- **Database**: Firestore
-- **API**: OpenWeatherMap API
+## Features  
+- **Group Task Sharing**: Create teams, assign tasks, and set deadlines.  
+- **Real-Time Updates**: Synchronize changes instantly across all members.  
+- **Custom Reminders**: Schedule email or in-app notifications for upcoming deadlines.  
+- **Role-Based Access**: Assign roles (Admin/Member) to control task permissions.  
+- **AI-Enhanced UI**: Clean, responsive interface built with AI-generated HTML/CSS templates.  
 
 ---
 
-## Usage
-
-Example:
-1. Open your browser and visit `http://localhost:3000`.
-2. Enter the name of the city in the search bar and press enter.
-3. View the weather information displayed on the screen.
+## Technologies Used  
+- **Frontend**: HTML5, CSS (AI-assisted styling), JavaScript  
+- **Backend**: Firebase Authentication, Firestore Database  
+- **Utilities**: GitHub Projects for Agile tracking, ChatGPT for code snippets  
+- **Hosting**: Firebase Hosting  
 
 ---
 
-## Project Structure
+## Usage  
+1. **Sign Up**: Create an account using email or Google.  
+2. **Create a Group**: Start a new team and invite members via email.  
+3. **Add Tasks**: Assign tasks with deadlines and descriptions.  
+4. **Collaborate**: Members update progress, comment, or mark tasks as complete.  
+5. **Get Reminders**: Receive automated alerts as deadlines approach.  
 
-Example:
+---
+
+## Project Structure  
+
 ```
 project-name/
 ├── src/
@@ -56,36 +49,35 @@ project-name/
 
 ---
 
-## Contributors
-- **Your Name** - BCIT CST Student with a passion for creating user-friendly applications. Fun fact: Loves solving Rubik's Cubes in under a minute.
-- **Teammate Name** - BCIT CST Student, Frontend enthusiast with a knack for creative design. Fun fact: Has a collection of over 50 houseplants.
+## Contributors  
+- **Minsu** - BCIT CST Student  
+- **Hali** - BCIT CST Student  
+- **Aarushi** - BCIT CST Student  
+- **Shaz** - BCIT CST Student  
 
 ---
 
-## Acknowledgments
-
-Example:
-- Weather data sourced from [OpenWeatherMap](https://openweathermap.org/).
-- Code snippets for ___ algoirthm were adapted from resources such as [Stack Overflow](https://stackoverflow.com/) and [MDN Web Docs](https://developer.mozilla.org/).
-- Icons sourced from [FontAwesome](https://fontawesome.com/) and images from [Unsplash](https://unsplash.com/).
+## Acknowledgments  
+- Task synchronization powered by **Google Firebase**.  
+- UI inspiration from **Bootstrap**-generated HTML/CSS templates.  
+- Icons sourced from **Bootstrap**.  
+- Agile workflow managed via **GitHub Projects**.  
+- AI sources like **ChatGPT** were used for initial HTML/CSS styling.  
 
 ---
 
-## Limitations and Future Work
-### Limitations
+## Limitations and Future Work  
 
-Example:
-- Currently, the app only supports city-based weather searches.
-- Limited to basic weather parameters like temperature, humidity, and conditions.
-- The user interface can be further enhanced for accessibility.
+### Limitations  
+- Maximum group size capped at 20 members (Firestore free tier limits).  
+- No native mobile app (web-only PWA).  
+- Limited to email-based notifications; lacks SMS/push support.  
 
-### Future Work
-
-Example: 
-- Add support for location-based weather detection using GPS.
-- Implement additional weather parameters like wind speed and UV index.
-- Create a dark mode for better usability in low-light conditions.
-- Integrate user accounts for saving favorite locations.
+### Future Work  
+- **Mobile App**: Develop iOS/Android versions using React Native.  
+- **Advanced Analytics**: Add productivity dashboards for teams.  
+- **Calendar Sync**: Integrate with Google Calendar/Outlook.  
+- **AI Task Sorting**: Implement ML-based priority suggestions.  
 
 ---
 

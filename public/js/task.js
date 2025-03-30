@@ -15,6 +15,7 @@ firebase.auth().onAuthStateChanged(user => {
             const dueDate = document.querySelector('input[type="date"]').value;
             const dueTime = document.querySelector('input[type="time"]').value;
             const remindersEnabled = document.querySelector('input[type="checkbox"]').checked;
+            
 
             // Validate taskTitle
             if (!taskTitle) {
@@ -30,7 +31,9 @@ firebase.auth().onAuthStateChanged(user => {
                 dueTime: dueTime,
                 reminders: remindersEnabled,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Add a timestamp
-                createdBy: user.uid // Associate task with the logged-in user
+                createdBy: user.uid, // Associate task with the logged-in user
+                delete_fg: false // Default value for delete_fg
+                
             };
 
             // Retrieve the group ID from the URL
