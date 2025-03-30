@@ -12,9 +12,14 @@ function addGroupMember() {
             snapshot.forEach(doc => {
                 var docID = doc.id;
                 var groupRef = db.collection("Group").doc(groupID);
-                console.log(groupRef.id);
+                groupRef.get().then((doc) => {
+                    var memberCount = doc.data().member_count
+                    groupRef.update({
+                        member_count: memberCount + 1
+                    })
+                })
                 groupRef.update({
-                    group_member: firebase.firestore.FieldValue.arrayUnion(docID)
+                    members: firebase.firestore.FieldValue.arrayUnion(docID),
                 })
             });
         })

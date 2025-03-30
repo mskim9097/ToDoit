@@ -181,8 +181,15 @@ function populateUserInfo() {
 //
     })
 }
+
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get('docID');
+console.log("test");
+console.log();
+db.collection("Group").doc(groupID).get(doc => {
+    test: doc.group_name
+    console.log(test);
+})
 
 function displayTaskListInfo() {
     let params = new URL(window.location.href); // get URL
