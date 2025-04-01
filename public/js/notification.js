@@ -2,14 +2,13 @@
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("user").doc(user.uid);
-
+        let upcoming = 0;
+        urgent = 0;
+        let completed = 0;
+        
         // selectNotificationList function to list user tasks that is not done.
         // sort by due date.
         function selectNotificationList() {
-
-            let urgent = 0;
-            let upcoming = 0;
-            let completed = 0;
             const today = new Date();
 
             let taskTemplate = document.getElementById("task-template");
@@ -36,7 +35,7 @@ firebase.auth().onAuthStateChanged(user => {
                             if (diffInDays >= 0 && diffInDays <= 2) {
                                 urgent++;
                                 document.querySelector("#urgentCount").innerHTML = urgent;
-                            } else {
+                            } else if (diffInDays > 2) {
                                 upcoming++;
                                 document.querySelector("#upcomingCount").innerHTML = upcoming;
                             }
@@ -47,6 +46,7 @@ firebase.auth().onAuthStateChanged(user => {
                                 = taskDoc.data().dueDate + " " + taskDoc.data().dueTime;
                             document.querySelector(".task-go-here").appendChild(taskList);
                         });
+                        
                     });
                 });
             });
