@@ -50,8 +50,8 @@ function populateUserInfo() {
                 }
             }
 
-            // Call the function to fetch and display group details
-            getGroupDetails();
+            // // Call the function to fetch and display group details
+            // getGroupDetails();
 
             getGroupDetails(); // Fetch additional group details from Firestore
 
