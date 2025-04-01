@@ -303,6 +303,9 @@ document.querySelector(".inviteBtn").addEventListener("click", function () {
         };
         emailjs.send("service_gb3vuih", "template_lzugtx5", params);
     })
+    alert("The invitation email has sent successfully!");
+    location.reload();
+
 })
 
 displayTaskListInfo();
