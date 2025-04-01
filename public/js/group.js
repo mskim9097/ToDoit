@@ -181,14 +181,13 @@ function populateUserInfo() {
 //
     })
 }
-
+let groupName;
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get('docID');
 console.log("test");
-console.log();
-db.collection("Group").doc(groupID).get(doc => {
-    test: doc.group_name
-    console.log(test);
+db.collection("Group").doc(groupID).onSnapshot(snapshot => {
+    groupName = snapshot.data().group_name;
+    
 })
 
 function displayTaskListInfo() {
@@ -299,7 +298,8 @@ document.querySelector(".inviteBtn").addEventListener("click", function () {
             logo: "/img/cleaned_logo.png",
             userName: clickedUser.querySelector(".user-name").innerHTML,
             userEmail: clickedUser.querySelector(".user-email").innerHTML,
-            groupID: groupID
+            groupID: groupID,
+            groupTitle: groupName
         };
         emailjs.send("service_gb3vuih", "template_lzugtx5", params);
     })
