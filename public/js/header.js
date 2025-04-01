@@ -51,5 +51,5 @@ firebase.auth().onAuthStateChanged(user => {
         });
     }
     selectBadgeCount();
-
 });
+
