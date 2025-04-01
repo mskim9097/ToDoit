@@ -35,12 +35,12 @@ firebase.auth().onAuthStateChanged(user => {
                         }
                     });
                     if(urgent == 0) {
-                        document.querySelectorAll(".badge").forEach(doc => {
+                        document.querySelectorAll(".urgent-badge").forEach(doc => {
                             doc.style.visibility = "hidden";
                         })
                     } else {
                         
-                        document.querySelectorAll(".badge").forEach(doc => {
+                        document.querySelectorAll(".urgent-badge").forEach(doc => {
                             doc.style.visibility = "visible";
                             doc.innerHTML = "";
                             doc.innerHTML = urgent;
