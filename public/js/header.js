@@ -3,7 +3,7 @@ firebase.auth().onAuthStateChanged(user => {
         var logo = document.querySelector('a.navbar-brand');
         
         if (user) {
-            logo.href = "/main";
+            logo.href = "main.html";
         } else {
             logo.href = "/";
         }

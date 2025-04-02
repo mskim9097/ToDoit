@@ -40,7 +40,7 @@ firebase.auth().onAuthStateChanged(user => {
                                 document.querySelector("#upcomingCount").innerHTML = upcoming;
                             }
 
-                            taskList.querySelector(".task-id").href = "group?docID=" + groupDoc.id;
+                            taskList.querySelector(".task-id").href = "group.html?docID=" + groupDoc.id;
                             taskList.querySelector(".task-title").innerHTML = taskDoc.data().title;
                             taskList.querySelector(".due-date").innerHTML
                                 = taskDoc.data().dueDate + " " + taskDoc.data().dueTime;
