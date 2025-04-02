@@ -303,8 +303,12 @@ function accessInvite() {
                 var userID = user.uid;
                 if (userID == manager) {
                     document.getElementById("invite-btn").style.visibility = "visible";
+                    document.getElementById("delete-group-btn").style.display = "inline-block";
+                    document.getElementById("leave-group-btn").style.display = "none";
                 } else {
                     document.getElementById("invite-btn").style.visibility = "hidden";
+                    document.getElementById("leave-group-btn").style.display = "inline-block";
+                    document.getElementById("delete-group-btn").style.display = "none";
 
                 }
             }
@@ -313,4 +317,4 @@ function accessInvite() {
     })
 
 }
-accessInvite()
+accessInvite();

@@ -24,6 +24,10 @@
     background-color: lightgray;
 }
 
+#button-area {
+    display: flex;
+}
+
 .inviteBtn {
     background-color: #58b2f7 !important;
     color: white !important;
@@ -31,6 +35,26 @@
 }
 
 .inviteBtn:hover {
+    background-color: #005fa3 !important;
+}
+
+.leaveGroupBtn {
+    background-color: #58b2f7 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.leaveGroupBtn:hover {
+    background-color: #005fa3 !important;
+}
+
+.deleteGroupBtn {
+    background-color: #58b2f7 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.deleteGroupBtn:hover {
     background-color: #005fa3 !important;
 }
 
@@ -43,3 +67,4 @@
 .createTaskBtn:hover {
     background-color: #005fa3 !important;
 }
+
