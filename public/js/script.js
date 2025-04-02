@@ -17,7 +17,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         // Sign in with Firebase Authentication
         await firebase.auth().signInWithEmailAndPassword(email, password);
         // Redirect to the main page or dashboard
-        window.location.href = "main.html";
+        window.location.href = "/main";
     } catch (error) {
         // Display error message
         errorMessage.textContent = `Login failed: ${error.message}`;

@@ -17,101 +17,101 @@ app.use("/font", express.static("./public/font"));
 app.get("/", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/index.html", "utf8");
+    let doc = fs.readFileSync("./app/html/index.html", "utf8");
     res.send(doc);
 });
 
 app.get("/signup", function(req, res) {
-    let doc = fs.readFileSync("./public/signup.html", "utf8");
+    let doc = fs.readFileSync("./app/html/signup.html", "utf8");
     res.send(doc);
 });
 
 app.get("/index", function(req, res) {
-    let doc = fs.readFileSync("./public/index.html", "utf8");
+    let doc = fs.readFileSync("./app/html/index.html", "utf8");
     res.send(doc);
 });
 
 app.get("/login", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/login.html", "utf8");
+    let doc = fs.readFileSync("./app/html/login.html", "utf8");
     res.send(doc);
 });
 
 app.get("/main", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/main.html", "utf8");
+    let doc = fs.readFileSync("./app/html/main.html", "utf8");
     res.send(doc);
 });
 
 app.get("/nav_before_login", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/nav_before_login.html", "utf8");
+    let doc = fs.readFileSync("./app/html/nav_before_login.html", "utf8");
     res.send(doc);
 });
 
 app.get("/nav_after_login", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/nav_after_login.html", "utf8");
+    let doc = fs.readFileSync("./app/html/nav_after_login.html", "utf8");
     res.send(doc);
 });
 
 app.get("/footer", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/footer.html", "utf8");
+    let doc = fs.readFileSync("./app/html/footer.html", "utf8");
     res.send(doc);
 });
 
 app.get("/reminder", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/reminder.html", "utf8");
+    let doc = fs.readFileSync("./app/html/reminder.html", "utf8");
     res.send(doc);
 });
 
 app.get("/task", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/task.html", "utf8");
+    let doc = fs.readFileSync("./app/html/task.html", "utf8");
     res.send(doc);
 });
 
 app.get("/create", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/create.html", "utf8");
+    let doc = fs.readFileSync("./app/html/create.html", "utf8");
     res.send(doc);
 });
 
 app.get("/profile", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/profile.html", "utf8");
+    let doc = fs.readFileSync("./app/html/profile.html", "utf8");
     res.send(doc);
 });
 
 app.get("/invite", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/invite.html", "utf8");
+    let doc = fs.readFileSync("./app/html/invite.html", "utf8");
     res.send(doc);
 });
 
 app.get("/group", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/group.html", "utf8");
+    let doc = fs.readFileSync("./app/html/group.html", "utf8");
     res.send(doc);
 });
 
 app.get("/notification", function(req, res) {
     //console.log(process.env);
     // retrieve and send an HTML document from the file system
-    let doc = fs.readFileSync("./public/notification.html", "utf8");
+    let doc = fs.readFileSync("./app/html/notification.html", "utf8");
     res.send(doc);
 });
 
