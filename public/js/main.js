@@ -30,7 +30,7 @@ function doAll() {
         } else {
             // No user is signed in.
             alert("Please sign in.");
-            window.location.href = "/";
+            window.location.href = "/login";
     }
     });
 }
@@ -235,7 +235,7 @@ function selectGroupList(collection) {
                 // Set group data
                 newGroup.querySelector(".card-title").textContent = group.data.group_name || "Unnamed Group";
                 newGroup.querySelector(".card-length").textContent = `Members: ${group.data.members?.length || 0}`;
-                newGroup.querySelector("a").href = `/group.html?docID=${group.id}`;
+                newGroup.querySelector("a").href = `/group?docID=${group.id}`;
                 newGroup.querySelector(".card-img-top").src = group.data.group_image || "/img/default.jpg";
                 
                 // Configure delete button
