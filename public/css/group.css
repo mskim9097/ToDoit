@@ -23,3 +23,23 @@
 .plus-btn:hover {
     background-color: lightgray;
 }
+
+.inviteBtn {
+    background-color: #58b2f7 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.inviteBtn:hover {
+    background-color: #005fa3 !important;
+}
+
+.createTaskBtn {
+    background-color: #58b2f7 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.createTaskBtn:hover {
+    background-color: #005fa3 !important;
+}
