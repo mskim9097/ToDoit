@@ -14,7 +14,8 @@ firebase.auth().onAuthStateChanged(user => {
             const taskDescription = document.querySelector('textarea[placeholder="Task description"]').value;
             const dueDate = document.querySelector('input[type="date"]').value;
             const dueTime = document.querySelector('input[type="time"]').value;
-            const remindersEnabled = document.querySelector('input[type="checkbox"]').checked;
+            const status = document.querySelector("#task-status").value;
+            const priority = document.querySelector("#prioritySelect").value
             const deleteIcon = document.querySelector('.delete-icon'); // Assuming you have a delete icon in your HTML
             
 
@@ -30,7 +31,8 @@ firebase.auth().onAuthStateChanged(user => {
                 description: taskDescription,
                 dueDate: dueDate,
                 dueTime: dueTime,
-                reminders: remindersEnabled,
+                priority: priority,
+                status: status,
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Add a timestamp
                 createdBy: user.uid, // Associate task with the logged-in user
                 delete_fg: false // Default value for delete_fg
@@ -202,7 +204,8 @@ function loadActivitiesFromFirestore() {
                     document.getElementById('taskDescription').value = task.description;
                     document.getElementById('taskDueDate').value = task.dueDate;
                     document.getElementById('taskDueTime').value = task.dueTime;
-                    document.getElementById('taskReminders').checked = task.reminders;
+                    document.getElementById('taskStatus').value = task.status;
+                    document.getElementById('taskPriority').value = task.priority;
 
                     // Show the modal
                     const modalInstance = new bootstrap.Modal(taskDetailsModal);
