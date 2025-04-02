@@ -44,7 +44,7 @@ firebase.auth().onAuthStateChanged(user => {
                 return;
             }
 
-            // Save the task to the 'activities' subcollection
+            // Save the task to the Group subcollection in Firestore
             db.collection('Group')
                 .doc(groupId) // Reference the specific group document
                 .collection('task') // Reference the 'activities' subcollection
