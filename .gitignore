@@ -1,6 +1,11 @@
 # Created by https://www.toptal.com/developers/gitignore/api/java,node,macos,windows,eclipse
 # Edit at https://www.toptal.com/developers/gitignore?templates=java,node,macos,windows,eclipse
 
+### Firebase ###
+.firebase/
+node_modules/
+*.log
+
 ### Eclipse ###
 .metadata
 bin/
