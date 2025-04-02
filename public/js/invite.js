@@ -23,6 +23,7 @@ function addGroupMember() {
                 })
             });
         })
+    window.location.href = '/';    
 };
 addGroupMember();
 /*

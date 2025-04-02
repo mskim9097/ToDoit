@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
-            window.location.href = "/login";
+            window.location.href = "login.html";
             return;
         }
 
