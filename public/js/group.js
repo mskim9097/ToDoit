@@ -302,13 +302,11 @@ function accessInvite() {
             if (user) {
                 var userID = user.uid;
                 if (userID == manager) {
-                    document.getElementById("invite-btn").style.visibility = "visible";
-                    document.getElementById("delete-group-btn").style.display = "inline-block";
+                    document.getElementById("invite-btn").style.display= "inline-block";
                     document.getElementById("leave-group-btn").style.display = "none";
                 } else {
-                    document.getElementById("invite-btn").style.visibility = "hidden";
+                    document.getElementById("invite-btn").style.display = "none";
                     document.getElementById("leave-group-btn").style.display = "inline-block";
-                    document.getElementById("delete-group-btn").style.display = "none";
 
                 }
             }
@@ -318,3 +316,32 @@ function accessInvite() {
 
 }
 accessInvite();
+
+document.getElementById("leave-group-btn").addEventListener("click", function() {
+    let userResponse = confirm("Are you sure you want to leave the group?");
+    if (userResponse) {
+        firebase.auth().onAuthStateChanged(async (user) => {
+            if (user) {
+                try {
+                    const group = db.collection("Group").doc(groupID);
+                    const doc = await group.get();
+
+                    if (doc.exists) {
+                        let memberCount = doc.data().member_count;
+
+                        await group.update({
+                            members: firebase.firestore.FieldValue.arrayRemove(user.uid),
+                            member_count: memberCount - 1
+                        });
+                        alert("You have successfully left this group.");
+                        window.location.href = "/main";
+                    } else {
+                    }
+                } catch (error) {
+                    console.error("Error updating group: ", error);
+                }
+            }
+        });
+    }
+});
+
