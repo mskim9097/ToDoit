@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(user => {
             const status = document.querySelector("#task-status").value;
             const priority = document.querySelector("#prioritySelect").value
             const deleteIcon = document.querySelector('.delete-icon'); // Assuming you have a delete icon in your HTML
-            
+
 
             // Validate taskTitle
             if (!taskTitle) {
@@ -36,7 +36,7 @@ firebase.auth().onAuthStateChanged(user => {
                 createdAt: firebase.firestore.FieldValue.serverTimestamp(), // Add a timestamp
                 createdBy: user.uid, // Associate task with the logged-in user
                 delete_fg: false // Default value for delete_fg
-                
+
             };
 
             // Retrieve the group ID from the URL
@@ -85,19 +85,19 @@ firebase.auth().onAuthStateChanged(user => {
                     taskCard.addEventListener('click', () => {
                         window.location.href = `/task-details.html?taskId=${task.id}`;
                     });
-                    
+
                     taskCard.querySelector('.delete-task-btn').addEventListener('click', (e) => {
                         e.stopPropagation(); // Prevent triggering the card's click event
-                    
+
                         // Confirm deletion
                         if (!confirm("Are you sure you want to delete this task?")) return;
-                    
+
                         // Check if the current user is the creator of the task
                         if (task.createdBy !== firebase.auth().currentUser.uid) {
                             alert("You can only delete tasks you created.");
                             return;
                         }
-                    
+
                         // Update the task in Firestore to set `delete_fg: true`
                         db.collection("Group")
                             .doc(groupId)
@@ -112,7 +112,7 @@ firebase.auth().onAuthStateChanged(user => {
                                 console.error("Error deleting task:", error);
                             });
                     });
-                    
+
                     taskList.appendChild(taskCard);
 
                     // Reset the form
@@ -214,16 +214,16 @@ function loadActivitiesFromFirestore() {
 
                 taskCard.querySelector('.delete-task-btn').addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent triggering the card's click event
-                
+
                     // Confirm deletion
                     if (!confirm("Are you sure you want to delete this task?")) return;
-                
+
                     // Check if the current user is the creator of the task
                     if (task.createdBy !== firebase.auth().currentUser.uid) {
                         alert("You can only delete tasks you created.");
                         return;
                     }
-                
+
                     // Update the task in Firestore to set `delete_fg: true`
                     db.collection("Group")
                         .doc(docID) // Use the group document ID

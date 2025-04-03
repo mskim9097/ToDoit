@@ -7,7 +7,8 @@
     font-size: 18px;
     font-weight: bold;
     color: #fff;
-    background-color: #000000; /* ToDoit primary color */
+    background-color: #000000;
+    /* ToDoit primary color */
     border: none;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
@@ -15,11 +16,12 @@
 
 /* Button hover effect */
 .bottom-btn:hover {
-    background-color: #0056b3; /* Darker shade */
+    background-color: #0056b3;
+    /* Darker shade */
 }
-  
-  @media (max-width: 600px) {
+
+@media (max-width: 600px) {
     button {
-      max-width: 100px;
+        max-width: 100px;
     }
-  }
+}
