@@ -7,7 +7,7 @@ function doAll() {
         if (user) {
             currentUser = db.collection("user").doc(user.uid); //global
             console.log(currentUser);
-            
+
             // figure out what day of the week it is today
             const weekday = [
                 "sunday",
@@ -31,7 +31,7 @@ function doAll() {
             // No user is signed in.
             alert("Please sign in.");
             window.location.href = "/login";
-    }
+        }
     });
 }
 
@@ -199,7 +199,7 @@ function selectGroupList(collection) {
     if (!user) return;
 
     // Show loading state
-    document.getElementById("group-go-here").innerHTML = 
+    document.getElementById("group-go-here").innerHTML =
         '<div class="text-center py-5"><div class="spinner-border"></div><p>Loading groups...</p></div>';
 
     // Set up real-time listener
@@ -231,22 +231,22 @@ function selectGroupList(collection) {
             // Render groups
             groups.forEach(group => {
                 const newGroup = groupTemplate.content.cloneNode(true);
-                
+
                 // Set group data
                 newGroup.querySelector(".card-title").textContent = group.data.group_name || "Unnamed Group";
                 newGroup.querySelector(".card-length").textContent = `Members: ${group.data.members?.length || 0}`;
                 newGroup.querySelector("a").href = `/group?docID=${group.id}`;
                 newGroup.querySelector(".card-img-top").src = group.data.group_image || "/img/default.jpg";
-                
+
                 // Configure delete button
                 const deleteBtn = newGroup.querySelector(".delete-group");
                 deleteBtn.dataset.groupId = group.id;
-                
+
                 // Only show for managers/admins
-                const isManager = group.data.created_by === user.uid || 
-                                (group.data.admins && group.data.admins.includes(user.uid));
+                const isManager = group.data.created_by === user.uid ||
+                    (group.data.admins && group.data.admins.includes(user.uid));
                 deleteBtn.style.display = isManager ? 'block' : 'none';
-                
+
                 groupContainer.appendChild(newGroup);
             });
 
@@ -257,7 +257,7 @@ function selectGroupList(collection) {
 }
 
 // Clean up listener when leaving page
-window.addEventListener('beforeunload', function() {
+window.addEventListener('beforeunload', function () {
     if (unsubscribeGroups) {
         unsubscribeGroups();
     }
@@ -269,7 +269,7 @@ let isDeleting = false;
 function setupDeleteHandlers() {
     // Remove any existing click listeners on the document
     document.removeEventListener('click', handleDeleteClick);
-    
+
     // Add fresh event delegation
     document.addEventListener('click', handleDeleteClick);
 }
@@ -278,7 +278,7 @@ function setupDeleteHandlers() {
 async function handleDeleteClick(e) {
     // Check if we're already processing a deletion
     if (isDeleting) return;
-    
+
     // Find the closest delete button (works with icon clicks too)
     const deleteBtn = e.target.closest('.delete-group');
     if (!deleteBtn) return;
@@ -291,7 +291,7 @@ async function handleDeleteClick(e) {
     try {
         // Set deleting state
         isDeleting = true;
-        
+
         // Visual feedback
         deleteBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
         deleteBtn.disabled = true;
@@ -307,11 +307,11 @@ async function handleDeleteClick(e) {
         groupCard.style.transition = 'opacity 0.3s';
         groupCard.style.opacity = '0';
         setTimeout(() => groupCard.remove(), 300);
-        
+
     } catch (error) {
         console.error("Delete failed:", error);
         alert("Failed to delete group. Please try again.");
-        
+
         // Reset UI
         deleteBtn.innerHTML = '<i class="fas fa-times"></i>';
         deleteBtn.disabled = false;
@@ -325,104 +325,104 @@ async function handleDeleteClick(e) {
 let currentEditingGroupId = null;
 
 function setupEditHandlers() {
-  // Click handler for group cards (opens modal)
-  document.addEventListener('click', function(e) {
-    const card = e.target.closest('.card');
-    if (!card) return;
-    
-    // Don't open if clicking on delete button or links
-    if (e.target.closest('.delete-group') || e.target.closest('a')) {
-      return;
-    }
-    
-    const deleteBtn = card.querySelector('.delete-group');
-    if (!deleteBtn) return;
-    
-    currentEditingGroupId = deleteBtn.dataset.groupId;
-    const groupName = card.querySelector('.card-title').textContent;
-    const groupImage = card.querySelector('.card-img-top').src;
-    
-    // Populate modal fields
-    document.getElementById('editGroupName').value = groupName;
-    const previewImg = document.getElementById('editGroupImagePreview');
-    previewImg.src = groupImage;
-    
-    // Reset file input
-    document.getElementById('editGroupImageInput').value = '';
-    document.getElementById('editGroupImageBtn').innerHTML = 
-      '<i class="bi bi-upload me-2"></i>Change Image';
-    
-    // Show modal
-    const modal = new bootstrap.Modal(document.getElementById('editGroupModal'));
-    modal.show();
-  });
-  
-  // Image upload button handler
-  document.getElementById('editGroupImageBtn').addEventListener('click', function() {
-    document.getElementById('editGroupImageInput').click();
-  });
-  
-  // Image preview handler
-  document.getElementById('editGroupImageInput').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function(event) {
-        document.getElementById('editGroupImagePreview').src = event.target.result;
-        document.getElementById('editGroupImageBtn').innerHTML = 
-          '<i class="bi bi-check-circle me-2"></i>Image Selected';
-      };
-      reader.readAsDataURL(file);
-    }
-  });
-  
-  // Save changes handler
-  document.getElementById('saveGroupChanges').addEventListener('click', async function() {
-    const saveBtn = document.getElementById('saveGroupChanges');
-    const saveText = document.getElementById('saveButtonText');
-    const spinner = document.getElementById('saveButtonSpinner');
-    
-    const newName = document.getElementById('editGroupName').value.trim();
-    const imageFile = document.getElementById('editGroupImageInput').files[0];
-    
-    if (!newName) {
-      alert("Please enter a group name");
-      return;
-    }
-    
-    try {
-      // Show loading state
-      saveBtn.disabled = true;
-      saveText.textContent = "Saving...";
-      spinner.classList.remove('d-none');
-      
-      const updateData = { group_name: newName };
-      
-      // Handle image upload if new image was selected
-      if (imageFile) {
-        const user = firebase.auth().currentUser;
-        const storageRef = firebase.storage().ref();
-        const fileRef = storageRef.child(`group_images/${user.uid}/${Date.now()}_${imageFile.name}`);
-        await fileRef.put(imageFile);
-        updateData.group_image = await fileRef.getDownloadURL();
-      }
-      
-      // Update Firestore document
-      await db.collection("Group").doc(currentEditingGroupId).update(updateData);
-      
-      // Close modal
-      bootstrap.Modal.getInstance(document.getElementById('editGroupModal')).hide();
-      
-    } catch (error) {
-      console.error("Error updating group:", error);
-      alert("Failed to update group. Please try again.");
-    } finally {
-      // Reset button state
-      saveBtn.disabled = false;
-      saveText.textContent = "Save Changes";
-      spinner.classList.add('d-none');
-    }
-  });
+    // Click handler for group cards (opens modal)
+    document.addEventListener('click', function (e) {
+        const card = e.target.closest('.card');
+        if (!card) return;
+
+        // Don't open if clicking on delete button or links
+        if (e.target.closest('.delete-group') || e.target.closest('a')) {
+            return;
+        }
+
+        const deleteBtn = card.querySelector('.delete-group');
+        if (!deleteBtn) return;
+
+        currentEditingGroupId = deleteBtn.dataset.groupId;
+        const groupName = card.querySelector('.card-title').textContent;
+        const groupImage = card.querySelector('.card-img-top').src;
+
+        // Populate modal fields
+        document.getElementById('editGroupName').value = groupName;
+        const previewImg = document.getElementById('editGroupImagePreview');
+        previewImg.src = groupImage;
+
+        // Reset file input
+        document.getElementById('editGroupImageInput').value = '';
+        document.getElementById('editGroupImageBtn').innerHTML =
+            '<i class="bi bi-upload me-2"></i>Change Image';
+
+        // Show modal
+        const modal = new bootstrap.Modal(document.getElementById('editGroupModal'));
+        modal.show();
+    });
+
+    // Image upload button handler
+    document.getElementById('editGroupImageBtn').addEventListener('click', function () {
+        document.getElementById('editGroupImageInput').click();
+    });
+
+    // Image preview handler
+    document.getElementById('editGroupImageInput').addEventListener('change', function (e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                document.getElementById('editGroupImagePreview').src = event.target.result;
+                document.getElementById('editGroupImageBtn').innerHTML =
+                    '<i class="bi bi-check-circle me-2"></i>Image Selected';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Save changes handler
+    document.getElementById('saveGroupChanges').addEventListener('click', async function () {
+        const saveBtn = document.getElementById('saveGroupChanges');
+        const saveText = document.getElementById('saveButtonText');
+        const spinner = document.getElementById('saveButtonSpinner');
+
+        const newName = document.getElementById('editGroupName').value.trim();
+        const imageFile = document.getElementById('editGroupImageInput').files[0];
+
+        if (!newName) {
+            alert("Please enter a group name");
+            return;
+        }
+
+        try {
+            // Show loading state
+            saveBtn.disabled = true;
+            saveText.textContent = "Saving...";
+            spinner.classList.remove('d-none');
+
+            const updateData = { group_name: newName };
+
+            // Handle image upload if new image was selected
+            if (imageFile) {
+                const user = firebase.auth().currentUser;
+                const storageRef = firebase.storage().ref();
+                const fileRef = storageRef.child(`group_images/${user.uid}/${Date.now()}_${imageFile.name}`);
+                await fileRef.put(imageFile);
+                updateData.group_image = await fileRef.getDownloadURL();
+            }
+
+            // Update Firestore document
+            await db.collection("Group").doc(currentEditingGroupId).update(updateData);
+
+            // Close modal
+            bootstrap.Modal.getInstance(document.getElementById('editGroupModal')).hide();
+
+        } catch (error) {
+            console.error("Error updating group:", error);
+            alert("Failed to update group. Please try again.");
+        } finally {
+            // Reset button state
+            saveBtn.disabled = false;
+            saveText.textContent = "Save Changes";
+            spinner.classList.add('d-none');
+        }
+    });
 }
 // Call the function to display groups
 //selectGroupList("Group");
@@ -459,4 +459,3 @@ document.getElementById("searchInput").addEventListener("input", function () {
         group.style.display = title.includes(query) ? "block" : "none";
     });
 });
-  

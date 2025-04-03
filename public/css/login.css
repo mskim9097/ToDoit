@@ -111,7 +111,8 @@
     box-shadow: 0 2px 8px rgba(88, 178, 247, 0.3);
 }
 
-.auth-btn:hover, .auth-btn:focus {
+.auth-btn:hover,
+.auth-btn:focus {
     background: #3ca0f0;
     transform: translateY(-1px);
     box-shadow: 0 4px 12px rgba(88, 178, 247, 0.4);
@@ -151,15 +152,15 @@
         margin: 15px auto;
         min-height: 60vh;
     }
-    
+
     .auth-title {
         font-size: 2.2rem;
     }
-    
+
     .form-input {
         padding: 14px;
     }
-    
+
     .auth-btn {
         padding: 15px;
     }
@@ -171,11 +172,11 @@
         padding: 40px;
         box-shadow: 0 8px 32px rgba(88, 178, 247, 0.2);
     }
-    
+
     .auth-title {
         font-size: 2.5rem;
     }
-    
+
     .auth-subtitle {
         font-size: 1rem;
     }
@@ -185,7 +186,7 @@
     display: inline-block;
     width: 20px;
     height: 20px;
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 3px solid rgba(255, 255, 255, 0.3);
     border-radius: 50%;
     border-top-color: white;
     animation: spin 1s ease-in-out infinite;
@@ -194,5 +195,7 @@
 }
 
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }

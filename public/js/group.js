@@ -40,7 +40,7 @@ function populateUserInfo() {
                                 document.getElementById(
                                     "member-count"
                                 ).innerText = `${memberCount} ${memberCount === 1 ? "member" : "members"
-                                    }`;
+                                }`;
 
                                 // Display group image
                                 const groupImage = document.getElementById("group-image");
@@ -220,24 +220,24 @@ searchUser.addEventListener("keyup", function () {
 
                 snapshot.forEach((doc) => {
                     if (doc.data().user_delete_fg == "N") {
-                        if(!groupMembers.includes(doc.id)) {
+                        if (!groupMembers.includes(doc.id)) {
                             var email = doc.data().email;
                             var name = doc.data().name;
                             var docID = doc.id;
                             let newUser = searchedUserTemplate.content.cloneNode(true);
-        
+
                             newUser.querySelector(".unchecked-user-container").id = docID;
                             newUser.querySelector(".user-name").innerHTML = name;
                             newUser.querySelector(".user-email").innerHTML = email;
                             document.getElementById("search-user-go-here").appendChild(newUser);
                         }
-                        
+
                     }
                 });
-                
+
             })
 
-            
+
         });
 });
 
@@ -312,7 +312,7 @@ function accessInvite() {
             if (user) {
                 var userID = user.uid;
                 if (userID == manager) {
-                    document.getElementById("invite-btn").style.display= "inline-block";
+                    document.getElementById("invite-btn").style.display = "inline-block";
                     document.getElementById("leave-group-btn").style.display = "none";
                 } else {
                     document.getElementById("invite-btn").style.display = "none";
@@ -327,7 +327,7 @@ function accessInvite() {
 }
 accessInvite();
 
-document.getElementById("leave-group-btn").addEventListener("click", function() {
+document.getElementById("leave-group-btn").addEventListener("click", function () {
     let userResponse = confirm("Are you sure you want to leave the group?");
     if (userResponse) {
         firebase.auth().onAuthStateChanged(async (user) => {

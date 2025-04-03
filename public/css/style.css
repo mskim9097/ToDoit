@@ -110,30 +110,31 @@ h1 {
     overflow: hidden;
     border: none;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Modal Header - Using your primary color */
-  #groupModal .modal-header {
-    background: #58b2f7; /* Your primary blue color */
+}
+
+/* Modal Header - Using your primary color */
+#groupModal .modal-header {
+    background: #58b2f7;
+    /* Your primary blue color */
     border-bottom: none;
     padding: 1.25rem 1.5rem;
     color: white;
-  }
-  
-  #groupModal .modal-title {
+}
+
+#groupModal .modal-title {
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-  
-  /* Modal Body */
-  #groupModal .modal-body {
+}
+
+/* Modal Body */
+#groupModal .modal-body {
     padding: 1.5rem;
-  }
-  
-  /* Form Labels */
-  #groupModal .form-label {
+}
+
+/* Form Labels */
+#groupModal .form-label {
     font-weight: 600;
     color: #2d3748;
     font-size: 0.8rem;
@@ -141,31 +142,31 @@ h1 {
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
     display: block;
-  }
-  
-  /* Input Fields */
-  #groupModal .form-control {
+}
+
+/* Input Fields */
+#groupModal .form-control {
     border-radius: 8px;
     padding: 10px 15px;
     border: 1px solid #e2e8f0;
     transition: all 0.2s ease;
-  }
-  
-  #groupModal .form-control:focus {
+}
+
+#groupModal .form-control:focus {
     box-shadow: 0 0 0 3px rgba(88, 178, 247, 0.2);
     border-color: #58b2f7;
-  }
-  
-  /* Image Selection Grid */
-  #groupModal .image-selection-grid {
+}
+
+/* Image Selection Grid */
+#groupModal .image-selection-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     margin-bottom: 1rem;
-  }
-  
-  /* Image Thumbnails */
-  #groupModal .img-thumbnail {
+}
+
+/* Image Thumbnails */
+#groupModal .img-thumbnail {
     width: 100%;
     height: 80px;
     object-fit: cover;
@@ -173,16 +174,16 @@ h1 {
     border: 2px solid transparent;
     cursor: pointer;
     transition: all 0.2s ease;
-  }
-  
-  #groupModal input[type="radio"]:checked + .img-thumbnail {
+}
+
+#groupModal input[type="radio"]:checked+.img-thumbnail {
     border-color: #58b2f7;
     transform: scale(0.95);
     box-shadow: 0 0 0 3px rgba(88, 178, 247, 0.3);
-  }
-  
-  /* Upload Button */
-  #uploadImageButton {
+}
+
+/* Upload Button */
+#uploadImageButton {
     border-radius: 8px;
     padding: 10px 15px;
     font-weight: 500;
@@ -195,14 +196,14 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 8px;
-  }
-  
-  #uploadImageButton:hover {
+}
+
+#uploadImageButton:hover {
     background-color: rgba(88, 178, 247, 0.1);
-  }
-  
-  /* Create Button */
-  #createGroupButton {
+}
+
+/* Create Button */
+#createGroupButton {
     background-color: #3a9ae8;
     border: none;
     border-radius: 8px;
@@ -211,24 +212,27 @@ h1 {
     width: 100%;
     transition: all 0.2s ease;
     margin-top: 1rem;
-  }
-  
-  #createGroupButton:hover {
+}
+
+#createGroupButton:hover {
     background-color: #2d79b8;
-  }
-  
-  /* Loading State */
-  #createGroupButton .spinner-border {
+}
+
+/* Loading State */
+#createGroupButton .spinner-border {
     width: 1rem;
     height: 1rem;
     border-width: 0.15em;
-  }/* ======================
+}
+
+/* ======================
    Create Group Button Colors
    ====================== */
 
 /* Primary Create Button */
 #createGroupButton {
-    background-color: #1f78b4; /* Your darker blue from other elements */
+    background-color: #1f78b4;
+    /* Your darker blue from other elements */
     border: none;
     border-radius: 8px;
     padding: 10px 15px;
@@ -239,114 +243,111 @@ h1 {
     color: white;
     position: relative;
     overflow: hidden;
-  }
-  
-  #createGroupButton:hover {
-    background-color: #165d8a; /* Darker shade for hover */
+}
+
+#createGroupButton:hover {
+    background-color: #165d8a;
+    /* Darker shade for hover */
     transform: translateY(-1px);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
-  
-  #createGroupButton:active {
+}
+
+#createGroupButton:active {
     transform: translateY(0);
     box-shadow: none;
-  }
-  
-  /* Loading State */
-  #createGroupButton .spinner-border {
+}
+
+/* Loading State */
+#createGroupButton .spinner-border {
     width: 1rem;
     height: 1rem;
     border-width: 0.15em;
     vertical-align: -2px;
-  }
-  
-  /* Gradient Pulse Animation (when processing) */
-  #createGroupButton.processing::after {
+}
+
+/* Gradient Pulse Animation (when processing) */
+#createGroupButton.processing::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.25),
-      transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.25),
+            transparent);
     animation: loading 1.5s infinite;
-  }
-  
-  @keyframes loading {
+}
+
+@keyframes loading {
     100% {
-      left: 100%;
+        left: 100%;
     }
-  }
-  
-  #groupModal .btn-primary {
+}
+
+#groupModal .btn-primary {
     background-color: #1f78b4;
     border-color: #1f78b4;
-  }
-  
-  /* Modal Footer */
-  #groupModal .modal-footer {
+}
+
+/* Modal Footer */
+#groupModal .modal-footer {
     border-top: 1px solid #edf2f7;
     padding: 1rem 1.5rem;
     background-color: white;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     #groupModal .modal-dialog {
-      margin: 0.5rem;
+        margin: 0.5rem;
     }
-    
+
     #groupModal .image-selection-grid {
-      grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
-  }
-  
-  @media (max-width: 390px) {
+}
+
+@media (max-width: 390px) {
     #groupModal .modal-body {
-      padding: 1.25rem;
+        padding: 1.25rem;
     }
-    
+
     #groupModal .image-selection-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-    
+
     #groupModal .img-thumbnail {
-      height: 100px;
+        height: 100px;
     }
-    
+
     #groupModal .btn {
-      padding: 8px 12px;
-      font-size: 0.9rem;
+        padding: 8px 12px;
+        font-size: 0.9rem;
     }
-  }
-  
-  /* Animation for Processing State */
-  #createGroupButton.processing::after {
+}
+
+/* Animation for Processing State */
+#createGroupButton.processing::after {
     content: '';
     position: absolute;
     top: 0;
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
     animation: loading 1.5s infinite;
-  }
-  
-  @keyframes loading {
+}
+
+@keyframes loading {
     100% {
-      left: 100%;
+        left: 100%;
     }
-  }
+}
 
 /* Media Queries for Mobile Responsiveness */
 @media (max-width: 576px) {
@@ -535,31 +536,31 @@ footer {
 
 @media (min-width: 768px) {
     .card {
-      margin: 15px;
+        margin: 15px;
     }
-  
+
     .card-title {
-      font-size: 20px;
+        font-size: 20px;
     }
-  
+
     .card-description {
-      font-size: 16px;
+        font-size: 16px;
     }
-  }
-  
-  @media (min-width: 1024px) {
+}
+
+@media (min-width: 1024px) {
     .card {
-      margin: 20px;
+        margin: 20px;
     }
-  
+
     .card-title {
-      font-size: 22px;
+        font-size: 22px;
     }
-  
+
     .card-description {
-      font-size: 18px;
+        font-size: 18px;
     }
-  }
+}
 
 /* Footer */
 footer {
@@ -606,7 +607,8 @@ footer {
 }
 
 .custom-card:hover {
-    transform: scale(1.05);;
+    transform: scale(1.05);
+    ;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -657,6 +659,7 @@ footer {
     background-color: #165d8a;
     transform: translateY(-2px);
 }
+
 .search-container {
     width: 100%;
     max-width: 500px;
@@ -739,6 +742,7 @@ input[type="radio"]:checked+.img-thumbnail {
     font-size: 16px;
     color: #666666;
 }
+
 /* ======================
    Edit Group Modal - Rectangular Image
    ====================== */
@@ -749,30 +753,31 @@ input[type="radio"]:checked+.img-thumbnail {
     overflow: hidden;
     border: none;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Modal Header - Using your primary color */
-  #editGroupModal .modal-header {
-    background: #58b2f7; /* Your primary blue color */
+}
+
+/* Modal Header - Using your primary color */
+#editGroupModal .modal-header {
+    background: #58b2f7;
+    /* Your primary blue color */
     border-bottom: none;
     padding: 1.25rem 1.5rem;
     color: white;
-  }
-  
-  #editGroupModal .modal-title {
+}
+
+#editGroupModal .modal-title {
     font-weight: 600;
     display: flex;
     align-items: center;
     gap: 8px;
-  }
-  
-  /* Modal Body */
-  #editGroupModal .modal-body {
+}
+
+/* Modal Body */
+#editGroupModal .modal-body {
     padding: 1.5rem;
-  }
-  
-  /* Form Labels */
-  #editGroupModal .form-label {
+}
+
+/* Form Labels */
+#editGroupModal .form-label {
     font-weight: 600;
     color: #2d3748;
     font-size: 0.8rem;
@@ -780,23 +785,24 @@ input[type="radio"]:checked+.img-thumbnail {
     letter-spacing: 0.5px;
     margin-bottom: 0.5rem;
     display: block;
-  }
-  
-  /* Input Fields */
-  #editGroupModal .form-control {
+}
+
+/* Input Fields */
+#editGroupModal .form-control {
     border-radius: 8px;
     padding: 10px 15px;
     border: 1px solid #e2e8f0;
     transition: all 0.2s ease;
-  }
-  
-  #editGroupModal .form-control:focus {
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2); /* Primary color with opacity */
+}
+
+#editGroupModal .form-control:focus {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+    /* Primary color with opacity */
     border-color: #58b2f7;
-  }
-  
-  /* Image Preview - Rectangular Style */
-  #editGroupImagePreview {
+}
+
+/* Image Preview - Rectangular Style */
+#editGroupImagePreview {
     width: 100%;
     max-width: 300px;
     height: 180px;
@@ -806,11 +812,12 @@ input[type="radio"]:checked+.img-thumbnail {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     display: block;
     margin: 0 auto 1.25rem;
-    background-color: #f8fafc; /* Light fallback background */
-  }
-  
-  /* Upload Button - Primary Color */
-  #editGroupImageBtn {
+    background-color: #f8fafc;
+    /* Light fallback background */
+}
+
+/* Upload Button - Primary Color */
+#editGroupImageBtn {
     border-radius: 8px;
     padding: 10px 15px;
     font-weight: 500;
@@ -823,88 +830,89 @@ input[type="radio"]:checked+.img-thumbnail {
     align-items: center;
     justify-content: center;
     gap: 8px;
-  }
-  
-  #editGroupImageBtn:hover {
+}
+
+#editGroupImageBtn:hover {
     background-color: rgba(88, 178, 247, 0.1);
-  }
-  
-  /* Modal Footer */
-  #editGroupModal .modal-footer {
+}
+
+/* Modal Footer */
+#editGroupModal .modal-footer {
     border-top: 1px solid #edf2f7;
     padding: 1rem 1.5rem;
     background-color: white;
-  }
-  
-  /* Action Buttons */
-  #editGroupModal .btn {
+}
+
+/* Action Buttons */
+#editGroupModal .btn {
     border-radius: 8px;
     padding: 8px 16px;
     font-weight: 500;
     min-width: 90px;
     transition: all 0.2s ease;
-  }
-  
-  #editGroupModal .btn-secondary {
+}
+
+#editGroupModal .btn-secondary {
     border: 1px solid #e2e8f0;
-  }
-  
-  #saveGroupChanges {
+}
+
+#saveGroupChanges {
     background-color: #3a9ae8;
     border: none;
     position: relative;
-  }
-  
-  #saveGroupChanges:hover {
-    background-color: #2d79b8; /* Slightly darker on hover */
-  }
-  
-  /* Loading State */
-  #saveGroupChanges .spinner-border {
+}
+
+#saveGroupChanges:hover {
+    background-color: #2d79b8;
+    /* Slightly darker on hover */
+}
+
+/* Loading State */
+#saveGroupChanges .spinner-border {
     width: 1rem;
     height: 1rem;
     border-width: 0.15em;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
     #editGroupModal .modal-dialog {
-      margin: 0.5rem;
+        margin: 0.5rem;
     }
-    
+
     #editGroupImagePreview {
-      height: 150px;
+        height: 150px;
     }
-  }
-  
-  @media (max-width: 390px) {
+}
+
+@media (max-width: 390px) {
     #editGroupModal .modal-body {
-      padding: 1.25rem;
+        padding: 1.25rem;
     }
-    
+
     #editGroupImagePreview {
-      height: 120px;
-      margin-bottom: 1rem;
+        height: 120px;
+        margin-bottom: 1rem;
     }
-    
+
     #editGroupModal .btn {
-      padding: 7px 12px;
-      font-size: 0.9rem;
+        padding: 7px 12px;
+        font-size: 0.9rem;
     }
-  }
-  
-  /* Animation for Image Change */
-  #editGroupImagePreview {
+}
+
+/* Animation for Image Change */
+#editGroupImagePreview {
     transition: opacity 0.3s ease;
-  }
-  
-  #editGroupImagePreview.fade-out {
+}
+
+#editGroupImagePreview.fade-out {
     opacity: 0;
-  }
-  
-  #editGroupImagePreview.fade-in {
+}
+
+#editGroupImagePreview.fade-in {
     opacity: 1;
-  }
+}
 
 .delete-group {
     position: absolute;
@@ -914,61 +922,71 @@ input[type="radio"]:checked+.img-thumbnail {
     height: 28px;
     border-radius: 50%;
     color: white;
-    background-color:#58b2f7;
+    background-color: #58b2f7;
     display: flex;
     align-items: center;
     justify-content: center;
     border: none;
-    z-index: 2; /* Ensure it stays above the image */
+    z-index: 2;
+    /* Ensure it stays above the image */
     opacity: 0.9;
     transition: all 0.3s ease;
     cursor: pointer;
-  }
-  
-  .delete-group:hover {
+}
+
+.delete-group:hover {
     background-color: #bb2d3b;
     opacity: 1;
     transform: scale(1.1);
-  }
-  
-  .delete-group .fa-times {
+}
+
+.delete-group .fa-times {
     font-size: 14px;
-  }
-    .card {
+}
+
+.card {
     position: relative;
-  }
- 
-  .delete-group.visible {
+}
+
+.delete-group.visible {
     display: flex !important;
-  }
-  
-  /* Responsive adjustments */
-  @media (max-width: 576px) {
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
     .delete-group {
-      width: 24px;
-      height: 24px;
-      top: 8px;
-      right: 8px;
+        width: 24px;
+        height: 24px;
+        top: 8px;
+        right: 8px;
     }
-    
+
     .delete-group .fa-times {
-      font-size: 12px;
+        font-size: 12px;
     }
-  }
-  
-  /* Animation when showing/hiding */
-  @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 0.9; transform: scale(1); }
-  }
-  
-  .delete-group {
+}
+
+/* Animation when showing/hiding */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+}
+
+.delete-group {
     animation: fadeIn 0.2s ease-out;
-  }
+}
 
 /* Base Button Style */
 .card .btn-primary {
-    background-color: #58b2f7; /*  primary blue */
+    background-color: #58b2f7;
+    /*  primary blue */
     border-color: #58b2f7;
     color: white;
     border-radius: 8px;
@@ -976,32 +994,33 @@ input[type="radio"]:checked+.img-thumbnail {
     font-weight: 500;
     transition: all 0.3s ease;
     box-shadow: 0 2px 5px rgba(88, 178, 247, 0.3);
-  }
-  
-  /* Hover State */
-  .card .btn-primary:hover {
-    background-color: #3a9ae8; /* Darker blue */
+}
+
+/* Hover State */
+.card .btn-primary:hover {
+    background-color: #3a9ae8;
+    /* Darker blue */
     border-color: #3a9ae8;
     transform: translateY(-1px);
     box-shadow: 0 4px 8px rgba(88, 178, 247, 0.4);
-  }
-  
-  /* Active State (when clicked) */
-  .card .btn-primary:active {
+}
+
+/* Active State (when clicked) */
+.card .btn-primary:active {
     background-color: #2d79b8;
     transform: translateY(0);
     box-shadow: 0 2px 3px rgba(88, 178, 247, 0.3);
-  }
-  
-  /* Focus State (accessibility) */
-  .card .btn-primary:focus {
+}
+
+/* Focus State (accessibility) */
+.card .btn-primary:focus {
     box-shadow: 0 0 0 3px rgba(88, 178, 247, 0.5);
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 576px) {
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
     .card .btn-primary {
-      padding: 6px 12px;
-      font-size: 0.9rem;
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
-  }
+}
