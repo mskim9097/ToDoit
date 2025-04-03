@@ -101,7 +101,10 @@
             <!-- Card Body -->
             <div class="card-body">
                 <h2 id="group-name" class="card-title">Group Name</h2>
-                <p id="group-privacy" class="card-text"></p>
+                <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-people-fill me-2"></i>
+                    <span id="member-count" class="card-text">0 members</span>
+                </div>
             </div>
         </div>
         <!--This is where the main task modal goes-->
@@ -113,35 +116,14 @@
                         <h1 class="h3 text-dark mb-0">
                             <!-- <i class="fas fa-tasks text-primary me-2"></i>ToDoit Tasks -->
                         </h1>
-                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#taskModal">
+                        <button class="btn btn-primary createTaskBtn" data-bs-toggle="modal"
+                            data-bs-target="#taskModal">
                             <i class="fas fa-plus me-2"></i>New Task
                         </button>
                     </div>
 
                     <!--Task card example-->
                     <div id="exampleTaskCard" class="row g-4">
-                        <!-- Example task card -->
-                        <div id="cardExample" class="col-12 col-md-6 col-xl-4">
-                            <div class="task-card p-3">
-                                <div class="d-flex align-items-center mb-2">
-                                    <i class="material-icons" id="delete-icon">delete</i>
-                                    <span class="priority-indicator priority-high me-2"></span>
-                                    <small class="text-muted">High Priority</small>
-                                    <span class="ms-auto badge bg-primary">In Progress</span>
-                                </div>
-                                <h5 class="mb-1">Project Prototype</h5>
-                                <p class="text-muted mb-2">Develop initial prototype for user testing phase</p>
-                                <div class="d-flex align-items-center text-muted">
-                                    <small class="me-3">
-                                        <i class="fas fa-calendar me-1"></i>Dec 15
-                                    </small>
-                                    <small>
-                                        <i class="fas fa-users me-1"></i>3
-                                    </small>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- Dynamic task cards will be appended here -->
                         <div id="dynamicTaskCards"></div>
                     </div>
@@ -214,7 +196,7 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary w-100">
+                                    <button type="submit" class="btn btn-primary w-100 createTaskBtn">
                                         <i class="fas fa-save me-2"></i>Create Task
                                     </button>
                                 </form>
@@ -334,9 +316,14 @@
             </div>
         </div>
 
-        <div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <div id="button-area">
+            <button type="button" id="invite-btn" class="btn btn-primary inviteBtn" data-bs-toggle="modal"
+                data-bs-target="#exampleModal">
                 Invite
+            </button>
+            <button type="button" id="leave-group-btn" class="btn btn-primary leaveGroupBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                Leave Group
             </button>
         </div>
         <!---------------------------------------------->

@@ -2,11 +2,11 @@
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 var uiConfig = {
     callbacks: {
-        signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+        signInSuccessWithAuthResult: function (authResult, redirectUrl) {
             handleAuthSuccess(authResult);
             return false;
         },
-        uiShown: function() {
+        uiShown: function () {
             const loader = document.getElementById('loader');
             if (loader) loader.style.display = 'none';
         }
@@ -19,11 +19,11 @@ var uiConfig = {
 };
 
 // Check which page we're on and initialize accordingly
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const path = window.location.pathname;
     const isLoginPage = path.includes('/login') || path.endsWith('/login');
     const isSignupPage = path.includes('/signup') || path.endsWith('/signup');
-    
+
     const authButton = document.getElementById('authButton');
     if (!authButton) {
         console.error('Auth button not found!');
@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', function() {
         // Login page setup
         authButton.textContent = 'Login';
         authButton.addEventListener('click', handleLogin);
-        
+
         // Initialize FirebaseUI on login page if container exists
         const uiContainer = document.getElementById('firebaseui-auth-container');
         if (uiContainer) {
             ui.start('#firebaseui-auth-container', uiConfig);
         }
-    } 
+    }
     else if (isSignupPage) {
         // Signup page setup
         authButton.textContent = 'Sign Up';
@@ -81,13 +81,13 @@ async function handleSignup() {
     try {
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
-        
+
         await db.collection('user').doc(user.uid).set({
             name: name,
             email: user.email,
             user_delete_fg: 'N'
         });
-        
+
         window.location.assign('/main');
     } catch (error) {
         errorElement.textContent = error.message;

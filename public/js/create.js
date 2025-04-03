@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     firebase.auth().onAuthStateChanged((user) => {
         if (!user) {
             window.location.href = "/login";
@@ -6,9 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         // Create Group Button Handler
-        document.getElementById("createGroupButton").addEventListener("click", async function(e) {
+        document.getElementById("createGroupButton").addEventListener("click", async function (e) {
             e.preventDefault();
-            
+
             const createBtn = e.target;
             const groupName = document.getElementById("groupName").value.trim();
             const selectedImage = document.querySelector('input[name="groupImage"]:checked')?.value;
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Reset form
                 document.getElementById("createGroupForm").reset();
-                
+
                 // Close modal
                 const modal = bootstrap.Modal.getInstance(document.getElementById('groupModal'));
                 if (modal) modal.hide();
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Image Upload Button
-        document.getElementById("uploadImageButton").addEventListener("click", function() {
+        document.getElementById("uploadImageButton").addEventListener("click", function () {
             document.getElementById("customImageUpload").click();
         });
     });

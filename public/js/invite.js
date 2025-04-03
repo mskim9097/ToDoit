@@ -12,17 +12,24 @@ function addGroupMember() {
             snapshot.forEach(doc => {
                 var docID = doc.id;
                 var groupRef = db.collection("Group").doc(groupID);
-                groupRef.get().then((doc) => {
-                    var memberCount = doc.data().member_count
+
+                groupRef.get().then((groupDoc) => {
+                    var memberCount = groupDoc.data().member_count;
+
                     groupRef.update({
                         member_count: memberCount + 1
-                    })
-                })
-                groupRef.update({
-                    members: firebase.firestore.FieldValue.arrayUnion(docID),
-                })
+                    }).then(() => {
+                        return groupRef.update({
+                            members: firebase.firestore.FieldValue.arrayUnion(docID),
+                        });
+                    }).then(() => {
+                        window.location.href = "/";
+                    }).catch((error) => {
+                        console.error("Error updating group: ", error);
+                    });
+                });
             });
-        })
+        });
 };
 addGroupMember();
 /*
