@@ -6,8 +6,6 @@ function doAll() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             currentUser = db.collection("user").doc(user.uid); //global
-            console.log(currentUser);
-
             // figure out what day of the week it is today
             const weekday = [
                 "sunday",
@@ -42,8 +40,6 @@ function readQuote(day) {
     db.collection("quote")
         .doc(day)
         .onSnapshot((doc) => {
-            console.log("inside");
-            console.log(doc.data());
             document.getElementById("quote-goes-here").innerHTML = doc.data().quote;
         });
 }
@@ -71,8 +67,6 @@ function getNameFromAuth() {
         // Check if a user is signed in:
         if (user) {
             // Do something for the currently logged-in user here:
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName); //print the user name in the browser console
             userName = user.displayName;
 
             //method #1:  insert with JS

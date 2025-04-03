@@ -141,9 +141,6 @@ function loadActivitiesFromFirestore() {
         console.error("Group docID is missing!");
         return;
     }
-
-    console.log("Loading tasks for group docID:", docID);
-
     db.collection("Group")
         .doc(docID)
         .collection("task") // Reference the 'task' subcollection
@@ -161,7 +158,6 @@ function loadActivitiesFromFirestore() {
             querySnapshot.forEach((doc) => {
                 const task = doc.data();
                 const taskId = doc.id; // Store the document ID
-                console.log("Loaded task:", task);
 
                 // Create a dynamic card for the task
                 const taskCard = document.createElement('div');
