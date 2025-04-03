@@ -37,10 +37,8 @@ function populateUserInfo() {
                                     groupData.group_name || "No group name";
 
                                 const memberCount = groupData.member_count || 0;
-                                document.getElementById(
-                                    "member-count"
-                                ).innerText = `${memberCount} ${memberCount === 1 ? "member" : "members"
-                                }`;
+                                document.getElementById("member-count").innerText =
+                                    `${memberCount} ${memberCount === 1 ? "member" : "members"}`;
 
                                 // Display group image
                                 const groupImage = document.getElementById("group-image");
