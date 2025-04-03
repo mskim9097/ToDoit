@@ -215,19 +215,29 @@ searchUser.addEventListener("keyup", function () {
         .onSnapshot((snapshot) => {
             var userListContainer = document.getElementById("search-user-go-here");
             userListContainer.innerHTML = "";
-            snapshot.forEach((doc) => {
-                if (doc.data().user_delete_fg == "N") {
-                    var name = doc.data().name;
-                    var email = doc.data().email;
-                    var docID = doc.id;
-                    let newUser = searchedUserTemplate.content.cloneNode(true);
+            db.collection("Group").doc(groupID).get().then(doc => {
+                groupMembers = doc.data().members;
 
-                    newUser.querySelector(".unchecked-user-container").id = docID;
-                    newUser.querySelector(".user-name").innerHTML = name;
-                    newUser.querySelector(".user-email").innerHTML = email;
-                    document.getElementById("search-user-go-here").appendChild(newUser);
-                }
-            });
+                snapshot.forEach((doc) => {
+                    if (doc.data().user_delete_fg == "N") {
+                        if(!groupMembers.includes(doc.id)) {
+                            var email = doc.data().email;
+                            var name = doc.data().name;
+                            var docID = doc.id;
+                            let newUser = searchedUserTemplate.content.cloneNode(true);
+        
+                            newUser.querySelector(".unchecked-user-container").id = docID;
+                            newUser.querySelector(".user-name").innerHTML = name;
+                            newUser.querySelector(".user-email").innerHTML = email;
+                            document.getElementById("search-user-go-here").appendChild(newUser);
+                        }
+                        
+                    }
+                });
+                
+            })
+
+            
         });
 });
 
