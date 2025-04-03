@@ -34,12 +34,9 @@ function populateUserInfo() {
                 document.getElementById("group-name").innerText =
                   groupData.group_name || "No group name";
 
-                const memberCount = groupData.member_count || 0;
-                document.getElementById(
-                  "member-count"
-                ).innerText = `${memberCount} ${
-                  memberCount === 1 ? "member" : "members"
-                }`;
+                  const memberCount = groupData.member_count || 0;
+                  document.getElementById("member-count").innerText = 
+                    `${memberCount} ${memberCount === 1 ? "member" : "members"}`;
 
                 // Display group image
                 const groupImage = document.getElementById("group-image");
@@ -153,7 +150,7 @@ function populateUserInfo() {
     //         console.log("No user is signed in");
     //         location.href = "/";
     //     }
-    //     });
+    //     }); //
     //
   });
 }
