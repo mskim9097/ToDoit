@@ -159,7 +159,6 @@ function populateUserInfo() {
 let groupName;
 const urlParams = new URLSearchParams(window.location.search);
 const groupID = urlParams.get("docID");
-console.log("test");
 db.collection("Group")
     .doc(groupID)
     .onSnapshot((snapshot) => {
@@ -169,7 +168,6 @@ db.collection("Group")
 function displayTaskListInfo() {
     let params = new URL(window.location.href); // get URL
     let ID = params.searchParams.get("docID"); // get docID
-    console.log(ID); // check ID
 
     db.collection("task")
         .doc(ID)
@@ -181,7 +179,6 @@ function displayTaskListInfo() {
 
                 document.getElementById("taskName").innerHTML = taskListName;
             } else {
-                console.log("No such document!");
             }
         })
         .catch((error) => {
@@ -299,10 +296,7 @@ document.querySelector(".inviteBtn").addEventListener("click", function () {
     location.reload();
 });
 
-displayTaskListInfo();
-
 function accessInvite() {
-    console.log(groupID);
     var currentGroup = db.collection("Group").doc(groupID);
     currentGroup.get().then(doc => {
         var manager = doc.data().created_by;

@@ -1,5 +1,3 @@
-import { addReminderMember, getReminderMembers, updateReminderMember, deleteReminderMember } from "./reminderMember.js";
-
 // Example usage: Adding a reminder member
 document.getElementById("addMemberBtn").addEventListener("click", () => {
     const reminderNo = 101;
