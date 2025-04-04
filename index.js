@@ -1,5 +1,6 @@
 // https://expressjs.com/en/guide/routing.html
-
+import dotenv from "dotenv";
+dotenv.config();
 
 // REQUIRES
 const express = require("express");

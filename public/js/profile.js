@@ -65,9 +65,6 @@ function saveUserInfo() {
         city: userCity,
         program: userProgram,
     })
-        .then(() => {
-            console.log("Document successfully updated!");
-        })
 
     //c) disable edit 
     document.getElementById('personalInfoFields').disabled = true;

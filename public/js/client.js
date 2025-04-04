@@ -1,3 +1,5 @@
+/*
+
 // Example usage: Adding a reminder member
 document.getElementById("addMemberBtn").addEventListener("click", () => {
     const reminderNo = 101;
@@ -11,3 +13,4 @@ document.getElementById("addMemberBtn").addEventListener("click", () => {
 document.getElementById("viewMembersBtn").addEventListener("click", () => {
     getReminderMembers();
 });
+*/

@@ -6,7 +6,6 @@ function doAll() {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             currentUser = db.collection("user").doc(user.uid); //global
-            console.log(currentUser);
 
             // figure out what day of the week it is today
             const weekday = [
@@ -25,8 +24,6 @@ function doAll() {
             readQuote(day);
             insertNameFromFirestore();
             selectGroupList("Group");
-            selectReminder("reminder");
-            displayReminderMembers("reminder_member");
         } else {
             // No user is signed in.
             alert("Please sign in.");
@@ -42,8 +39,6 @@ function readQuote(day) {
     db.collection("quote")
         .doc(day)
         .onSnapshot((doc) => {
-            console.log("inside");
-            console.log(doc.data());
             document.getElementById("quote-goes-here").innerHTML = doc.data().quote;
         });
 }
@@ -71,8 +66,6 @@ function getNameFromAuth() {
         // Check if a user is signed in:
         if (user) {
             // Do something for the currently logged-in user here:
-            console.log(user.uid); //print the uid in the browser console
-            console.log(user.displayName); //print the user name in the browser console
             userName = user.displayName;
 
             //method #1:  insert with JS
@@ -91,6 +84,7 @@ function getNameFromAuth() {
 }
 getNameFromAuth(); //run the function
 
+/*
 // Function to display reminder members dynamically
 function displayReminderMembers(collection) {
     let reminderTemplate = document.getElementById("reminderCardTemplate"); // Retrieve the HTML element with the ID "reminderCardTemplate"
@@ -135,10 +129,11 @@ function displayReminderMembers(collection) {
         }
     });
 }
+*/
 
 // Call the function to display reminder members
 //displayReminderMembers();
-
+/*
 function selectReminder(collection) {
     let reminderTemplate = document.getElementById("reminderTemplate");
     var auth = firebase.auth();
@@ -184,6 +179,7 @@ function selectReminder(collection) {
     });
 }
 selectReminder("reminder");
+*/
 let unsubscribeGroups = null;
 
 function selectGroupList(collection) {

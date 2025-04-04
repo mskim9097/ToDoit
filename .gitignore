@@ -297,7 +297,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-# firebase
-firebaseAPI.js
-
 # End of https://www.toptal.com/developers/gitignore/api/java,node,macos,windows,eclipse
