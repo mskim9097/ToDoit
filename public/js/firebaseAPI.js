@@ -1,3 +1,5 @@
+import dotenv from "dotenv";
+dotenv.config();
 //----------------------------------------
 //  Your web app's Firebase configuration
 //----------------------------------------
