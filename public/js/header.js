@@ -1,3 +1,4 @@
+
 firebase.auth().onAuthStateChanged(user => {
     function logo() {
         var logo = document.querySelector('a.navbar-brand');
@@ -61,4 +62,3 @@ firebase.auth().onAuthStateChanged(user => {
     }
     
 });
-
