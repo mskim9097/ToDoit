@@ -450,6 +450,7 @@ function setupEditHandlers() {
 // Mock data
 
 // Filter groups as the user types in the search bar
+
 document.getElementById("searchInput").addEventListener("input", function () {
     let query = this.value.toLowerCase();
     let groups = document.querySelectorAll("#group-go-here .col");
@@ -458,4 +459,5 @@ document.getElementById("searchInput").addEventListener("input", function () {
         let title = group.querySelector(".card-title").textContent.toLowerCase();
         group.style.display = title.includes(query) ? "block" : "none";
     });
+    
 });

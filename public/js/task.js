@@ -303,9 +303,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
                 modalInstance.hide();
             })
-            .catch((error) => {
-                console.error("Error updating task:", error);
-            });
+            
     });
 });
 
