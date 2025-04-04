@@ -30,7 +30,7 @@ firebase.auth().onAuthStateChanged(user => {
                     document.querySelector("#upcomingCount").innerHTML = upcoming;
                 } else if (task.data.status == "completed") {
                     completed++;
-                    document.querySelector("#completedCount").innerHTML = upcoming;
+                    document.querySelector("#completedCount").innerHTML = completed;
                 }
                 const taskList = taskTemplate.content.cloneNode(true);
                 taskList.querySelector(".task-id").href = "group?docID=" + task.groupId;
