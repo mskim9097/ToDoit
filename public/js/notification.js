@@ -2,68 +2,81 @@
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         currentUser = db.collection("user").doc(user.uid);
-        let upcoming = 0;
-        urgent = 0;
-        let completed = 0;
+        let upcoming;
+        let urgent;
+        let completed;
 
-        // selectNotificationList function to list user tasks that is not done.
-        // sort by due date.
-        function selectNotificationList() {
-            const today = new Date();
+        const today = new Date();
+        const taskTemplate = document.getElementById("task-template");
+        const taskContainer = document.querySelector(".task-go-here");
+        let allTasks = [];
 
-            let taskTemplate = document.getElementById("task-template");
-            document.querySelector(".task-go-here").innerHTML = "";
+        function renderTaskList() {
+            allTasks.sort((a, b) => new Date(a.data.dueDate) - new Date(b.data.dueDate));
+            taskContainer.innerHTML = "";
+            upcoming = 0;
+            urgent = 0;
+            completed = 0;
 
-            db.collection("Group")
-                .where("members", "array-contains", user.uid)
-                .get()
-                .then(groupSnapshot => {
-                    groupSnapshot.forEach(groupDoc => {
-                        db.collection("Group")
-                            .doc(groupDoc.id)
-                            .collection("task")
-                            .orderBy("dueDate")
-                            .onSnapshot(taskSnapshot => {
-                                taskSnapshot.forEach(taskDoc => {
-                                    let taskList = taskTemplate.content.cloneNode(true);
+            allTasks.forEach(task => {
+                const dueDate = new Date(task.data.dueDate + "T00:00:00");
+                const diffInDays = Math.ceil((dueDate - today) / (1000 * 3600 * 24));
 
-                                    let dueDateStr = taskDoc.data().dueDate;
-                                    let dueDate = new Date(dueDateStr + "T00:00:00");
-                                    let diffInTime = dueDate - today;
-                                    let diffInDays = Math.ceil(diffInTime / (1000 * 3600 * 24));
+                if (diffInDays >= 0 && diffInDays <= 2 && task.data.status != "completed") {
+                    urgent++;
+                    document.querySelector("#urgentCount").innerHTML = urgent;
+                } else if (diffInDays > 2 && task.data.status != "completed") {
+                    upcoming++;
+                    document.querySelector("#upcomingCount").innerHTML = upcoming;
+                } else if (task.data.status == "completed") {
+                    completed++;
+                    document.querySelector("#completedCount").innerHTML = upcoming;
+                }
+                const taskList = taskTemplate.content.cloneNode(true);
+                taskList.querySelector(".task-id").href = "group?docID=" + task.groupId;
+                taskList.querySelector(".task-title").innerHTML = task.data.title;
+                taskList.querySelector(".due-date").innerHTML = task.data.dueDate + " " + task.data.dueTime;
 
-                                    if (diffInDays >= 0 && diffInDays <= 2) {
-                                        urgent++;
-                                        document.querySelector("#urgentCount").innerHTML = urgent;
-                                    } else if (diffInDays > 2) {
-                                        upcoming++;
-                                        document.querySelector("#upcomingCount").innerHTML = upcoming;
-                                    }
-
-                                    taskList.querySelector(".task-id").href = "group?docID=" + groupDoc.id;
-                                    taskList.querySelector(".task-title").innerHTML = taskDoc.data().title;
-                                    taskList.querySelector(".due-date").innerHTML
-                                        = taskDoc.data().dueDate + " " + taskDoc.data().dueTime;
-                                    if(taskDoc.data().status == "not started") {
-                                        taskList.querySelector(".task-status").classList.add("btn-outline-secondary");
-                                        taskList.querySelector(".task-status").innerHTML = "<i class='bi bi-dash-circle'></i> Not Started";
-                                    } else if(taskDoc.data().status == "in progress") {
-                                        taskList.querySelector(".task-status").classList.add("btn-outline-primary");
-                                        taskList.querySelector(".task-status").innerHTML = "<i class='bi bi-three-dots'></i> In Progress"
-                                    } else if(taskDoc.data().status == "completed") {
-                                        taskList.querySelector(".task-status").classList.add("btn-outline-success");
-                                        taskList.querySelector(".task-status").innerHTML = "<i class='bi bi-check-circle'></i>&nbsp; Completed";
-                                    }
-
-
-                                    document.querySelector(".task-go-here").appendChild(taskList);
-                                });
-
-                            });
-                    });
-                });
+                const taskStatus = taskList.querySelector(".task-status");
+                if (task.data.status === "not started") {
+                    taskStatus.classList.add("btn-outline-secondary");
+                    taskStatus.innerHTML = "<i class='bi bi-dash-circle'></i> Not Started";
+                } else if (task.data.status === "in progress") {
+                    taskStatus.classList.add("btn-outline-primary");
+                    taskStatus.innerHTML = "<i class='bi bi-three-dots'></i> In Progress";
+                } else if (task.data.status === "completed") {
+                    taskStatus.classList.add("btn-outline-success");
+                    taskStatus.innerHTML = "<i class='bi bi-check-circle'></i>&nbsp; Completed";
+                }
+                taskContainer.appendChild(taskList);
+            });
         }
-        selectNotificationList();
+        db.collection("Group")
+            .where("members", "array-contains", user.uid)
+            .get()
+            .then(groupSnapshot => {
+                groupSnapshot.forEach(groupDoc => {
+                    db.collection("Group")
+                        .doc(groupDoc.id)
+                        .collection("task")
+                        .onSnapshot(taskSnapshot => {
+                            taskSnapshot.forEach(taskDoc => {
+                                const taskData = taskDoc.data();
+                                const taskId = taskDoc.id;
+
+                                allTasks = allTasks.filter(task =>
+                                    !(task.groupId === groupDoc.id && task.id === taskId)
+                                );
+                                allTasks.push({
+                                    groupId: groupDoc.id,
+                                    id: taskId,
+                                    data: taskData
+                                });
+                            });
+                            renderTaskList();
+                        });
+                });
+            });
     } else {
         alert("session is out. please login again.");
         window.location.href = "/";
