@@ -109,7 +109,6 @@
         </div>
         <!--This is where the main task modal goes-->
         <div id="newTask">
-
             <body class="bg-light">
                 <div class="container py-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
@@ -161,7 +160,7 @@
                                             <label class="form-label">
                                                 <i class="fas fa-calendar-day me-2 text-muted"></i>Due Date
                                             </label>
-                                            <input type="date" class="form-control" min="<?= date('Y-m-d') ?>" required>
+                                            <input type="date" class="form-control" min="?= date('Y-m-d') ?>" required>
                                         </div>
                                         <div class="col-md-6">
                                             <label class="form-label">
@@ -219,8 +218,8 @@
                                         <label class="form-label">
                                             <i class="fas fa-heading me-2 text-muted"></i>Task Title
                                         </label>
-                                        <input type="text" id="taskTitle" class="form-control" placeholder="Task title"
-                                            readonly>
+                                        <input type="text" id="taskTitle" class="form-control" placeholder="Task title">
+                                    >
                                     </div>
 
                                     <div class="mb-3">
@@ -270,6 +269,9 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <button type="submit" class="btn btn-primary w-100 createTaskBtn">
+                                        <i class="fas fa-save me-2"></i>Update Task
+                                    </button>
                                 </form>
                             </div>
                         </div>
