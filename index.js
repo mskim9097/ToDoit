@@ -1,10 +1,18 @@
 // https://expressjs.com/en/guide/routing.html
 
-// REQUIRES
-const express = require("express");
+import dotenv from "dotenv";
+dotenv.config();
+
+import express from "express";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 const app = express();
 app.use(express.json());
-const fs = require("fs");
 
 // just like a simple web server like Apache web server
 // we are mapping file system paths to the app's virtual paths
