@@ -53,6 +53,7 @@ firebase.auth().onAuthStateChanged(user => {
         }
         db.collection("Group")
             .where("members", "array-contains", user.uid)
+            .where("group_delete_fg", "==", "N")
             .get()
             .then(groupSnapshot => {
                 groupSnapshot.forEach(groupDoc => {
