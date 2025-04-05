@@ -137,7 +137,7 @@ firebase.auth().onAuthStateChanged(user => {
 
 // Function to load activities from Firestore
 function loadActivitiesFromFirestore() {
-    const docID = getQueryParam("docID"); 
+    const docID = getQueryParam("docID");
     if (!docID) {
         console.error("Group docID is missing!");
         return;
@@ -257,55 +257,55 @@ function loadActivitiesFromFirestore() {
 
 
 
-        taskList.appendChild(taskCard);
+    taskList.appendChild(taskCard);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const updateTaskButton = document.querySelector('.updateTaskBtn');
+    document.addEventListener('DOMContentLoaded', () => {
+        const updateTaskButton = document.querySelector('.updateTaskBtn');
 
-    updateTaskButton.addEventListener('click', (event) => {
-        event.preventDefault(); // Prevent the form from submitting
+        updateTaskButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent the form from submitting
 
-        // Retrieve the task ID and group ID
-        const taskDetailsModal = document.getElementById('taskDetailsModal');
-        const taskId = taskDetailsModal.dataset.taskId; // Get the task ID from the modal's dataset
-        const groupId = getQueryParam("docID"); // Get the group ID from the URL
+            // Retrieve the task ID and group ID
+            const taskDetailsModal = document.getElementById('taskDetailsModal');
+            const taskId = taskDetailsModal.dataset.taskId; // Get the task ID from the modal's dataset
+            const groupId = getQueryParam("docID"); // Get the group ID from the URL
 
-        if (!taskId || !groupId) {
-            console.error("Task ID or Group ID is missing!");
-            return;
-        }
+            if (!taskId || !groupId) {
+                console.error("Task ID or Group ID is missing!");
+                return;
+            }
 
-        // Retrieve updated values from the modal
-        const updatedTask = {
-            title: document.getElementById('taskTitle').value.trim(),
-            description: document.getElementById('taskDescription').value.trim(),
-            dueDate: document.getElementById('taskDueDate').value,
-            dueTime: document.getElementById('taskDueTime').value,
-            status: document.getElementById('taskStatus').value,
-            priority: document.getElementById('taskPriority').value,
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp() // Add an update timestamp
-        };
+            // Retrieve updated values from the modal
+            const updatedTask = {
+                title: document.getElementById('taskTitle').value.trim(),
+                description: document.getElementById('taskDescription').value.trim(),
+                dueDate: document.getElementById('taskDueDate').value,
+                dueTime: document.getElementById('taskDueTime').value,
+                status: document.getElementById('taskStatus').value,
+                priority: document.getElementById('taskPriority').value,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp() // Add an update timestamp
+            };
 
-        // Update the task in Firestore
-        db.collection("Group")
-            .doc(groupId)
-            .collection("task")
-            .doc(taskId)
-            .update(updatedTask)
-            .then(() => {
-                console.log("Task updated successfully!");
-                alert("Task updated successfully!");
+            // Update the task in Firestore
+            db.collection("Group")
+                .doc(groupId)
+                .collection("task")
+                .doc(taskId)
+                .update(updatedTask)
+                .then(() => {
+                    console.log("Task updated successfully!");
+                    alert("Task updated successfully!");
 
-                // Refresh the task list
-                loadActivitiesFromFirestore();
+                    // Refresh the task list
+                    loadActivitiesFromFirestore();
 
-                // Close the modal
-                const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
-                modalInstance.hide();
-            })
-            
+                    // Close the modal
+                    const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
+                    modalInstance.hide();
+                })
+
+        });
     });
-});
 
 
 
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-} 
+}
 
 // Ensure the function runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
