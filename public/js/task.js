@@ -51,8 +51,8 @@ firebase.auth().onAuthStateChanged(user => {
                 .doc(groupId) // Reference the specific group document
                 .collection('task') // Reference the 'activities' subcollection
                 .add(task) // Add the task object
-                .then(() => {
-                    alert('Task saved successfully!');
+                .then((docRef) => {
+                    alert("Task saved successfully!");
 
                     // Create a dynamic card for the task
                     const taskList = document.querySelector('.row.g-4');
@@ -83,7 +83,29 @@ firebase.auth().onAuthStateChanged(user => {
                         </div>
                     `;
                     taskCard.addEventListener('click', () => {
-                        window.location.href = `/task-details.html?taskId=${task.id}`;
+                        const taskDetailsModal = document.getElementById('taskDetailsModal');
+                        taskDetailsModal.dataset.taskId = docRef.id;
+                        taskDetailsModal.dataset.groupId = groupId; // Pass the group ID as well
+                        if (!taskDetailsModal) {
+                            console.error("Task details modal not found!");
+                            return;
+                        }
+
+                        // Populate the modal with task details
+                        document.getElementById('taskTitle').value = task.title;
+                        document.getElementById('taskDescription').value = task.description;
+                        document.getElementById('taskDueDate').value = task.dueDate;
+                        document.getElementById('taskDueTime').value = task.dueTime;
+                        document.getElementById('taskStatus').value = task.status;
+                        document.getElementById('taskPriority').value = task.priority;
+
+                        // Show the modal
+                        const modalInstance = new bootstrap.Modal(taskDetailsModal);
+                        modalInstance.show();
+
+                        // Set the task ID in the modal's dataset
+                        taskDetailsModal.dataset.taskId = docRef.id; // Use the generated ID from Firestore
+                        taskDetailsModal.dataset.groupId = groupId; // Pass the group ID as well
                     });
 
                     taskCard.querySelector('.delete-task-btn').addEventListener('click', (e) => {
@@ -198,6 +220,8 @@ function loadActivitiesFromFirestore() {
                 // Add a click event listener for task actions
                 taskCard.addEventListener('click', () => {
                     const taskDetailsModal = document.getElementById('taskDetailsModal');
+
+
                     if (!taskDetailsModal) {
                         console.error("Task details modal not found!");
                         return;
@@ -217,6 +241,7 @@ function loadActivitiesFromFirestore() {
 
                     // Set the task ID in the modal's dataset
                     taskDetailsModal.dataset.taskId = taskId;
+                    taskDetailsModal.dataset.groupId = docID;
                 });
 
                 // Add a click event listener for the delete button
@@ -258,62 +283,6 @@ function loadActivitiesFromFirestore() {
 
 
     taskList.appendChild(taskCard);
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const updateTaskButton = document.querySelector('.updateTaskBtn');
-
-        updateTaskButton.addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent the form from submitting
-
-            // Retrieve the task ID and group ID
-            const taskDetailsModal = document.getElementById('taskDetailsModal');
-            const taskId = taskDetailsModal.dataset.taskId; // Get the task ID from the modal's dataset
-            const groupId = getQueryParam("docID"); // Get the group ID from the URL
-
-            if (!taskId || !groupId) {
-                console.error("Task ID or Group ID is missing!");
-                return;
-            }
-
-            // Retrieve updated values from the modal
-            const updatedTask = {
-                title: document.getElementById('taskTitle').value.trim(),
-                description: document.getElementById('taskDescription').value.trim(),
-                dueDate: document.getElementById('taskDueDate').value,
-                dueTime: document.getElementById('taskDueTime').value,
-                status: document.getElementById('taskStatus').value,
-                priority: document.getElementById('taskPriority').value,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp() // Add an update timestamp
-            };
-
-            // Update the task in Firestore
-            db.collection("Group")
-                .doc(groupId)
-                .collection("task")
-                .doc(taskId)
-                .update(updatedTask)
-                .then(() => {
-                    console.log("Task updated successfully!");
-                    alert("Task updated successfully!");
-
-                    // Refresh the task list
-                    loadActivitiesFromFirestore();
-
-                    // Close the modal
-                    const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
-                    modalInstance.hide();
-                })
-
-        });
-    });
-
-
-
-
-
-
-
-
 
 
 }
@@ -359,6 +328,63 @@ taskCard.innerHTML = `
         </div>
     </div>
 `;
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('updatetaskbtn').addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        const taskDetailsModal = document.getElementById('taskDetailsModal');
+        const taskId = taskDetailsModal.dataset.taskId;
+        const groupId = taskDetailsModal.dataset.groupId; // Get from dataset
+
+        console.log("groupId:", groupId, "taskId:", taskId);
+
+        // Validate both IDs
+        if (!taskId || !groupId) {
+            alert("Missing task/group ID!");
+            return;
+        }
+
+        // Rest of your update logic...
+
+
+        // Get updated values from modal inputs
+        const updatedTask = {
+            title: document.getElementById('taskTitle').value.trim(),
+            description: document.getElementById('taskDescription').value.trim(),
+            dueDate: document.getElementById('taskDueDate').value,
+            dueTime: document.getElementById('taskDueTime').value,
+            status: document.getElementById('taskStatus').value,
+            priority: document.getElementById('taskPriority').value,
+            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        };
+
+        try {
+            // Update specific task document (like delete does)
+            await db.collection("Group")
+            await db.collection("Group")
+                .doc(taskDetailsModal.dataset.groupId)
+                .collection("task")
+                .doc(taskDetailsModal.dataset.taskId)
+                .update(updatedTask)
+
+
+            alert("Task updated successfully!");
+            loadActivitiesFromFirestore(); // Refresh list like delete
+
+            // Close modal properly
+            const modal = bootstrap.Modal.getInstance(taskDetailsModal);
+            modal.hide();
+        } catch (error) {
+            console.error("Update error:", error);
+            alert(`Update failed: ${error.message}`);
+        }
+    });
+});
+
+
 
 
 
