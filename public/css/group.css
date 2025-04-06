@@ -1,59 +1,193 @@
-/* invite modal */
 .invite-container {
     display: flex;
-    height: 50vh;
+    flex-direction: column;
+    height: auto;
+    max-height: 65vh;
+    gap: 0;
+    background: #f8f9fa; 
+}
+
+@media (min-width: 768px) {
+    .invite-container {
+        flex-direction: row;
+        height: 50vh;
+    }
 }
 
 .invite-container>div:nth-child(1) {
-    width: 60%;
+    width: 100%;
     overflow-y: auto;
-    border-right: 1px solid lightgrey;
+    padding: 0;
+    border-bottom: 1px solid #dee2e6; 
+    background: white;
+}
+
+@media (min-width: 768px) {
+    .invite-container>div:nth-child(1) {
+        width: 55%;
+        border-right: 1px solid #dee2e6;
+        border-bottom: none;
+    }
 }
 
 .invite-container>div:nth-child(2) {
-    width: 40%;
-    overflow: auto;
-}
-
-.plus-btn {
-    text-align: left;
     width: 100%;
+    overflow: auto;
+    padding: 0;
+    position: relative;
+    min-height: 150px;
+    background: white;
 }
 
-.plus-btn:hover {
-    background-color: lightgray;
+@media (min-width: 768px) {
+    .invite-container>div:nth-child(2) {
+        width: 45%;
+    }
 }
 
-#button-area {
+.select {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
     display: flex;
+    align-items: center;
+}
+
+.select i {
+    position: absolute;
+    left: 1.75rem;
+    color: #58b2f7; 
+}
+
+.search-user {
+    width: 100%;
+    padding: 0.75rem 0.75rem 0.75rem 2.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    background: #f8f9fa; 
+}
+
+.search-user:focus {
+    border-color: #58b2f7;
+    box-shadow: 0 0 0 0.25rem rgba(88, 178, 247, 0.25); 
+}
+
+#search-user-go-here, 
+#plus-user-go-here {
+    padding: 0 1rem 1rem;
+}
+
+.plus-btn, 
+.remove-btn {
+    width: 100%;
+    padding: 1rem 0;
+    border: none;
+    background: none;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f1f3f5;
+    color: #212529; 
+}
+
+.plus-btn i, 
+.remove-btn i {
+    font-size: 1.25rem;
+    color: #58b2f7; 
+}
+
+.plus-btn:hover, 
+.remove-btn:hover {
+    background-color: #f1f8fe; 
+}
+
+.user-name {
+    font-weight: 500;
+    color: #212529;
+}
+
+.user-email {
+    font-size: 0.85rem;
+    color: #6c757d; 
+    display: block;
+    margin-top: 2px;
+}
+
+.modal-footer {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
 }
 
 .inviteBtn {
     background-color: #58b2f7 !important;
     color: white !important;
     border: none !important;
+    padding: 0.5rem 1.25rem !important;
+    border-radius: 6px !important;
+    font-weight: 500 !important;
 }
 
 .inviteBtn:hover {
-    background-color: #005fa3 !important;
+    background-color: #3a9ae8 !important;
 }
 
-.leaveGroupBtn {
-    background-color: #58b2f7 !important;
-    color: white !important;
-    border: none !important;
+.btn-outline-secondary {
+    border-color: #dee2e6 !important;
+    color: #495057 !important;
 }
 
-.leaveGroupBtn:hover {
-    background-color: #005fa3 !important;
+.btn-outline-secondary:hover {
+    background-color: #f8f9fa !important;
 }
 
-.createTaskBtn {
-    background-color: #58b2f7 !important;
-    color: white !important;
-    border: none !important;
+.modal-header {
+    border-bottom: 1px solid #dee2e6;
+    padding: 1rem 1.25rem;
 }
 
-.createTaskBtn:hover {
-    background-color: #005fa3 !important;
+.modal-title {
+    color: #212529;
+    font-weight: 600;
+}
+
+@media (max-width: 767.98px) {
+    .modal-dialog {
+        margin: 0.5rem;
+        max-width: calc(100% - 1rem);
+    }
+    
+    .modal-content {
+        border-radius: 8px;
+        border: none;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    }
+    
+    #plus-user-go-here {
+        max-height: 150px;
+        overflow-y: auto;
+    }
+    
+    .modal-footer {
+        padding: 0.75rem 1rem;
+    }
+    
+    .select {
+        padding: 0.75rem 1rem;
+    }
+    
+    .plus-btn, 
+    .remove-btn {
+        padding: 0.75rem 0;
+    }
 }
