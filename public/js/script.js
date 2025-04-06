@@ -5,7 +5,7 @@ function logout() {
         // An error happened.
     });
 }
-
+/*
 document.getElementById("loginForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     const email = document.getElementById("username").value;
@@ -23,3 +23,4 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         errorMessage.style.color = "red";
     }
 });
+*/

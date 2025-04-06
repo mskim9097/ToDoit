@@ -18,8 +18,15 @@ firebase.auth().onAuthStateChanged(user => {
         
             db.collection("Group")
                 .where("members", "array-contains", user.uid)
+                .where("group_delete_fg", "==", "N")
                 .get()
                 .then(groupSnapshot => {
+                    if(groupSnapshot.empty) {
+                        document.querySelectorAll(".urgent-badge").forEach(doc => {
+                            doc.style.visibility = "hidden";
+                        })
+                        return;
+                    }
                     groupSnapshot.forEach(groupDoc => {
                         db.collection("Group")
                             .doc(groupDoc.id)
@@ -46,7 +53,7 @@ firebase.auth().onAuthStateChanged(user => {
                                     }
                                 });
                                 document.querySelectorAll(".urgent-badge").forEach(doc => {
-                                    if (urgent === 0) {
+                                    if (urgent == 0) {
                                         doc.style.visibility = "hidden";
                                     } else {
                                         doc.style.visibility = "visible";
