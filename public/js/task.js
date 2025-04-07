@@ -17,7 +17,7 @@ firebase.auth().onAuthStateChanged(user => {
             const dueTime = document.querySelector('input[type="time"]').value;
             const status = document.querySelector("#task-status").value;
             const priority = document.querySelector("#prioritySelect").value
-            
+
 
 
             // Validate taskTitle
@@ -292,6 +292,7 @@ function loadActivitiesFromFirestore() {
 //Updating the task
 document.body.addEventListener('click', async (e) => {
     const updateBtn = e.target.closest('#updatetaskbtn');
+    
     if (!updateBtn) return;
 
     console.log("Update Task button clicked");
@@ -341,11 +342,6 @@ document.body.addEventListener('click', async (e) => {
 });
 
 
-
-
-
-
-
 // Ensure the function runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     loadActivitiesFromFirestore();
@@ -387,6 +383,8 @@ taskCard.innerHTML = `
         </div>
     </div>
 `;
+
+
 
 
 
