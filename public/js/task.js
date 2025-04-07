@@ -288,6 +288,60 @@ function loadActivitiesFromFirestore() {
 
 }
 
+//update task 
+document.body.addEventListener('click', async (e) => {
+    const updateBtn = e.target.closest('#updatetaskbtn');
+    if (!updateBtn) return;
+
+    console.log("Update Task button clicked");
+
+    const taskDetailsModal = document.getElementById('taskDetailsModal');
+    const taskId = taskDetailsModal.dataset.taskId;
+    const groupId = taskDetailsModal.dataset.groupId;
+
+    if (!taskId || !groupId) {
+        alert("Missing task/group ID!");
+        return;
+    }
+
+    const updatedTask = {
+        title: document.getElementById('taskTitle').value.trim(),
+        description: document.getElementById('taskDescription').value.trim(),
+        dueDate: document.getElementById('taskDueDateDetails').value,
+        dueTime: document.getElementById('taskDueTime').value,
+        status: document.getElementById('taskStatus').value,
+        priority: document.getElementById('taskPriority').value,
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    try {
+        await db
+            .collection("Group")
+            .doc(groupId)
+            .collection("task")
+            .doc(taskId)
+            .update(updatedTask);
+
+        alert("Task updated successfully!");
+
+        loadActivitiesFromFirestore();
+
+
+        const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
+        modalInstance.hide();
+
+    } catch (error) {
+        console.error("Update error:", error);
+
+    }
+});
+
+
+
+
+
+
+
 // Ensure the function runs after the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", () => {
     loadActivitiesFromFirestore();
@@ -329,65 +383,6 @@ taskCard.innerHTML = `
         </div>
     </div>
 `;
-
-
-
-document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('updatetaskbtn').addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        const taskDetailsModal = document.getElementById('taskDetailsModal');
-        const taskId = taskDetailsModal.dataset.taskId;
-        const groupId = taskDetailsModal.dataset.groupId; // Get from dataset
-
-        console.log("groupId:", groupId, "taskId:", taskId);
-
-        // Validate both IDs
-        if (!taskId || !groupId) {
-            alert("Missing task/group ID!");
-            return;
-        }
-
-        // Rest of your update logic...
-
-
-        // Get updated values from modal inputs
-        const updatedTask = {
-            title: document.getElementById('taskTitle').value.trim(),
-            description: document.getElementById('taskDescription').value.trim(),
-            dueDate: document.getElementById('taskDueDate').value,
-            dueTime: document.getElementById('taskDueTime').value,
-            status: document.getElementById('taskStatus').value,
-            priority: document.getElementById('taskPriority').value,
-            updatedAt: firebase.firestore.FieldValue.serverTimestamp()
-        };
-
-        try {
-            // Update specific task document (like delete does)
-            await db.collection("Group")
-            await db.collection("Group")
-                .doc(taskDetailsModal.dataset.groupId)
-                .collection("task")
-                .doc(taskDetailsModal.dataset.taskId)
-                .update(updatedTask)
-
-
-            alert("Task updated successfully!");
-            loadActivitiesFromFirestore(); // Refresh list like delete
-
-            // Close modal properly
-            const modal = bootstrap.Modal.getInstance(taskDetailsModal);
-            modal.hide();
-        } catch (error) {
-            console.error("Update error:", error);
-            alert(`Update failed: ${error.message}`);
-        }
-    });
-});
-
-
-
-
 
 
 
