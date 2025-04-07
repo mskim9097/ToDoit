@@ -4,6 +4,7 @@ function getQueryParam(param) {
     return urlParams.get(param);
 }
 
+//Main function to load the task form and handle task creation
 firebase.auth().onAuthStateChanged(user => {
     if (user) {
         document.getElementById('taskForm').addEventListener('submit', function (e) {
@@ -16,7 +17,7 @@ firebase.auth().onAuthStateChanged(user => {
             const dueTime = document.querySelector('input[type="time"]').value;
             const status = document.querySelector("#task-status").value;
             const priority = document.querySelector("#prioritySelect").value
-            const deleteIcon = document.querySelector('.delete-icon'); // Assuming you have a delete icon in your HTML
+            
 
 
             // Validate taskTitle
@@ -288,7 +289,7 @@ function loadActivitiesFromFirestore() {
 
 }
 
-//update task 
+//Updating the task
 document.body.addEventListener('click', async (e) => {
     const updateBtn = e.target.closest('#updatetaskbtn');
     if (!updateBtn) return;
@@ -304,6 +305,7 @@ document.body.addEventListener('click', async (e) => {
         return;
     }
 
+    //Retrieve the updated task details from the modal inputs
     const updatedTask = {
         title: document.getElementById('taskTitle').value.trim(),
         description: document.getElementById('taskDescription').value.trim(),
@@ -314,6 +316,7 @@ document.body.addEventListener('click', async (e) => {
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     };
 
+    // Validate updated task details
     try {
         await db
             .collection("Group")
@@ -330,6 +333,7 @@ document.body.addEventListener('click', async (e) => {
         const modalInstance = bootstrap.Modal.getInstance(taskDetailsModal);
         modalInstance.hide();
 
+        //Display an error if the task did not update successfully
     } catch (error) {
         console.error("Update error:", error);
 
