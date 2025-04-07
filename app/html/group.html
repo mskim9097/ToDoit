@@ -201,7 +201,6 @@
             </div>
 
             <!-- Task Details Modal -->
-            <!-- Task Details Modal -->
             <div class="modal fade" id="taskDetailsModal" tabindex="-1">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -210,7 +209,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
                         <div class="modal-body">
-                            <!-- Changed from form to div to prevent submission -->
+                            
                             <div id="taskDetailsContent">
                                 <div class="mb-3">
                                     <label class="form-label">
@@ -231,7 +230,7 @@
                                         <label class="form-label">
                                             <i class="fas fa-calendar-day me-2 text-muted"></i>Due Date
                                         </label>
-                                        <input type="date" id="taskDueDate" class="form-control">
+                                        <input type="date" id="taskDueDateDetails" class="form-control">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label">
@@ -274,48 +273,47 @@
                 </div>
             </div>
 
-            <!-- Modal for invite -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Invite member</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="invite-container">
-                                <div class="user-content">
-                                    <div class="select">
-                                        <i class="bi bi-search"></i>
-                                        <input type="text" id="search-txt" class="search-user"
-                                            placeholder="Enter Email">
-                                    </div>
-                                    <div class="search-mem">
-
-                                    </div>
-                                    <div id="search-user-go-here" class="list-group">
-
-                                    </div>
-
-
+        <!-- Modal for invite -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Invite Members</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-0">
+                        <div class="invite-container">
+                            <!-- Search Section -->
+                            <div>
+                                <div class="select">
+                                    <i class="bi bi-search"></i>
+                                    <input type="text" id="search-txt" class="search-user" placeholder="Search by email">
                                 </div>
-                                <div id="plus-user-go-here">
-
+                                <div id="search-user-go-here" class="pt-1">
+                                    <!-- Search results appear here -->
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary inviteBtn">Invite</button>
+                            
+                            <!-- Selected Members Section -->
+                            <div>
+                                <div id="plus-user-go-here" class="pt-2">
+                                    <div class="px-3 pb-1 text-muted small">Selected Members</div>
+                                    <!-- Selected members appear here -->
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary inviteBtn">Send Invites</button>
+                    </div>
                 </div>
             </div>
+        </div>
 
             <div id="button-area">
                 <button type="button" id="invite-btn" class="btn btn-primary inviteBtn" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal">
+                    data-bs-target="#exampleModal"><i class="bi bi-person-fill-add"></i>
                     Invite
                 </button>
                 <button type="button" id="leave-group-btn" class="btn btn-primary leaveGroupBtn">
