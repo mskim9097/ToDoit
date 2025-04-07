@@ -134,3 +134,11 @@ input:checked+.custom-toggle-slider:before {
 .createTaskBtn:hover {
     background-color: #005fa3 !important;
 }
+
+
+
+#taskModal .modal-dialog {
+    max-width: 400px; /* Adjust width if needed */
+    max-height: 10%; /* Limit modal height to 80% of the viewport */
+    margin: auto; /* Center the modal */
+}
