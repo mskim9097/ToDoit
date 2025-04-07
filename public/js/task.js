@@ -200,8 +200,8 @@ function loadActivitiesFromFirestore() {
                         </button>
 
                         <div class="d-flex align-items-center mb-2">
-                            <span class="priority-indicator priority-${task.reminders ? 'high' : 'low'} me-2"></span>
-                            <small class="text-muted">${task.reminders ? 'High Priority' : 'Low Priority'}</small>
+                            <span class="priority-indicator priority-${task.priority} me-2"></span>
+                            <small class="text-muted">${task.priority}</small>
                             <span class="ms-auto badge bg-primary"></span>
                         </div>
                         <h5 class="mb-1">${task.title}</h5>
@@ -213,6 +213,7 @@ function loadActivitiesFromFirestore() {
                             <small>
                                 <i class="fas fa-clock me-1"></i>${task.dueTime}
                             </small>
+                            <small class="ms-auto">${task.status}</small>
                         </div>
                     </div>
                 `;
