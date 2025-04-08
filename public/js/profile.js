@@ -32,7 +32,7 @@ function populateUserInfo() {
                 })
         } else {
             // No user is signed in.
-            console.log("No user is signed in");
+            alert("No user is signed in");
             location.href = "/";
         }
     });
@@ -80,12 +80,10 @@ function deleteAccount() {
                 // Step 1: Delete user document from Firestore
                 db.collection("user").doc(userId).delete()
                     .then(() => {
-                        console.log("User document deleted from Firestore");
 
                         // Step 2: Delete user authentication account
                         user.delete()
                             .then(() => {
-                                console.log("User account deleted from Firebase Auth");
                                 alert("Your account has been successfully deleted.");
                                 location.href = "/";  // redirect to homepage or login page
                             })

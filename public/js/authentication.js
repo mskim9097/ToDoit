@@ -12,7 +12,7 @@ var uiConfig = {
         }
     },
     signInFlow: 'popup',
-    signInSuccessUrl: "/main",
+    signInSuccessUrl: "main.html",
     signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
     tosUrl: '<your-tos-url>',
     privacyPolicyUrl: '<your-privacy-policy-url>'
@@ -21,8 +21,8 @@ var uiConfig = {
 // Check which page we're on and initialize accordingly
 document.addEventListener('DOMContentLoaded', function () {
     const path = window.location.pathname;
-    const isLoginPage = path.includes('/login') || path.endsWith('/login');
-    const isSignupPage = path.includes('/signup') || path.endsWith('/signup');
+    const isLoginPage = path.includes('login.html') || path.endsWith('login.html');
+    const isSignupPage = path.includes('signup.html') || path.endsWith('signup.html');
 
     const authButton = document.getElementById('authButton');
     if (!authButton) {
@@ -60,7 +60,7 @@ async function handleLogin() {
 
     try {
         const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-        window.location.assign('/main');
+        window.location.assign('main.html');
     } catch (error) {
         errorElement.textContent = error.message;
         console.error('Login error:', error);
@@ -88,7 +88,7 @@ async function handleSignup() {
             user_delete_fg: 'N'
         });
 
-        window.location.assign('/main');
+        window.location.assign('main.html');
     } catch (error) {
         errorElement.textContent = error.message;
         console.error('Signup error:', error);
@@ -103,11 +103,11 @@ function handleAuthSuccess(authResult) {
             email: user.email,
             user_delete_fg: "N"
         }).then(() => {
-            window.location.assign("/main");
+            window.location.assign("main.html");
         }).catch((error) => {
             console.log("Error adding new user: " + error);
         });
     } else {
-        window.location.assign("/main");
+        window.location.assign("main.html");
     }
 }
