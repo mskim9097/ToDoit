@@ -27,7 +27,7 @@ function doAll() {
         } else {
             // No user is signed in.
             alert("Please sign in.");
-            window.location.href = "/login";
+            window.location.href = "login.html";
         }
     });
 }
