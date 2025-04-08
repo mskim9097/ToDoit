@@ -9,12 +9,12 @@ function loadSkeleton() {
             // If the "user" variable is not null, then someone is logged in
             // User is signed in.
             // Do something for the user here.
-            $('#navbarPlaceholder').load('/nav_after_login');
-            $('#footerPlaceholder').load('/footer');
+            $('#navbarPlaceholder').load('nav_after_login.html');
+            $('#footerPlaceholder').load('footer.html');
         } else {
             // No user is signed in.
-            $('#navbarPlaceholder').load('/nav_before_login');
-            $('#footerPlaceholder').load('/footer');
+            $('#navbarPlaceholder').load('nav_before_login.html');
+            $('#footerPlaceholder').load('footer.html');
         }
     });
 }

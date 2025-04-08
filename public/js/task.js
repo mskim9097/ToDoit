@@ -166,8 +166,6 @@ function loadActivitiesFromFirestore() {
         return;
     }
 
-    console.log("Loading tasks for group docID:", docID);
-
     // Reference the 'task' subcollection in Firestore
     db.collection("Group")
         .doc(docID)
@@ -188,7 +186,6 @@ function loadActivitiesFromFirestore() {
             querySnapshot.forEach((doc) => {
                 const task = doc.data();
                 const taskId = doc.id; // Store the document ID
-                console.log("Loaded task:", task);
 
                 // Create a dynamic card for the task 
                 const taskCard = document.createElement('div');
@@ -284,7 +281,7 @@ function loadActivitiesFromFirestore() {
 
 
 
-    taskList.appendChild(taskCard);
+    //taskList.appendChild(taskCard);
 
 
 }

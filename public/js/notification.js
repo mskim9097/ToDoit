@@ -33,7 +33,7 @@ firebase.auth().onAuthStateChanged(user => {
                     document.querySelector("#completedCount").innerHTML = completed;
                 }
                 const taskList = taskTemplate.content.cloneNode(true);
-                taskList.querySelector(".task-id").href = "group?docID=" + task.groupId;
+                taskList.querySelector(".task-id").href = "group.html?docID=" + task.groupId;
                 taskList.querySelector(".task-title").innerHTML = task.data.title;
                 taskList.querySelector(".due-date").innerHTML = task.data.dueDate + " " + task.data.dueTime;
 

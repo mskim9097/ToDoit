@@ -14,16 +14,26 @@
 .auth-container {
     background: rgba(255, 255, 255, 0.98);
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(88, 178, 247, 0.15);
-    padding: 40px;
+    box-shadow: 0 6px 24px rgba(88, 178, 247, 0.2);
+    padding: 2.5rem 2rem;
     width: 90%;
-    max-width: 450px;
-    margin: 20px auto;
+    max-width: 90%;
+    min-height: 450px;
+    margin: 10vh auto;
     text-align: center;
     border: 1px solid rgba(88, 178, 247, 0.1);
     box-sizing: border-box;
 }
 
+@media only screen and (min-width: 1024px) {
+    .auth-container {
+        width: 90%;
+        max-width: 450px;
+        padding: 40px;
+        margin: 20px auto;
+        box-shadow: 0 4px 20px rgba(88, 178, 247, 0.15);
+    }
+}
 /* Brand-colored title */
 .auth-title {
     font-size: 2rem;

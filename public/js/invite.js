@@ -23,7 +23,13 @@ function addGroupMember() {
                             members: firebase.firestore.FieldValue.arrayUnion(docID),
                         });
                     }).then(() => {
-                        window.location.href = "/";
+                        firebase.auth().onAuthStateChanged(user => {
+                            if(user) {
+                                window.location.href = "group.html?docID=" + groupID; 
+                            } else {
+                                window.location.href = "/";
+                            }
+                        })
                     }).catch((error) => {
                         console.error("Error updating group: ", error);
                     });
