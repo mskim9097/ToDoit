@@ -142,3 +142,7 @@ input:checked+.custom-toggle-slider:before {
     max-height: 10%; /* Limit modal height to 80% of the viewport */
     margin: auto; /* Center the modal */
 }
+#updatetaskbtn {
+    background-color: #58b2f7 !important;
+   
+}
